@@ -6,4 +6,10 @@
     <string name="policy_msg">By continuing you accept our Privacy Policy and Term of Use</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_web_client_id">704630649665-t4fdjtdotv72o2nav4j11vli5cj6b7go.apps.googleusercontent.com</string>
+
+    <string-array name="gender_options">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
 </resources>
