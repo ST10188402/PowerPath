@@ -72,6 +72,7 @@
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#BDBDBD"
                     android:spinnerMode="dropdown"
+                    android:paddingVertical="10dp"
                     android:textColor="@android:color/white" />
 
                 <com.google.android.material.textfield.TextInputLayout

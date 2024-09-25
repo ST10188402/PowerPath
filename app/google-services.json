@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "704630649665",
+    "firebase_url": "https://powerpath-8e3c3-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "powerpath-8e3c3",
     "storage_bucket": "powerpath-8e3c3.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.opsc.powerpath"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "704630649665-e6es9e3ldc5g6m50hp5c8n5lb2bav9d8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.opsc.powerpath",
+            "certificate_hash": "63334ee41376477e8c1db4757ec26690dad60451"
+          }
+        },
+        {
+          "client_id": "704630649665-t4fdjtdotv72o2nav4j11vli5cj6b7go.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCDx7qVEtgMZndqhS_wFKxScEIvnzhQYkI"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "704630649665-t4fdjtdotv72o2nav4j11vli5cj6b7go.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
