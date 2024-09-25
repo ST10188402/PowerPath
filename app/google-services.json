@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "704630649665",
+    "project_id": "powerpath-8e3c3",
+    "storage_bucket": "powerpath-8e3c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704630649665:android:bcc4429e80d479c030e7c0",
+        "android_client_info": {
+          "package_name": "com.opsc.powerpath"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDx7qVEtgMZndqhS_wFKxScEIvnzhQYkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
