@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background">#2A2C38</color>
+    <color name="navbar">#22242E</color>
+    <color name="grey_text">#A5A3AF</color>
+    <color name="button_purple">#983BCB</color>
 </resources>
