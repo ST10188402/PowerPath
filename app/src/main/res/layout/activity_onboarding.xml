@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/onboarding_container"
+    android:gravity="center"
+    android:background="@color/background_grey"
+    tools:context=".SuccessActivity">
+
+    <ImageView
+        android:id="@+id/onboarding_image"
+        android:layout_width="424dp"
+        android:layout_height="602dp"
+        android:layout_gravity="top"
+        android:layout_marginTop="-200dp"
+        android:src="@drawable/landing_imgt" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+    <TextView
+        android:id="@+id/onboarding_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Track Your Goal"
+        android:textSize="26sp"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_gravity="left"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/onboarding_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/onboarding_msg"
+        android:textColor="#BDBDBD"
+        android:textSize="16sp"
+        android:layout_gravity="left"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="24dp"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@drawable/gradient_background"
+            android:clickable="true"
+            android:contentDescription="next"
+            android:src="@drawable/ic_arrow"
+            app:backgroundTint="@color/btn_grad" />
+    </LinearLayout>
+</LinearLayout>
