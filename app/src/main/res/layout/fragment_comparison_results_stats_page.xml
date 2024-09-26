@@ -1,17 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background_grey"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".ComparisonResultsStatsPage">
 
-    <ImageView
-        android:id="@+id/frontImage1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:scaleType="centerCrop"
-        android:paddingTop="100dp"
-        android:src="@drawable/page" />
+    <!-- Tab for Photo/Statistic switch -->
+    <LinearLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center">
 
-</FrameLayout>
+        <include layout="@layout/item1_comparisonresultpage" />
+    </LinearLayout>
+
+    <!-- Graph Section (You'll need a third-party library for this) -->
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp" />
+
+    <!-- Month Titles -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/text_may"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="May"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/text_june"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="June"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    <!-- Progress Bars for stats -->
+    <LinearLayout
+        android:id="@+id/statistics_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <!-- Lose Weight Progress -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lose Weight"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+        <ProgressBar
+            android:id="@+id/progress_lose_weight"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="33"
+            android:max="100"
+            android:layout_margin="8dp"
+            android:progressTint="@color/green" />
+
+        <!-- Push Strength Increase -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Push Strength Increase"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+        <ProgressBar
+            android:id="@+id/progress_push_strength"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="88"
+            android:max="100"
+            android:layout_margin="8dp"
+            android:progressTint="@color/red" />
+
+        <!-- Pull Strength Increase -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pull Strength Increase"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+        <ProgressBar
+            android:id="@+id/progress_pull_strength"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="57"
+            android:max="100"
+            android:layout_margin="8dp"
+            android:progressTint="@color/green" />
+
+        <!-- Legs Strength Increase -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Legs Strength Increase"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+        <ProgressBar
+            android:id="@+id/progress_legs_strength"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="89"
+            android:max="100"
+            android:layout_margin="8dp"
+            android:progressTint="@color/red" />
+    </LinearLayout>
+
+    <!-- Back to Home Button -->
+    <Button
+        android:id="@+id/button_back_to_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to Home"
+        android:backgroundTint="@color/btn_grad"
+        android:textColor="@color/white"
+        android:layout_marginTop="16dp" />
+</LinearLayout>
