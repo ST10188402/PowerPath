@@ -4,4 +4,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_grey">#2a2c38</color>
     <color name="btn_grad">#9B77C8</color>
+    <color name="background">#2A2C38</color>
+    <color name="navbar">#22242E</color>
+    <color name="grey_text">#A5A3AF</color>
+    <color name="button_purple">#983BCB</color>
+    <color name="transparent">#00000000</color>
+    <color name="unhighlighted">#73717E</color>
 </resources>
