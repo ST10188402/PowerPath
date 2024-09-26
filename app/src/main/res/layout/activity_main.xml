@@ -19,7 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/navbar"
-        app:itemRippleColor="@color/transparent"
         app:itemTextColor="@color/button_purple"
         app:itemIconSize="30dp"
         app:elevation="0dp"
