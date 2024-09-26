@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_grey"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/selectMonth1Container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/calendarIcon1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_calendar" />
+
+        <TextView
+            android:id="@+id/selectMonth1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="Select Month 1"
+            android:textColor="#A5A3AF"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/currentMonth1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Month 1"
+            android:textColor="#A5A3AF"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/go1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_arrow" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/selectMonth2Container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectMonth1Container">
+
+        <ImageView
+            android:id="@+id/calendarIcon2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_calendar" />
+
+        <TextView
+            android:id="@+id/selectMonth2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="Select Month 2"
+            android:textColor="#A5A3AF"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/currentMonth2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Month 2"
+            android:textColor="#9E9E9E"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/go2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_arrow" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/compareButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_btn_1"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="Compare"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

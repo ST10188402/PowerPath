@@ -5,9 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -16,15 +13,13 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ProgressPage.newInstance] factory method to
+ * Use the [ComparisonResultPage.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ProgressPage : Fragment() {
+class ComparisonResultPage : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var adapter: GalleryAdapter
-    private lateinit var galleryItems: MutableList<GalleryItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,25 +34,7 @@ class ProgressPage : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_progress_page, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val recyclerView = view.findViewById<RecyclerView>(R.id.gallery_recycler_view)
-        recyclerView.layoutManager = GridLayoutManager(context, 3)
-
-        galleryItems = mutableListOf()
-
-        adapter = GalleryAdapter(galleryItems)
-        recyclerView.adapter = adapter
-
-        val initialItems = listOf(
-            GalleryItem(0, "2 June"),  // Placeholder, will update image later
-            GalleryItem(0, "5 May")
-        )
-        adapter.addGalleryItems(initialItems)
+        return inflater.inflate(R.layout.fragment_comparison_result_page, container, false)
     }
 
     companion object {
@@ -67,12 +44,12 @@ class ProgressPage : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ProgressPage.
+         * @return A new instance of fragment ComparisonResultPage.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ProgressPage().apply {
+            ComparisonResultPage().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

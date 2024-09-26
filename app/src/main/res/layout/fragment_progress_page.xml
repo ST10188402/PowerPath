@@ -4,16 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background_grey"
     tools:context=".ProgressPage">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <include
+            layout="@layout/item1_progpage"/>
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <include
+            layout="@layout/item2_progpage"/>
 
+        <include
+            layout="@layout/item3_progpage"/>
+
+        <include
+            layout="@layout/item4_progpage"/>
+
+    </LinearLayout>
 
 
 
