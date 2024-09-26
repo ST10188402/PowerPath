@@ -10,4 +10,8 @@
     <color name="button_purple">#983BCB</color>
     <color name="transparent">#00000000</color>
     <color name="unhighlighted">#73717E</color>
+    <color name="dark_green">#1A3D40</color>
+    <color name="purple">#A020F0</color>
+    <color name="green">#00FF00</color>
+    <color name="red">#FF0000</color>
 </resources>
