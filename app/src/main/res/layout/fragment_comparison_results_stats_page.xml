@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:scaleType="centerCrop"
-        android:paddingTop="90dp"
+        android:paddingTop="100dp"
         android:src="@drawable/page" />
 
 </FrameLayout>
