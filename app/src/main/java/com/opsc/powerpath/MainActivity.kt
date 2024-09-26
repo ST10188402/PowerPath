@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         val btnGetStarted: Button = findViewById(R.id.btn_get_started)
         btnGetStarted.setOnClickListener {
-            val intent = Intent(this, Onboarding::class.java)
+            val intent = Intent(this, com.opsc.powerpath.Onboarding::class.java)
             startActivity(intent)
         }
     }
