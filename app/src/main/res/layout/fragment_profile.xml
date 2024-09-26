@@ -24,14 +24,15 @@
 
     <Button
         android:id="@+id/edit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="106dp"
+        android:layout_height="49dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/gradient_edit"
         android:text="Edit"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
-        tools:layout_editor_absoluteX="294dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="254dp"
+        android:background="@drawable/gradient_edit"
+        />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -52,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="180cm \n Height"
-                android:textColor="@android:color/black"
+                android:textColor="@color/button_purple"
                 android:textSize="16dp" />
 
             <TextView
@@ -61,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
                 android:text="60kg \n Weight"
-                android:textColor="@android:color/black"
+                android:textColor="@color/button_purple"
                 android:textSize="16dp" />
 
             <TextView
@@ -70,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
                 android:text="21yo \n Age"
-                android:textColor="@android:color/black"
+                android:textColor="@color/button_purple"
                 android:textSize="16dp" />
 
         </LinearLayout>
@@ -157,7 +158,6 @@
         android:id="@+id/notification_label"
         android:layout_width="156dp"
         android:layout_height="26dp"
-        android:layout_marginTop="8dp"
         android:drawablePadding="8dp"
         android:text="Notification"
         android:textColor="@android:color/white"
@@ -165,35 +165,20 @@
         android:textStyle="bold"
         app:drawableStartCompat="@drawable/ic_noti"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="471dp" />
+        tools:layout_editor_absoluteY="426dp" />
+
 
     <Switch
         android:id="@+id/pop_up_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="20dp"
         android:text="Pop-up Notification"
         app:layout_constraintStart_toEndOf="@+id/notification_label"
-        tools:layout_editor_absoluteY="474dp" />
+        tools:layout_editor_absoluteY="427dp" />
 
-    <TextView
-        android:id="@+id/other_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Other"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="527dp" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/account_section"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-    </androidx.cardview.widget.CardView>
     <TextView
         android:id="@+id/userName"
         android:layout_width="wrap_content"
@@ -202,35 +187,67 @@
         app:layout_constraintStart_toEndOf="@+id/profile_image"
         tools:layout_editor_absoluteY="53dp" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/other_card"
+        android:layout_width="3dp"
+        android:layout_height="3dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp">
+
+    </androidx.cardview.widget.CardView>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav" />
+
     <LinearLayout
-        android:layout_width="314dp"
-        android:layout_height="82dp"
+        android:layout_width="324dp"
+        android:layout_height="132dp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="570dp">
+        tools:layout_editor_absoluteY="477dp">
+
+        <TextView
+            android:id="@+id/other_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Other"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="527dp" />
 
         <TextView
             android:id="@+id/contact_us"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="Contact Us"
-            app:drawableStartCompat="@drawable/ic_noti" />
+            app:drawableEndCompat="@drawable/ic_arrow2"
+            app:drawableStartCompat="@drawable/ic_contact" />
 
         <TextView
             android:id="@+id/privacy_policy"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Privacy Policy"
-            app:drawableStartCompat="@drawable/ic_noti" />
+            app:drawableEndCompat="@drawable/ic_arrow2"
+            app:drawableStartCompat="@drawable/ic_privacy" />
 
         <TextView
             android:id="@+id/settings"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Settings"
-            app:drawableStartCompat="@drawable/ic_noti" />
+            app:drawableEndCompat="@drawable/ic_arrow2"
+            app:drawableStartCompat="@drawable/ic_settings" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
