@@ -52,13 +52,13 @@
             <!-- Progress Bar -->
             <ProgressBar
                 android:id="@+id/progressBar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
                 android:layout_weight="1"
                 android:progress="62"
                 android:max="100"
-                android:background="@drawable/rounded_background"
-                android:progressDrawable="@drawable/gradient_lightpink" />
+                android:progressDrawable="@drawable/gradient_progbar"/>
 
             <!-- Progress Percentage -->
             <TextView
