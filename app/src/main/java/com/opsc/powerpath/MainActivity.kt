@@ -29,22 +29,5 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, com.opsc.powerpath.Onboarding::class.java)
             startActivity(intent)
         }
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_profile -> {
-                    openFragment(ProfileFragment())
-                    true
-                }
-                // Handle other menu items if needed
-                else -> false
-            }
-        }
-    }
-    private fun openFragment(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
     }
 }
