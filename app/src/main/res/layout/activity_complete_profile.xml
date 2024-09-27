@@ -45,11 +45,11 @@
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lets_msg"
-            app:layout_constraintBottom_toTopOf="@+id/srollView"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView"
             tools:layout_editor_absoluteY="370dp" />
 
         <ScrollView
-            android:id="@+id/srollView"
+            android:id="@+id/scrollView"
             android:layout_width="370dp"
             android:layout_height="252dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_complete_profile"
@@ -61,70 +61,107 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="587dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <Spinner
                     android:id="@+id/gender_spinner"
-                    android:layout_width="match_parent"
+                    android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#BDBDBD"
                     android:spinnerMode="dropdown"
                     android:paddingVertical="10dp"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:hint="Your Weight"
+                    app:endIconMode="clear_text"
+                    app:startIconDrawable="@drawable/ic_dob"/>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="10dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/date_of_birth"
-                        android:layout_width="match_parent"
+                    <DatePicker
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Date of Birth"
-                        android:inputType="date"
+                        android:layout_gravity="center_horizontal"
+                         android:datePickerMode="spinner"
+                        android:calendarViewShown="false"
+                        android:id="@+id/date_picker"
                         android:padding="15dp"
-                        android:textColor="@android:color/white">
+                        />
+     </com.google.android.material.textfield.TextInputLayout>
 
-                    </com.google.android.material.textfield.TextInputEditText>
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="10dp">
+                    android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp"
+                    android:hint="Your Weight"
+                    app:endIconMode="clear_text"
+                    app:startIconDrawable="@drawable/ic_weight">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/weight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Your Weight"
                         android:inputType="numberDecimal"
                         android:padding="15dp"
+                        android:layout_marginHorizontal="20dp"
                         android:textColor="@android:color/white">
 
                     </com.google.android.material.textfield.TextInputEditText>
+
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_kg"
+                        android:layout_gravity="center_vertical"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="10dp">
+                    android:orientation="horizontal">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/height"
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="280dp"
                         android:layout_height="wrap_content"
+                        android:paddingVertical="10dp"
                         android:hint="Your Height"
-                        android:inputType="numberDecimal"
-                        android:padding="15dp"
-                        android:textColor="@android:color/white">
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/ic_weight">
 
-                    </com.google.android.material.textfield.TextInputEditText>
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/height"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:padding="15dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:textColor="@android:color/white">
+
+                        </com.google.android.material.textfield.TextInputEditText>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_cm"
+                        android:layout_gravity="center_vertical"
+                        />
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
@@ -134,7 +171,7 @@
             android:layout_width="354dp"
             android:layout_height="53dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/btn_grad"
+            android:backgroundTint="@drawable/btn_press"
             android:textSize="18dp"
             android:fontFamily="@font/poppins_bold"
             android:text="Next"

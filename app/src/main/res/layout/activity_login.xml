@@ -125,7 +125,7 @@
             android:layout_height="58dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="76dp"
-            android:backgroundTint="@color/btn_grad"
+            android:backgroundTint="@drawable/btn_press"
             android:text="Login"
             android:textColor="@android:color/white"
             android:textSize="18dp"

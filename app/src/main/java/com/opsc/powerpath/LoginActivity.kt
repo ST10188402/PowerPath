@@ -148,8 +148,9 @@ class LoginActivity : AppCompatActivity() {
                             if (it.exists())
                             {
                                 // If the user is registered, navigate to SuccessActivity
-                                //val intent = Intent(this, SuccessActivity::class.java)
-                                val intent = Intent(this, CompleteActivity::class.java)
+                                // val intent = Intent(this, SuccessActivity::class.java)
+                                // val intent = Intent(this, CompleteActivity::class.java)
+                                val intent = Intent(this, TakePhotoActivity::class.java)
                                 startActivity(intent)
                                 finish()
                             }

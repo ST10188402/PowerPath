@@ -4,4 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_grey">#2a2c38</color>
     <color name="btn_grad">#9B77C8</color>
+    <color name="btn_norm">#FF6200EE</color>
+    <color name="btn_down">#FF3700B3</color>
+
 </resources>

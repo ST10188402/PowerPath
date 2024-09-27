@@ -53,7 +53,7 @@
         android:layout_width="354dp"
         android:layout_height="53dp"
         android:layout_marginBottom="64dp"
-        android:backgroundTint="@color/btn_grad"
+        android:backgroundTint="@drawable/btn_press"
         android:fontFamily="@font/poppins_bold"
         android:text="Go To Home"
         android:textColor="@android:color/white"

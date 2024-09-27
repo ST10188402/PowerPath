@@ -5,6 +5,13 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:fontFamily">@font/poppins_semibold</item>
     </style>
-
+   <style name="round_img">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSize">50%</item>
+   </style>
+    <style name="round_square">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20%</item>
+    </style>
     <style name="Theme.PowerPath" parent="Base.Theme.PowerPath" />
 </resources>
