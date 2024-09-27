@@ -19,9 +19,9 @@ class TakePhotoActivity : AppCompatActivity() {
         flash = findViewById(R.id.btn_flash)
         flash.setOnClickListener {
             if (isFlashOn) {
-                flash.setBackgroundResource(R.drawable.btn_flash)
+                flash.setBackgroundResource(R.drawable.ic_flash_off)
             } else {
-                flash.setBackgroundResource(R.drawable.btn_flash_on)
+                flash.setBackgroundResource(R.drawable.ic_flash_on)
             }
             isFlashOn = !isFlashOn
         }

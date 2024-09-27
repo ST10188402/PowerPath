@@ -14,7 +14,7 @@
         android:layout_width="412dp"
         android:layout_height="150dp"
         android:layout_gravity="bottom"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="-120dp"
         android:background="#22242E"
         android:backgroundTint="#22242E"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,16 +23,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
-  <HorizontalScrollView
-      android:layout_width="378dp"
-      android:layout_height="113dp"
-      android:padding="10dp"
-      android:orientation="horizontal"
-      app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.498"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/bottomAppBar">
+    <HorizontalScrollView
+        android:layout_width="378dp"
+        android:layout_height="113dp"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -69,9 +69,9 @@
                 android:padding="3dp"
                 android:src="@drawable/ime_3"
                 app:shapeAppearance="@style/round_square"/>
-  </LinearLayout>
+        </LinearLayout>
 
-  </HorizontalScrollView>
+    </HorizontalScrollView>
 
 
     <ImageView
@@ -88,15 +88,15 @@
         android:id="@+id/cardView2"
         android:layout_width="308dp"
         android:layout_height="69dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="#432A60"
         app:cardCornerRadius="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.038" >
+        app:layout_constraintVertical_bias="0.038">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -147,8 +147,8 @@
 
             <ImageView
                 android:id="@+id/btn_camera1"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/ic_camera"
                 android:backgroundTint="@color/background_grey"
