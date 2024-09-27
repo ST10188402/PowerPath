@@ -34,26 +34,6 @@ class ComparisonResultsStatsPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Set up the graph (Assuming you're using a library like GraphView)
-
-        // Back to Home button functionality
-        val buttonBackToHome = view.findViewById<Button>(R.id.button_back_to_home)
-        buttonBackToHome.setOnClickListener {
-            // Handle navigation to home
-        }
-
-        // Set progress values (These values can be updated dynamically)
-        val progressLoseWeight = view.findViewById<ProgressBar>(R.id.progress_lose_weight)
-        progressLoseWeight.progress = 67
-
-        val progressPushStrength = view.findViewById<ProgressBar>(R.id.progress_push_strength)
-        progressPushStrength.progress = 12
-
-        val progressPullStrength = view.findViewById<ProgressBar>(R.id.progress_pull_strength)
-        progressPullStrength.progress = 43
-
-        val progressLegsStrength = view.findViewById<ProgressBar>(R.id.progress_legs_strength)
-        progressLegsStrength.progress = 11
     }
 
     companion object {
