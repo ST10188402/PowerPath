@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="@color/background_grey">
+
+    <!-- Notification Icon -->
+    <ImageView
+        android:id="@+id/notification_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_notiwork"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="12dp" />
+
+    <!-- Notification Texts -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/notification_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don’t miss your lowerbody workout"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_marginBottom="4dp"
+            android:ellipsize="end"
+            android:maxLines="1" />
+
+        <!-- Time -->
+        <TextView
+            android:id="@+id/notification_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About 3 hours ago"
+            android:textColor="@color/grey_text"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Options Menu Icon -->
+    <ImageView
+        android:id="@+id/options_menu"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_more"
+        android:layout_gravity="center_vertical" />
+
+</LinearLayout>

@@ -1,0 +1,253 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_grey"
+    android:padding="16dp">
+
+    <!-- Profile Image and Edit Button -->
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_pfp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Stats (Height, Weight, Age) in CardViews -->
+
+
+    <Button
+        android:id="@+id/edit_button"
+        android:layout_width="106dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="20dp"
+        android:text="Edit"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="254dp"
+        android:background="@drawable/gradient_edit"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_image">
+
+        <LinearLayout
+            android:layout_width="390dp"
+            android:layout_height="50dp"
+            android:background="@color/background_grey"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="180cm \n Height"
+                android:textColor="@color/button_purple"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:text="60kg \n Weight"
+                android:textColor="@color/button_purple"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:text="21yo \n Age"
+                android:textColor="@color/button_purple"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Account Section -->
+
+    <!-- Notification Section -->
+
+    <!-- Other Section -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/account_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/notification_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <LinearLayout
+            android:layout_width="344dp"
+            android:layout_height="wrap_content"
+            android:background="@color/background_grey"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="237dp">
+
+
+            <TextView
+                android:id="@+id/account_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Account"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="226dp" />
+
+            <TextView
+                android:id="@+id/personal_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawablePadding="8dp"
+                android:text="Personal Data"
+                android:textSize="17dp"
+                app:drawableEndCompat="@drawable/ic_arrow2"
+                app:drawableStartCompat="@drawable/ic_pf" />
+
+            <TextView
+                android:id="@+id/achievement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Achievement"
+                android:textSize="17dp"
+                app:drawableEndCompat="@drawable/ic_arrow2"
+                app:drawableStartCompat="@drawable/ic_achieve" />
+
+            <TextView
+                android:id="@+id/activity_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Activity History"
+                android:textSize="17dp"
+                app:drawableEndCompat="@drawable/ic_arrow2"
+                app:drawableStartCompat="@drawable/ic_activity" />
+
+            <TextView
+                android:id="@+id/workout_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Workout Progress"
+                android:textSize="17dp"
+                app:drawableEndCompat="@drawable/ic_arrow2"
+                app:drawableStartCompat="@drawable/ic_progress" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/notification_label"
+        android:layout_width="156dp"
+        android:layout_height="26dp"
+        android:drawablePadding="8dp"
+        android:text="Notification"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/ic_noti"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="426dp" />
+
+
+    <Switch
+        android:id="@+id/pop_up_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="Pop-up Notification"
+        app:layout_constraintStart_toEndOf="@+id/notification_label"
+        tools:layout_editor_absoluteY="427dp" />
+
+
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User name"
+        app:layout_constraintStart_toEndOf="@+id/profile_image"
+        tools:layout_editor_absoluteY="53dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/other_card"
+        android:layout_width="3dp"
+        android:layout_height="3dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp">
+
+    </androidx.cardview.widget.CardView>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav" />
+
+    <LinearLayout
+        android:layout_width="324dp"
+        android:layout_height="132dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="477dp">
+
+        <TextView
+            android:id="@+id/other_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Other"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="527dp" />
+
+        <TextView
+            android:id="@+id/contact_us"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Contact Us"
+            app:drawableEndCompat="@drawable/ic_arrow2"
+            app:drawableStartCompat="@drawable/ic_contact" />
+
+        <TextView
+            android:id="@+id/privacy_policy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Privacy Policy"
+            app:drawableEndCompat="@drawable/ic_arrow2"
+            app:drawableStartCompat="@drawable/ic_privacy" />
+
+        <TextView
+            android:id="@+id/settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Settings"
+            app:drawableEndCompat="@drawable/ic_arrow2"
+            app:drawableStartCompat="@drawable/ic_settings" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
