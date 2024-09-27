@@ -13,7 +13,6 @@ buildscript {
         classpath ("com.android.tools.build:gradle:7.0.2")
         classpath  ("com.google.gms:google-services:4.4.2")
         classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21")
-
     }
 }
 
@@ -22,5 +21,4 @@ allprojects {
         google()
         mavenCentral()
     }
-
-    }
+}

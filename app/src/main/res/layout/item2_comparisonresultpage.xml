@@ -34,7 +34,7 @@
                 android:layout_gravity="end"
                 android:text="Good"
                 android:textColor="#00FF00"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +54,7 @@
                 android:id="@+id/progressBar"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="0dp"
-                android:layout_height="24dp"
+                android:layout_height="20dp"
                 android:layout_weight="1"
                 android:progress="62"
                 android:max="100"
