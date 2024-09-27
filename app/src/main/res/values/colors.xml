@@ -15,4 +15,5 @@
     <color name="purple">#A020F0</color>
     <color name="green">#00FF00</color>
     <color name="red">#FF0000</color>
+    <color name="date_bg">#161818</color>
 </resources>

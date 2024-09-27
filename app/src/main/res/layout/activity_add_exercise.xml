@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="Deadlift"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -116,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="Full Body"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/white"
                     android:textSize="14sp" />
 
                 <ImageView
