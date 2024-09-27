@@ -4,6 +4,7 @@
     <string name="date_of_birth">Date of Birth</string>
     <string name="onboarding_msg">Don\'t Worry if you have trouble determining your goals. We can help you determine your goals and track your progress.</string>
     <string name="policy_msg">By continuing you accept our Privacy Policy and Term of Use</string>
+    <string name="dot">●</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="default_web_client_id">704630649665-t4fdjtdotv72o2nav4j11vli5cj6b7go.apps.googleusercontent.com</string>
