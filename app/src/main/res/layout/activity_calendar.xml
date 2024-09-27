@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background_grey">
+
+    <!-- Month and Year -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="16dp">
+
+        <!-- Previous Arrow -->
+        <ImageView
+            android:id="@+id/prev_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_left"
+            android:contentDescription="Previous Month" />
+
+        <!-- Month and Year -->
+        <TextView
+            android:id="@+id/month_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="May 2024"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp" />
+
+        <!-- Next Arrow -->
+        <ImageView
+            android:id="@+id/next_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow2"
+            android:contentDescription="Next Month" />
+    </LinearLayout>
+
+    <!-- Horizontal RecyclerView for Dates -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_dates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal" />
+
+</LinearLayout>
