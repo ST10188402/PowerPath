@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/background_grey"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/rounded_background"
+        android:padding="4dp"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/photoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#2F323A"
+            android:text="Photo"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/statisticButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/btn_grad"
+            android:text="Statistic"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <com.db.williamchart.view.LineChartView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/summary_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selected Month vs Selected Month"
+        android:textColor="#B6B4C1"
+        android:textSize="18sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lose_weight_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lose Weight"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_alignParentStart="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/lose_weight_percentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="33%"
+                android:textColor="#B6B4C1"
+                android:textSize="16sp"
+                android:layout_alignParentEnd="true" />
+            <ProgressBar
+                android:id="@+id/lose_weight_progress"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="200dp"
+                android:layout_height="10dp"
+                android:max="100"
+                android:progress="33"
+                android:layout_below="@id/lose_weight_text"
+                android:layout_marginTop="4dp"
+                android:progressDrawable="@drawable/gradient_progbarstats"/>
+
+            <TextView
+                android:id="@+id/lose_weight_percentage2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="67%"
+                android:textColor="#B6B4C1"
+                android:textSize="16sp"
+                android:layout_alignParentEnd="true" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/push_strength_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Push Strength Increase"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_alignParentStart="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+        <TextView
+            android:id="@+id/push_strength_percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="88%"
+            android:textColor="#B6B4C1"
+            android:textSize="16sp"
+            android:layout_alignParentEnd="true" />
+
+        <ProgressBar
+            android:id="@+id/push_strength_progress"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="200dp"
+            android:layout_height="10dp"
+            android:max="100"
+            android:progress="88"
+            android:layout_below="@id/push_strength_text"
+            android:layout_marginTop="4dp"
+            android:progressDrawable="@drawable/gradient_progbarstats"/>
+
+            <TextView
+                android:id="@+id/push_strength_percentage2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12%"
+                android:textColor="#B6B4C1"
+                android:textSize="16sp"
+                android:layout_alignParentEnd="true" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/pull_strength_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pull Strength Increase"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_alignParentStart="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/pull_strength_percentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="57%"
+                android:textColor="#B6B4C1"
+                android:textSize="16sp"
+                android:layout_alignParentEnd="true" />
+
+            <ProgressBar
+                android:id="@+id/pull_strength_progress"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="200dp"
+                android:layout_height="10dp"
+                android:max="100"
+                android:progress="57"
+                android:layout_below="@id/pull_strength_text"
+                android:layout_marginTop="4dp"
+                android:progressDrawable="@drawable/gradient_progbarstats"/>
+
+            <TextView
+                android:id="@+id/pull_strength_percentage2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="43%"
+                android:textColor="#B6B4C1"
+                android:textSize="16sp"
+                android:layout_alignParentEnd="true" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/legs_strength_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Legs Strength Increase"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_alignParentStart="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/legs_strength_percentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="89%"
+                android:textColor="#B6B4C1"
+                android:textSize="16sp"
+                android:layout_alignParentEnd="true" />
+
+            <ProgressBar
+                android:id="@+id/legs_strength_progress"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="200dp"
+                android:layout_height="10dp"
+                android:max="100"
+                android:progress="88"
+                android:layout_below="@id/legs_strength_text"
+                android:layout_marginTop="4dp"
+                android:progressDrawable="@drawable/gradient_progbarstats"/>
+
+            <TextView
+                android:id="@+id/legs_strength_percentage2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11%"
+                android:textColor="#B6B4C1"
+                android:textSize="16sp"
+                android:layout_alignParentEnd="true" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <Button
+        android:id="@+id/backToHomeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/gradient_btn_1"
+        android:gravity="center"
+        android:text="Back to Home"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+</LinearLayout>

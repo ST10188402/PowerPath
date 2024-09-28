@@ -16,6 +16,12 @@
             android:name=".TakePhotoActivity"
             android:exported="false" />
         <activity
+            android:name=".Notifications"
+            android:exported="false" />
+        <activity
+            android:name=".add_exercise"
+            android:exported="false" />
+        <activity
             android:name=".SuccessActivity"
             android:exported="false" />
         <activity
@@ -33,7 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OnboardingActivity" />
+        <activity android:name=".Onboarding" />
         <activity android:name=".RegisterActivity" />
 
         <meta-data

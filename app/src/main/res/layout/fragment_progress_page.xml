@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_grey"
+    tools:context=".ProgressPage">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/item1_progpage"/>
+
+        <include
+            layout="@layout/item2_progpage"/>
+
+        <include
+            layout="@layout/item3_progpage"/>
+
+        <include
+            layout="@layout/item4_progpage"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

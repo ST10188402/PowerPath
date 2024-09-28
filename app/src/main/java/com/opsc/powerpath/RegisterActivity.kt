@@ -245,7 +245,7 @@ class RegisterActivity : AppCompatActivity() {
             return false
         }
         if (!valid.isValidPhoneNumber(phoneNumber)) {
-            binding.txtPhoneNumber.error = "Invalid phone number format"
+            binding.txtPhoneNumber.error = "Phone number must be 10 digits long"
             return false
         }
 

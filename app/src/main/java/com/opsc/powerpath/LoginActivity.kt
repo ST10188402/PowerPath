@@ -191,21 +191,10 @@ class LoginActivity : AppCompatActivity() {
             return false
         }
 
-        if (!valid.isValidEmail(email)) {
-            emailEditText.error  = "Invalid email format"
-            return false
-        }
-
         if (password.isEmpty()) {
             passwordEditText.error  = "Password is required"
             return false
         }
-
-        if (!valid.isValidPassword(password)) {
-            passwordEditText.error = "Password must be at least 8 characters long and contain at least one digit and one special character"
-            return false
-        }
-
         return true
     }
 

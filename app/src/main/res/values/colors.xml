@@ -3,8 +3,16 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="background_grey">#2a2c38</color>
+    <color name="gray">#2a2c38</color>
     <color name="btn_grad">#9B77C8</color>
-    <color name="btn_norm">#FF6200EE</color>
-    <color name="btn_down">#FF3700B3</color>
-
+    <color name="background">#2A2C38</color>
+    <color name="navbar">#22242E</color>
+    <color name="grey_text">#A5A3AF</color>
+    <color name="button_purple">#983BCB</color>
+    <color name="transparent">#00000000</color>
+    <color name="unhighlighted">#73717E</color>
+    <color name="dark_green">#1A3D40</color>
+    <color name="purple">#A020F0</color>
+    <color name="green">#00FF00</color>
+    <color name="red">#FF0000</color>
 </resources>
