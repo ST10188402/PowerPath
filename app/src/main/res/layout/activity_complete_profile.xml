@@ -106,7 +106,7 @@
                     android:paddingVertical="10dp"
                     android:hint="Your Weight"
                     app:endIconMode="clear_text"
-                    app:startIconDrawable="@drawable/ic_weight">
+                    app:startIconDrawable="@drawable/ic_weight_h">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/weight"
@@ -140,7 +140,7 @@
                         android:paddingVertical="10dp"
                         android:hint="Your Height"
                         app:endIconMode="clear_text"
-                        app:startIconDrawable="@drawable/ic_weight">
+                        app:startIconDrawable="@drawable/ic_height">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/height"

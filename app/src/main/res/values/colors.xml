@@ -5,6 +5,7 @@
     <color name="background_grey">#2a2c38</color>
     <color name="gray">#2a2c38</color>
     <color name="btn_grad">#9B77C8</color>
+    <color name="btn_norm">#FF6200EE</color>
     <color name="background">#2A2C38</color>
     <color name="navbar">#22242E</color>
     <color name="grey_text">#A5A3AF</color>

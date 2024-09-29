@@ -25,55 +25,56 @@ import com.opsc.powerpath.databinding.ActivityRegisterBinding
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var auth : FirebaseAuth
     private lateinit var loginOp : LinearLayout
     private lateinit var googleSignIn: ImageView
     private lateinit var gso : GoogleSignInOptions
     private lateinit var gsc : GoogleSignInClient
+    private lateinit var auth : FirebaseAuth
     val database = Firebase.database
 
-
+    //declare the request code
     private  var RC_SIGN_IN = 20
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        loginOp = findViewById(R.id.loginOption)
-
-        googleSignIn = findViewById(R.id.google_sign_in)
+        // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
-
-
-         gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        //Create a GoogleSignInOptions object with the default sign-in options
+        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-
+        //Create a GoogleSignInClient object with the GoogleSignInOptions object
         gsc = GoogleSignIn.getClient(this , gso)
-
+        //Call the setupUI function
         setupUI()
 
+        loginOp = findViewById(R.id.loginOption)
+        googleSignIn = findViewById(R.id.google_sign_in)
+        //Set an onClickListener for the google sign-in option
         binding.googleSignIn.setOnClickListener {
             // Handle Google Sign-In logic here
             Toast.makeText(this, "Google Sign-In Clicked", Toast.LENGTH_SHORT).show()
             signIn();
         }
-
+        //Set an onClickListener for the login option
         loginOp.setOnClickListener {
+            //Navigate to the login activity
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
 
     }
-
+   //Function to handle Google Sign-In
     private fun signIn() {
         val signInIntent = gsc.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
-
+   //Function to handle the result of the Google Sign-In
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -95,7 +96,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
     }
-
+   //Function to authenticate the user for Google Sign-In | Register with Google
     private fun auth(idToken: String) {
         // Create a credential using the ID token
         val credential: AuthCredential = GoogleAuthProvider.getCredential(idToken, null)
@@ -109,10 +110,9 @@ class RegisterActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     if (user != null)
                     {
-
                         // Check if the user is registered in the database
                        database.reference.child("users").child(user.uid).get().addOnSuccessListener {
-
+                           // If the user is registered, navigate to SuccessActivity
                             if (it.exists())
                             {
                                 // If the user is registered, navigate to SuccessActivity
@@ -120,21 +120,11 @@ class RegisterActivity : AppCompatActivity() {
                                 startActivity(intent)
                                 finish()
                             }
+                            // If the user is not registered, navigate to CompleteActivity
                             else if (!it.exists())
                             {
-                                val map = hashMapOf(
-                                    "id" to user.uid,
-                                    "name" to user.displayName,
-                                    "profile" to user.photoUrl.toString()
-                                )
-
-                                // Save the user data to Firebase  Database
-                                database.reference.child("users").child(user.uid).setValue(map)
-                                // Handle registration logic here
-                                Toast.makeText(baseContext, "Registration Successful", Toast.LENGTH_SHORT)
-                                    .show()
-                                // Navigate to onboarding activity
-                                val intent = Intent(baseContext, CompleteActivity::class.java)
+                                // Navigate to Complete Registration activity
+                                val intent = Intent(baseContext, CompleteRegistration::class.java)
                                 startActivity(intent)
                                 finish();
                             }
@@ -147,21 +137,22 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
     }
+    //Function to set up the UI
     private fun setupUI() {
 
         binding.btnRegister.setOnClickListener {
             if (validateInputs()) {
 
-
-                val firstName = binding.txtFname.text.toString().trim()
-                val surname = binding.txtSname.text.toString().trim()
-                val phoneNumber = binding.txtPhoneNumber.text.toString().trim()
                 val email = binding.txtEmail.text.toString().trim()
                 val password = binding.txtPassword.text.toString().trim()
 
+                // Create user account with email and password
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
+                        //
                         if (task.isSuccessful) {
+                            //Save user data to Firebase Database
+                            SaveData()
                             // Sign in success, update UI with the signed-in user's information
                             val user = auth.currentUser
                             // Handle registration logic here
@@ -184,7 +175,32 @@ class RegisterActivity : AppCompatActivity() {
         }
 
     }
+    private fun SaveData() {
+        val user = auth.currentUser
+        user?.let {
+            val uid = it.uid
+            val name = binding.txtFname.text.toString().trim()
+            val surname = binding.txtSname.text.toString().trim()
+            val phoneNumber = binding.txtPhoneNumber.text.toString().trim()
+            val profileUrl = it.photoUrl.toString()
 
+            val userMap = hashMapOf(
+                "id" to uid,
+                "name" to name,
+                "surname" to surname,
+                "phoneNumber" to phoneNumber,
+                "profile" to profileUrl
+            )
+
+            database.reference.child("users").child(uid).setValue(userMap)
+                .addOnSuccessListener {
+                    Toast.makeText(baseContext, "User data saved successfully", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(baseContext, "Failed to save user data", Toast.LENGTH_SHORT).show()
+                }
+        }
+    }
     private fun validateInputs(): Boolean
     {
         val valid = Valid()

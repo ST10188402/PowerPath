@@ -9,9 +9,9 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:layout_width="304dp"
-        android:layout_height="95dp"
-        android:src="@drawable/logo"
+        android:layout_width="238dp"
+        android:layout_height="238dp"
+        android:src="@drawable/logo2"
         app:layout_constraintBottom_toTopOf="@id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"

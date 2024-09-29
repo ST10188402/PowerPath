@@ -39,8 +39,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     val database = Firebase.database
 
-    private var trueUser = false
-
     private  var RC_SIGN_IN = 20
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,57 +55,68 @@ class LoginActivity : AppCompatActivity() {
 
         googleSignIn = findViewById(R.id.google_sign_in)
         googleSignIn = findViewById(R.id.google_sign_in)
-        auth = FirebaseAuth.getInstance()
 
+
+        // Create a GoogleSignInOptions object with the default sign-in options
         gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
 
+        // Create a GoogleSignInClient object with the GoogleSignInOptions object
         gsc = GoogleSignIn.getClient(this , gso)
 
 
+
+        //Set an onClickListener for the register option
+        regOp.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+        //Set an onClickListener for the Google Sign-In button
         googleSignIn.setOnClickListener {
             // Handle Google Sign-In logic here
             Toast.makeText(this, "Google Sign-In Clicked", Toast.LENGTH_SHORT).show()
             signIn();
         }
 
-
-
-        regOp.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-        }
-
-
+       //Set an onClickListener for the login button
         loginButton.setOnClickListener {
+            // if the user inputs are valid
             if (validateInputs()) {
-                // Handle login logic here
                 val email = emailEditText.text.toString().trim()
                 val password = passwordEditText.text.toString().trim()
-                trueUser =  authenticateUser(email, password)
-
-                if (trueUser) {
-                    //val user = auth.currentUser
-                    val intent = Intent(this, SuccessActivity::class.java)
-                    startActivity(intent)
-                    finish()
-
-                }
-                else
-                {
-                    Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
+                // Authenticate the user
+                authenticateUser(email, password) { isAuthenticated ->
+                    // If the user is authenticated, get the user data
+                    if (isAuthenticated) {
+                        val user = auth.currentUser
+                        user?.let {
+                            val uid = it.uid
+                            CurrentUser.uid = uid
+                            database.reference.child("users").child(uid).get().addOnSuccessListener { dataSnapshot ->
+                                val intent = Intent(this, SuccessActivity::class.java)//intent.putExtra("USER_FIRST_NAME", firstName)
+                                startActivity(intent)
+                                finish()
+                            }.addOnFailureListener {
+                                Toast.makeText(this, "Failed to retrieve user data", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                    // If the user is not authenticated, show a toast message
+                    else {
+                        Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
     }
-
+   //Method to handle the Google Sign-In logic
     private fun signIn() {
         val signInIntent = gsc.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
-
+    //Method to handle the result of the sign-in attempt
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -129,19 +138,35 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
+    //Method to authenticate the user for normal login
+    private fun authenticateUser(email: String, password: String, callback: (Boolean) -> Unit) {
+      // Authenticate the user with the provided email and password
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                // If the task is successful, show a toast message indicating authentication success
+                if (task.isSuccessful) {
+                    callback(true)
+                    Toast.makeText(this, "Authentication successful.", Toast.LENGTH_SHORT).show()
+                }
+                // If the task is not successful, show a toast message indicating authentication failure
+                else {
+                    callback(false)
+                    Toast.makeText(this, "Authentication failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+   //Method to authenticate the user for SSO login / registration
     private fun auth(idToken: String) {
         // Create a credential using the ID token
         val credential: AuthCredential = GoogleAuthProvider.getCredential(idToken, null)
         // Sign in with the credential
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
-
                 if (task.isSuccessful) {
                     // If sign-in is successful, get the current user
                     val user = auth.currentUser
-                    if (user != null)                    {
-
+                    if (user != null)
+                    {
                         // Check if the user is registered in the database
                         database.reference.child("users").child(user.uid).get().addOnSuccessListener {
 
@@ -149,30 +174,19 @@ class LoginActivity : AppCompatActivity() {
                             {
                                 // If the user is registered, navigate to SuccessActivity
                                 // val intent = Intent(this, SuccessActivity::class.java)
-                                // val intent = Intent(this, CompleteActivity::class.java)
+                                //val intent = Intent(this, CompleteActivity::class.java)
                                 val intent = Intent(this, TakePhotoActivity::class.java)
                                 startActivity(intent)
                                 finish()
                             }
                             else if (!it.exists())
                             {
-                                val map = hashMapOf(
-                                    "id" to user.uid,
-                                    "name" to user.displayName,
-                                    "profile" to user.photoUrl.toString()
-                                )
-                                // Save the user data to Firebase  Database
-                                database.reference.child("users").child(user.uid).setValue(map)
-                                // Handle registration logic here
-                                Toast.makeText(baseContext, "Registration Successful", Toast.LENGTH_SHORT)
-                                    .show()
-                                // Navigate to onboarding activity
-                                val intent = Intent(baseContext, CompleteActivity::class.java)
+                                // Navigate to Complete Registration activity
+                                val intent = Intent(baseContext, CompleteRegistration::class.java)
                                 startActivity(intent)
                                 finish();
                             }
                         }
-
                     }
                 } else {
                     // If sign-in fails, display a message to the user
@@ -180,9 +194,8 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
-
+//Method to validate the user inputs
     private fun validateInputs(): Boolean {
-        val valid = Valid()
         val email = emailEditText.text.toString().trim()
         val password = passwordEditText.text.toString().trim()
 
@@ -198,25 +211,4 @@ class LoginActivity : AppCompatActivity() {
         return true
     }
 
-
-    private fun authenticateUser(email: String, password: String) : Boolean {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful)
-                {
-                    trueUser = true
-                    Toast.makeText(this, "Authentication successful.", Toast.LENGTH_SHORT).show()
-
-
-                } else
-                {
-                    trueUser = false
-                    // If sign in fails, display a message to the user.
-                    Toast.makeText(this, "Authentication failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-        return trueUser
-
-    }
 }
