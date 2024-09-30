@@ -1,5 +1,7 @@
 package com.opsc.powerpath
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -37,6 +39,16 @@ class CalendarActivity : AppCompatActivity() {
         findViewById<ImageView>(R.id.next_month).setOnClickListener {
             calendar.add(Calendar.MONTH, 1)
             updateCalendar()
+        }
+
+        OnExit()
+    }
+
+    private fun OnExit() {
+        val back = findViewById<Button>(R.id.button_kms)
+        back.setOnClickListener {
+            intent = Intent(this, ContainerActivity::class.java)
+            startActivity(intent)
         }
     }
 

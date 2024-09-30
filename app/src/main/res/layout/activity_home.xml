@@ -117,7 +117,7 @@
                 app:layout_constraintStart_toStartOf="@+id/fab"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/btn_flash_on" />
+                app:srcCompat="@drawable/icon_calendar" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab2"
@@ -130,7 +130,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/fab"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/btn_flash" />
+                app:srcCompat="@drawable/ic_weight" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

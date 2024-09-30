@@ -58,8 +58,8 @@ class ContainerActivity : AppCompatActivity() {
         val nh = findViewById<TextView>(R.id.nav_header)
 
         newWorkout = findViewById(R.id.fab)
-        addExercise = findViewById(R.id.fab1)
-        addDate = findViewById(R.id.fab2)
+        addExercise = findViewById(R.id.fab2)
+        addDate = findViewById(R.id.fab1)
         bottomNavigationView = findViewById(R.id.nav_view)
 
 
@@ -68,10 +68,12 @@ class ContainerActivity : AppCompatActivity() {
                 onAddButtonClicked()
             }
             addExercise.setOnClickListener {
-                Toast.makeText(this, "Add Exercise", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, AddExerciseActivity::class.java)
+                startActivity(intent)
             }
             addDate.setOnClickListener {
-                Toast.makeText(this, "Add Date", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, CalendarActivity::class.java)
+                startActivity(intent)
             }
 
 
