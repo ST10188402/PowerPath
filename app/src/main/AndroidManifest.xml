@@ -17,24 +17,18 @@
         <activity
             android:name=".ContainerActivity"
             android:exported="false" />
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
+
         <activity
             android:name=".CompleteRegistration"
             android:exported="false" />
         <activity
             android:name=".TakePhotoFragment"
             android:exported="false" />
-        <activity
-            android:name=".TimerPicker"
-            android:exported="false" />
+
         <activity
             android:name=".Notifications"
             android:exported="false" />
-        <activity
-            android:name=".add_exercise"
-            android:exported="false" />
+
         <activity
             android:name=".SuccessActivity"
             android:exported="false" />
@@ -44,6 +38,8 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
+        <activity android:name=".GetStartedActivity"
+        android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

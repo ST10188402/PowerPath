@@ -3,6 +3,7 @@ package com.opsc.powerpath
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -18,13 +19,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.database
 
-class MainActivity : AppCompatActivity() {
+class GetStartedActivity : AppCompatActivity() {
 
     private lateinit var gsc : GoogleSignInClient
     private lateinit var auth : FirebaseAuth
-    private var isUser : Boolean = true
-
+    var isUser : Boolean = false
     val database = Firebase.database
+
 
     //declare the request code
     private  var RC_SIGN_IN = 20
@@ -35,14 +36,17 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_start)
+        setContentView(R.layout.activity_get_started)
 
-        login()
-        if(!isUser)
-        {
-            val intent = Intent(this, GetStartedActivity::class.java)
+
+        val btnGetStarted: Button = findViewById(R.id.btn_get_started)
+        btnGetStarted.setOnClickListener {
+            val intent = Intent(this, com.opsc.powerpath.Onboarding::class.java)
             startActivity(intent)
+
         }
+
+
 
 
     }
@@ -67,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             // If the user is already signed in, authenticate with the obtained ID token
             auth(account.idToken!!)
         }
-       signIn()
+        signIn()
     }
     //Function to handle Google Sign-In
     private fun signIn() {

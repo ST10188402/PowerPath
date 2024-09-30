@@ -22,7 +22,7 @@ class ContainerActivity : AppCompatActivity() {
     private val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
     private val fromBottom: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim) }
     private val toBottom: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim) }
-    private val clicked = false
+    private var clicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,15 +97,13 @@ class ContainerActivity : AppCompatActivity() {
         }
     }
     private fun onAddButtonClicked() {
-        setVisibility(clicked = true)
-        setAnimation(clicked = true)
-        if(!clicked){
-            setVisibility(clicked = false)
-            setAnimation(clicked = false)
-        }
+        clicked = !clicked
+        setVisibility(clicked)
+        setAnimation(clicked)
     }
+
     private fun setVisibility(clicked: Boolean) {
-        if (!clicked) {
+        if (clicked) {
             addExercise.visibility = View.VISIBLE
             addDate.visibility = View.VISIBLE
         } else {
@@ -113,8 +111,9 @@ class ContainerActivity : AppCompatActivity() {
             addDate.visibility = View.INVISIBLE
         }
     }
+
     private fun setAnimation(clicked: Boolean) {
-        if (!clicked) {
+        if (clicked) {
             addExercise.startAnimation(fromBottom)
             addDate.startAnimation(fromBottom)
             addBtn.startAnimation(rotateOpen)
