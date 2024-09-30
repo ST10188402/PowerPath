@@ -72,8 +72,7 @@
                     android:orientation="vertical"
                     android:gravity="center">
 
-                    <!-- ImageView -->
-                    <com.db.williamchart.view.DonutChartView
+                    <ImageView
                         android:id="@+id/donutChartView"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
