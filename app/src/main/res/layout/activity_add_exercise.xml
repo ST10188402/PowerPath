@@ -35,13 +35,15 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile"
-        app:layout_constraintVertical_bias="0.326">
+        app:layout_constraintVertical_bias="0.288">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Details Workout"
-            android:textStyle="bold"></TextView>
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"/>
         <!-- First CardView - Choose Exercise -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -209,9 +211,11 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/edit_button"
+        android:id="@+id/btn_Save"
         android:layout_width="231dp"
         android:layout_height="41dp"
+        android:textSize="15dp"
+        android:fontFamily="@font/poppins_bold"
         android:background="@drawable/gradient_edit"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -221,11 +225,11 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/btn_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintEnd_toStartOf="@+id/btn_options"
         app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -233,7 +237,7 @@
         app:srcCompat="@drawable/ic_exit" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/btn_options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="90dp"
