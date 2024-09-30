@@ -3,6 +3,7 @@ package com.opsc.powerpath
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils.replace
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
@@ -22,8 +23,12 @@ class ContainerActivity : AppCompatActivity() {
         enableEdgeToEdge()
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
 
+        val nh = findViewById<TextView>(R.id.nav_header)
+
         newWorkout = findViewById(R.id.fab)
         bottomNavigationView = findViewById(R.id.nav_view)
+
+
 
 
         newWorkout.setOnClickListener {
@@ -40,22 +45,25 @@ class ContainerActivity : AppCompatActivity() {
                         val transaction = supportFragmentManager.beginTransaction()
                         transaction.replace(R.id.nav_host, HomeFragment())
                         transaction.commit()
-                    }
-                    true
-                }
-                R.id.statistics -> {
-                    if (currentFragment !is TakePhotoFragment) {
-                        val transaction = supportFragmentManager.beginTransaction()
-                        transaction.replace(R.id.nav_host, TakePhotoFragment())
-                        transaction.commit()
+                        nh.text = "Home"
                     }
                     true
                 }
                 R.id.camera -> {
+                    if (currentFragment !is TakePhotoFragment) {
+                        val transaction = supportFragmentManager.beginTransaction()
+                        transaction.replace(R.id.nav_host, TakePhotoFragment())
+                        transaction.commit()
+                        nh.text = "Camera"
+                    }
+                    true
+                }
+                R.id.statistics -> {
                     if (currentFragment !is ProgressPage) {
                         val transaction = supportFragmentManager.beginTransaction()
                         transaction.replace(R.id.nav_host, ProgressPage())
                         transaction.commit()
+                        nh.text = "Statistics"
                     }
                     true
                 }
@@ -64,6 +72,7 @@ class ContainerActivity : AppCompatActivity() {
                         val transaction = supportFragmentManager.beginTransaction()
                         transaction.replace(R.id.nav_host, ProfileFragment())
                         transaction.commit()
+                        nh.text = "Profile"
                     }
                     true
                 }
