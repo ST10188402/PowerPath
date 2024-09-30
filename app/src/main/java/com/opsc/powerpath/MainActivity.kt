@@ -38,11 +38,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_start)
 
         login()
-        if(!isUser)
-        {
-            val intent = Intent(this, GetStartedActivity::class.java)
-            startActivity(intent)
-        }
 
 
     }
@@ -123,7 +118,9 @@ class MainActivity : AppCompatActivity() {
                             }
                             else
                             {
-                                isUser = false
+                                val intent = Intent(this, GetStartedActivity::class.java)
+                                startActivity(intent)
+                                finish()
                             }
 
                         }
