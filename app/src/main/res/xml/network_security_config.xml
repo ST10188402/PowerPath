@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">https://power-path-5lpego3o8-ethans-projects-f521a826.vercel.app/</domain>
+    </domain-config>
+</network-security-config>

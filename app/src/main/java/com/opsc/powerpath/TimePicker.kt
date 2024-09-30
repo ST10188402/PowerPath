@@ -7,7 +7,7 @@ import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import java.util.Calendar
 
-class TimePickerActivity : AppCompatActivity() {
+class TimePicker : AppCompatActivity() {
 
     private lateinit var selectedTimeTextView: TextView
 

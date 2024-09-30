@@ -6,20 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".ContainerActivity">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:background="@color/background"
         android:id="@+id/main"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <FrameLayout
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigationView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/nav_host" >
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:background="@color/background_grey"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        </FrameLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/back_button_home" />
+
+                <TextView
+                    android:id="@+id/nav_header"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="Home"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/detail_button_home" />
+
+            </LinearLayout>
+        </com.google.android.material.navigation.NavigationView>
+
+        <FrameLayout
+            android:id="@+id/nav_host"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/nav_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/navigationView"
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_view"
@@ -27,54 +74,29 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/navbar"
+            app:elevation="0dp"
+            app:itemIconSize="30dp"
             app:itemRippleColor="@color/transparent"
             app:itemTextColor="@color/button_purple"
-            app:itemIconSize="30dp"
-            app:elevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_nav" />
 
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_height="wrap_content"
+            android:layout_height="230dp"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="60dp">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center">
+            app:layout_constraintBottom_toBottomOf="@+id/nav_view">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fab1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toTopOf="@+id/fab"
-                    app:layout_constraintStart_toStartOf="@+id/fab"
-                    app:srcCompat="@drawable/btn_flash_on" />
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fab2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toTopOf="@+id/fab"
-                    app:layout_constraintEnd_toEndOf="@+id/fab"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/btn_flash" />
-            </LinearLayout>
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_gravity="center"
                 android:src="@drawable/ic_plus"
                 app:backgroundTint="@color/button_purple"
                 app:layout_anchorGravity="top|center"
@@ -83,8 +105,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:tint="@color/white" />
 
-        </LinearLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/fab"
+                app:layout_constraintStart_toStartOf="@+id/fab"
+                app:srcCompat="@drawable/btn_flash_on" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/fab"
+                app:layout_constraintEnd_toEndOf="@+id/fab"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/btn_flash" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

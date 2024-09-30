@@ -1,6 +1,8 @@
 package com.opsc.powerpath
 
 import android.os.Bundle
+import android.text.TextUtils.replace
+import android.widget.TextView
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -26,17 +28,26 @@ class ContainerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+      // setContentView(R.layout.activity_container)
         setContentView(R.layout.activity_home)
-
+       // setContentView(R.layout.fragment_home)
         enableEdgeToEdge()
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
 
+        val nh = findViewById<TextView>(R.id.nav_header)
+
+        newWorkout = findViewById(R.id.fab)
         addBtn = findViewById(R.id.fab)
         addExercise = findViewById(R.id.fab1)
         addDate = findViewById(R.id.fab2)
         bottomNavigationView = findViewById(R.id.nav_view)
 
 
+
+
+        newWorkout.setOnClickListener {
+          val intent = Intent(this, AddWorkoutActivity::class.java)
+            startActivity(intent)
         //FAB BUTTON CLICK LISTENER
         addBtn.setOnClickListener {
             onAddButtonClicked()
@@ -49,7 +60,6 @@ class ContainerActivity : AppCompatActivity() {
         }
 
 
-
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             val currentFragment = supportFragmentManager.findFragmentById(R.id.nav_host)
             when (item.itemId) {
@@ -58,22 +68,25 @@ class ContainerActivity : AppCompatActivity() {
                         val transaction = supportFragmentManager.beginTransaction()
                         transaction.replace(R.id.nav_host, HomeFragment())
                         transaction.commit()
-                    }
-                    true
-                }
-                R.id.statistics -> {
-                    if (currentFragment !is TakePhotoFragment) {
-                        val transaction = supportFragmentManager.beginTransaction()
-                        transaction.replace(R.id.nav_host, TakePhotoFragment())
-                        transaction.commit()
+                        nh.text = "Home"
                     }
                     true
                 }
                 R.id.camera -> {
+                    if (currentFragment !is TakePhotoFragment) {
+                        val transaction = supportFragmentManager.beginTransaction()
+                        transaction.replace(R.id.nav_host, TakePhotoFragment())
+                        transaction.commit()
+                        nh.text = "Camera"
+                    }
+                    true
+                }
+                R.id.statistics -> {
                     if (currentFragment !is ProgressPage) {
                         val transaction = supportFragmentManager.beginTransaction()
                         transaction.replace(R.id.nav_host, ProgressPage())
                         transaction.commit()
+                        nh.text = "Statistics"
                     }
                     true
                 }
@@ -82,6 +95,7 @@ class ContainerActivity : AppCompatActivity() {
                         val transaction = supportFragmentManager.beginTransaction()
                         transaction.replace(R.id.nav_host, ProfileFragment())
                         transaction.commit()
+                        nh.text = "Profile"
                     }
                     true
                 }

@@ -6,6 +6,7 @@
 
     <application
         android:allowBackup="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -17,18 +18,21 @@
         <activity
             android:name=".ContainerActivity"
             android:exported="false" />
-
         <activity
             android:name=".CompleteRegistration"
             android:exported="false" />
         <activity
             android:name=".TakePhotoFragment"
             android:exported="false" />
-
+        <activity
+            android:name=".TimePicker"
+            android:exported="false" />
         <activity
             android:name=".Notifications"
             android:exported="false" />
-
+        <activity
+            android:name=".AddWorkoutActivity"
+            android:exported="false" />
         <activity
             android:name=".SuccessActivity"
             android:exported="false" />
@@ -43,6 +47,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,6 +56,14 @@
         </activity>
         <activity android:name=".Onboarding" />
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".ProfileFragment" />
+        <activity android:name=".AddExerciseActivity" />
+        <activity android:name=".CalendarActivity" />
+
+
+
+        <activity android:name=".NotificationsActivity" />
+
 
         <meta-data
             android:name="preloaded_fonts"

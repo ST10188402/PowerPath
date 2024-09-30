@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.database
+import com.opsc.powerpath.Data.Models.User
 import com.opsc.powerpath.databinding.ActivityRegisterBinding
 
 
@@ -30,6 +31,8 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var gso : GoogleSignInOptions
     private lateinit var gsc : GoogleSignInClient
     private lateinit var auth : FirebaseAuth
+    private lateinit var firstName : String
+    private lateinit var surname : String
     val database = Firebase.database
 
     //declare the request code
@@ -108,7 +111,6 @@ class RegisterActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // If sign-in is successful, get the current user
                     val user = auth.currentUser
-                    CurrentUser.uid = user?.uid
                     if (user != null)
                     {
                         // Check if the user is registered in the database
@@ -152,15 +154,12 @@ class RegisterActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         //
                         if (task.isSuccessful) {
-                            //Save user data to Firebase Database
-                            SaveData()
-                            // Sign in success, update UI with the signed-in user's information
-                            val user = auth.currentUser
-                            CurrentUser.uid = user?.uid
                             // Handle registration logic here
                             Toast.makeText(baseContext, "Registration Successful", Toast.LENGTH_SHORT).show()
                             // Navigate to onboarding activity
                             val intent = Intent(baseContext, CompleteActivity::class.java)
+                            intent.putExtra("FIRST_NAME", firstName)
+                            intent.putExtra("SURNAME", surname)
                             startActivity(intent)
                             finish();
                         } else {
@@ -177,37 +176,12 @@ class RegisterActivity : AppCompatActivity() {
         }
 
     }
-    private fun SaveData() {
-        val user = auth.currentUser
-        user?.let {
-            val uid = it.uid
-            val name = binding.txtFname.text.toString().trim()
-            val surname = binding.txtSname.text.toString().trim()
-            val phoneNumber = binding.txtPhoneNumber.text.toString().trim()
-            val profileUrl = it.photoUrl.toString()
 
-            val userMap = hashMapOf(
-                "id" to uid,
-                "name" to name,
-                "surname" to surname,
-                "phoneNumber" to phoneNumber,
-                "profile" to profileUrl
-            )
-
-            database.reference.child("users").child(uid).setValue(userMap)
-                .addOnSuccessListener {
-                    Toast.makeText(baseContext, "User data saved successfully", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(baseContext, "Failed to save user data", Toast.LENGTH_SHORT).show()
-                }
-        }
-    }
     private fun validateInputs(): Boolean
     {
         val valid = Valid()
-        val firstName = binding.txtFname.text.toString().trim()
-        val surname = binding.txtSname.text.toString().trim()
+        firstName = binding.txtFname.text.toString().trim()
+        surname = binding.txtSname.text.toString().trim()
         val phoneNumber = binding.txtPhoneNumber.text.toString().trim()
         val email = binding.txtEmail.text.toString().trim()
         val password = binding.txtPassword.text.toString().trim()

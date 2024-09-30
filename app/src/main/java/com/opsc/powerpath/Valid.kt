@@ -34,7 +34,7 @@ fun ValidHeight (input: Int, errorMessage: (String) -> Unit) : Boolean {
 
         return try {
             val height = input
-            if (height == null || height < 50.0 || height > 300.0) {
+            if (height.equals(null) || height < 50.0 || height > 300.0) {
                 error = "Please enter a valid height between 50 cm and 300 cm."
                 errorMessage(error)
                 false
@@ -53,7 +53,7 @@ fun ValidHeight (input: Int, errorMessage: (String) -> Unit) : Boolean {
 
         return try {
             val weight = input
-            if (weight == null || weight <= 0.0 || weight > 500.0) {
+            if (weight.equals(null) || weight <= 0.0 || weight > 500.0) {
                 error = "Please enter a valid weight between 1 kg and 500 kg."
                 errorMessage(error)
                 false
