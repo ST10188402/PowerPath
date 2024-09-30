@@ -29,11 +29,11 @@ class Valid
     }
 
 
-fun ValidHeight (input: String, errorMessage: (String) -> Unit) : Boolean {
+fun ValidHeight (input: Int, errorMessage: (String) -> Unit) : Boolean {
         var error = ""
 
         return try {
-            val height = input.toDoubleOrNull()
+            val height = input
             if (height == null || height < 50.0 || height > 300.0) {
                 error = "Please enter a valid height between 50 cm and 300 cm."
                 errorMessage(error)
@@ -48,11 +48,11 @@ fun ValidHeight (input: String, errorMessage: (String) -> Unit) : Boolean {
         }
     }
 
-    fun ValidWeight (input: String, errorMessage: (String) -> Unit) : Boolean {
+    fun ValidWeight (input: Int, errorMessage: (String) -> Unit) : Boolean {
         var error = ""
 
         return try {
-            val weight = input.toDoubleOrNull()
+            val weight = input
             if (weight == null || weight <= 0.0 || weight > 500.0) {
                 error = "Please enter a valid weight between 1 kg and 500 kg."
                 errorMessage(error)
