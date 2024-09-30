@@ -36,9 +36,9 @@ class ContainerActivity : AppCompatActivity() {
             val currentFragment = supportFragmentManager.findFragmentById(R.id.nav_host)
             when (item.itemId) {
                 R.id.home -> {
-                    if (currentFragment !is TakePhotoFragment) {
+                    if (currentFragment !is HomeFragment) {
                         val transaction = supportFragmentManager.beginTransaction()
-                        transaction.replace(R.id.nav_host, TakePhotoFragment())
+                        transaction.replace(R.id.nav_host, HomeFragment())
                         transaction.commit()
                     }
                     true
@@ -52,9 +52,9 @@ class ContainerActivity : AppCompatActivity() {
                     true
                 }
                 R.id.camera -> {
-                    if (currentFragment !is TakePhotoFragment) {
+                    if (currentFragment !is ProgressPage) {
                         val transaction = supportFragmentManager.beginTransaction()
-                        transaction.replace(R.id.nav_host, TakePhotoFragment())
+                        transaction.replace(R.id.nav_host, ProgressPage())
                         transaction.commit()
                     }
                     true
@@ -74,7 +74,7 @@ class ContainerActivity : AppCompatActivity() {
         /// Display ProfileFragment by default
        if (savedInstanceState == null) {
            val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.nav_host, ProfileFragment())
+            transaction.replace(R.id.nav_host, HomeFragment())
             transaction.commit()
         }
     }
