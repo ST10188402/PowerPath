@@ -25,9 +25,9 @@ class ContainerActivity : AppCompatActivity() {
         bottomNavigationView = findViewById(R.id.nav_view)
 
 
+        //FAB BUTTON CLICK LISTENER
         newWorkout.setOnClickListener {
-          val intent = Intent(this, add_exercise::class.java)
-            startActivity(intent)
+
         }
 
 

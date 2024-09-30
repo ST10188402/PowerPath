@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
         btnNot = view.findViewById(R.id.btnNot)
         btnNot.setOnClickListener {
           //  val intent = Intent(activity, NotificationsActivity::class.java)
-           // startActivity(intent)
+            //startActivity(intent)
         }
 
         // Add BMIFragment to the HomeFragment
