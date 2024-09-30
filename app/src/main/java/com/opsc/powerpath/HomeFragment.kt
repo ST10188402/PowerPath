@@ -22,7 +22,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         userName = view.findViewById(R.id.welcome_msg)
-        userName.text =  CurrentUser.name
 
         btnNot = view.findViewById(R.id.btnNot)
         btnNot.setOnClickListener {
