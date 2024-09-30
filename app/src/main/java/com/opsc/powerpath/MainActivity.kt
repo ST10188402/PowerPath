@@ -3,6 +3,7 @@ package com.opsc.powerpath
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -35,9 +36,16 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_start)
+        setContentView(R.layout.activity_get_started)
 
         login()
+
+        val btnGetStarted: Button = findViewById(R.id.btn_get_started)
+        btnGetStarted.setOnClickListener {
+            val intent = Intent(this, com.opsc.powerpath.Onboarding::class.java)
+            startActivity(intent)
+
+        }
 
 
     }
@@ -113,12 +121,6 @@ class MainActivity : AppCompatActivity() {
                             {
                                 // If the user is registered, navigate to SuccessActivity
                                 val intent = Intent(this, ContainerActivity::class.java)
-                                startActivity(intent)
-                                finish()
-                            }
-                            else
-                            {
-                                val intent = Intent(this, GetStartedActivity::class.java)
                                 startActivity(intent)
                                 finish()
                             }
