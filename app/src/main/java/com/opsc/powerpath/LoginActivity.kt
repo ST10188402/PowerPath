@@ -91,6 +91,7 @@ class LoginActivity : AppCompatActivity() {
                     // If the user is authenticated, get the user data
                     if (isAuthenticated) {
                         val user = auth.currentUser
+                        CurrentUser.uid = user?.uid
                         user?.let {
                             val uid = it.uid
                             CurrentUser.uid = uid
@@ -165,6 +166,7 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // If sign-in is successful, get the current user
                     val user = auth.currentUser
+                    CurrentUser.uid = user?.uid
                     if (user != null)
                     {
                         // Check if the user is registered in the database
@@ -173,10 +175,10 @@ class LoginActivity : AppCompatActivity() {
                             if (it.exists())
                             {
                                 // If the user is registered, navigate to SuccessActivity
-                                // val intent = Intent(this, SuccessActivity::class.java)
+                                 val intent = Intent(this, SuccessActivity::class.java)
                                 //val intent = Intent(this, CompleteActivity::class.java)
                                 //val intent = Intent(this, TakePhotoActivity::class.java)
-                                val intent = Intent(this, ContainerActivity::class.java)
+                              //  val intent = Intent(this, ContainerActivity::class.java)
                                 startActivity(intent)
                                 finish()
                             }
