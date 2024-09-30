@@ -31,7 +31,7 @@
             android:name=".Notifications"
             android:exported="false" />
         <activity
-            android:name=".add_exercise"
+            android:name=".AddWorkoutActivity"
             android:exported="false" />
         <activity
             android:name=".SuccessActivity"
