@@ -19,13 +19,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.database
 
-class MainActivity : AppCompatActivity() {
+class GetStartedActivity : AppCompatActivity() {
 
     private lateinit var gsc : GoogleSignInClient
     private lateinit var auth : FirebaseAuth
-    private var isUser : Boolean = true
-
+    var isUser : Boolean = false
     val database = Firebase.database
+
 
     //declare the request code
     private  var RC_SIGN_IN = 20
@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_get_started)
 
-        login()
 
         val btnGetStarted: Button = findViewById(R.id.btn_get_started)
         btnGetStarted.setOnClickListener {
@@ -46,6 +45,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+
+
 
 
     }
@@ -70,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             // If the user is already signed in, authenticate with the obtained ID token
             auth(account.idToken!!)
         }
-       signIn()
+        signIn()
     }
     //Function to handle Google Sign-In
     private fun signIn() {
@@ -122,6 +123,10 @@ class MainActivity : AppCompatActivity() {
                                 val intent = Intent(this, ContainerActivity::class.java)
                                 startActivity(intent)
                                 finish()
+                            }
+                            else
+                            {
+                                isUser = false
                             }
 
                         }

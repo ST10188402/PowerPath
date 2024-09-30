@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:background="@color/background"
         android:id="@+id/main"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent">
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"
@@ -88,7 +87,9 @@
             android:layout_width="match_parent"
             android:layout_height="230dp"
             android:layout_gravity="bottom"
-            app:layout_constraintBottom_toBottomOf="@+id/nav_view">
+            app:layout_constraintBottom_toBottomOf="@+id/nav_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
@@ -109,22 +110,27 @@
                 android:id="@+id/fab1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
                 android:clickable="true"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/fab"
                 app:layout_constraintStart_toStartOf="@+id/fab"
-                app:srcCompat="@drawable/btn_flash_on" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/icon_calendar" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="28dp"
                 android:clickable="true"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/fab"
                 app:layout_constraintEnd_toEndOf="@+id/fab"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/btn_flash" />
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/ic_weight" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
