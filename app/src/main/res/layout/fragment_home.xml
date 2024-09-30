@@ -127,6 +127,7 @@
             android:layout_height="20dp" />
 
         <com.db.williamchart.view.LineChartView
+            android:id="@+id/homeLinechart"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_gravity="center"/>

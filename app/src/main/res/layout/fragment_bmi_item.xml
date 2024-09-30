@@ -73,12 +73,13 @@
                     android:gravity="center">
 
                     <!-- ImageView -->
-                    <ImageView
-                        android:id="@+id/imageView"
+                    <com.db.williamchart.view.DonutChartView
+                        android:id="@+id/donutChartView"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="150dp"
+                        android:animateLayoutChanges="@android:anim/fade_in"
                         android:layout_weight="1"
-                        tools:srcCompat="@tools:sample/avatars" />
+                        />
 
                 </LinearLayout>
 
