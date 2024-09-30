@@ -34,9 +34,5 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun displayFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host, fragment)
-            .commit()
-    }
+
 }
