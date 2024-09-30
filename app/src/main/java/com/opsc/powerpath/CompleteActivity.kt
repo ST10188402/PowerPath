@@ -93,8 +93,8 @@ class CompleteActivity : AppCompatActivity() {
         val valid = Valid()
 
         val gender = binding.genderSpinner.selectedItem.toString()
-        val weight = binding.weight.text.toString().trim()
-        val height = binding.height.text.toString().trim()
+        val weight = binding.weight.text.toString().toInt()
+        val height = binding.height.text.toString().toInt()
         val dateOfBirth  = date
 
        if(dateOfBirth.isEmpty()) {
@@ -114,12 +114,12 @@ class CompleteActivity : AppCompatActivity() {
             return false
         }
 
-        if (weight.isEmpty()) {
+        if (weight.equals(null)) {
             binding.weight.error = "Weight is required"
             return false
         }
 
-        if (height.isEmpty()) {
+        if (height.equals(null)) {
             binding.height.error = "Height is required"
             return false
         }
