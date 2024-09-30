@@ -1,5 +1,6 @@
 package com.opsc.powerpath
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils.replace
 import android.widget.TextView
@@ -16,100 +17,119 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ContainerActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
-    private lateinit var addBtn : FloatingActionButton
-    private lateinit var addExercise : FloatingActionButton
-    private lateinit var addDate : FloatingActionButton
+    private lateinit var newWorkout: FloatingActionButton
+    private lateinit var addExercise: FloatingActionButton
+    private lateinit var addDate: FloatingActionButton
 
-    private val rotateOpen: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim) }
-    private val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
-    private val fromBottom: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim) }
-    private val toBottom: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim) }
+    private val rotateOpen: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.rotate_open_anim
+        )
+    }
+    private val rotateClose: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.rotate_close_anim
+        )
+    }
+    private val fromBottom: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.from_bottom_anim
+        )
+    }
+    private val toBottom: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.to_bottom_anim
+        )
+    }
     private var clicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      // setContentView(R.layout.activity_container)
+        // setContentView(R.layout.activity_container)
         setContentView(R.layout.activity_home)
-       // setContentView(R.layout.fragment_home)
+        // setContentView(R.layout.fragment_home)
         enableEdgeToEdge()
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
 
         val nh = findViewById<TextView>(R.id.nav_header)
 
         newWorkout = findViewById(R.id.fab)
-        addBtn = findViewById(R.id.fab)
         addExercise = findViewById(R.id.fab1)
         addDate = findViewById(R.id.fab2)
         bottomNavigationView = findViewById(R.id.nav_view)
 
 
-
-
-        newWorkout.setOnClickListener {
-          val intent = Intent(this, AddWorkoutActivity::class.java)
-            startActivity(intent)
-        //FAB BUTTON CLICK LISTENER
-        addBtn.setOnClickListener {
-            onAddButtonClicked()
-        }
-        addExercise.setOnClickListener {
-            Toast.makeText(this, "Add Exercise", Toast.LENGTH_SHORT).show()
-        }
-        addDate.setOnClickListener {
-            Toast.makeText(this, "Add Date", Toast.LENGTH_SHORT).show()
-        }
-
-
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            val currentFragment = supportFragmentManager.findFragmentById(R.id.nav_host)
-            when (item.itemId) {
-                R.id.home -> {
-                    if (currentFragment !is HomeFragment) {
-                        val transaction = supportFragmentManager.beginTransaction()
-                        transaction.replace(R.id.nav_host, HomeFragment())
-                        transaction.commit()
-                        nh.text = "Home"
-                    }
-                    true
-                }
-                R.id.camera -> {
-                    if (currentFragment !is TakePhotoFragment) {
-                        val transaction = supportFragmentManager.beginTransaction()
-                        transaction.replace(R.id.nav_host, TakePhotoFragment())
-                        transaction.commit()
-                        nh.text = "Camera"
-                    }
-                    true
-                }
-                R.id.statistics -> {
-                    if (currentFragment !is ProgressPage) {
-                        val transaction = supportFragmentManager.beginTransaction()
-                        transaction.replace(R.id.nav_host, ProgressPage())
-                        transaction.commit()
-                        nh.text = "Statistics"
-                    }
-                    true
-                }
-                R.id.nav_profile -> {
-                    if (currentFragment !is ProfileFragment) {
-                        val transaction = supportFragmentManager.beginTransaction()
-                        transaction.replace(R.id.nav_host, ProfileFragment())
-                        transaction.commit()
-                        nh.text = "Profile"
-                    }
-                    true
-                }
-                else -> false
+            //FAB BUTTON CLICK LISTENER
+            newWorkout.setOnClickListener {
+                onAddButtonClicked()
             }
-        }
+            addExercise.setOnClickListener {
+                Toast.makeText(this, "Add Exercise", Toast.LENGTH_SHORT).show()
+            }
+            addDate.setOnClickListener {
+                Toast.makeText(this, "Add Date", Toast.LENGTH_SHORT).show()
+            }
 
-        /// Display ProfileFragment by default
-       if (savedInstanceState == null) {
-           val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.nav_host, HomeFragment())
-            transaction.commit()
-        }
+
+            bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+                val currentFragment = supportFragmentManager.findFragmentById(R.id.nav_host)
+                when (item.itemId) {
+                    R.id.home -> {
+                        if (currentFragment !is HomeFragment) {
+                            val transaction = supportFragmentManager.beginTransaction()
+                            transaction.replace(R.id.nav_host, HomeFragment())
+                            transaction.commit()
+                            nh.text = "Home"
+                        }
+                        true
+                    }
+
+                    R.id.camera -> {
+                        if (currentFragment !is TakePhotoFragment) {
+                            val transaction = supportFragmentManager.beginTransaction()
+                            transaction.replace(R.id.nav_host, TakePhotoFragment())
+                            transaction.commit()
+                            nh.text = "Camera"
+                        }
+                        true
+                    }
+
+                    R.id.statistics -> {
+                        if (currentFragment !is ProgressPage) {
+                            val transaction = supportFragmentManager.beginTransaction()
+                            transaction.replace(R.id.nav_host, ProgressPage())
+                            transaction.commit()
+                            nh.text = "Statistics"
+                        }
+                        true
+                    }
+
+                    R.id.nav_profile -> {
+                        if (currentFragment !is ProfileFragment) {
+                            val transaction = supportFragmentManager.beginTransaction()
+                            transaction.replace(R.id.nav_host, ProfileFragment())
+                            transaction.commit()
+                            nh.text = "Profile"
+                        }
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+
+            /// Display ProfileFragment by default
+            if (savedInstanceState == null) {
+                val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.nav_host, HomeFragment())
+                transaction.commit()
+            }
     }
+
     private fun onAddButtonClicked() {
         clicked = !clicked
         setVisibility(clicked)
@@ -130,11 +150,11 @@ class ContainerActivity : AppCompatActivity() {
         if (clicked) {
             addExercise.startAnimation(fromBottom)
             addDate.startAnimation(fromBottom)
-            addBtn.startAnimation(rotateOpen)
+            newWorkout.startAnimation(rotateOpen)
         } else {
             addExercise.startAnimation(toBottom)
             addDate.startAnimation(toBottom)
-            addBtn.startAnimation(rotateClose)
+            newWorkout.startAnimation(rotateClose)
         }
     }
 }

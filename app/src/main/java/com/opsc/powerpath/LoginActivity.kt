@@ -145,6 +145,8 @@ class LoginActivity : AppCompatActivity() {
                 // If the task is successful, show a toast message indicating authentication success
                 if (task.isSuccessful) {
                     callback(true)
+                    val intent = Intent(this, SuccessActivity::class.java)
+                    startActivity(intent)
                     Toast.makeText(this, "Authentication successful.", Toast.LENGTH_SHORT).show()
                 }
                 // If the task is not successful, show a toast message indicating authentication failure
