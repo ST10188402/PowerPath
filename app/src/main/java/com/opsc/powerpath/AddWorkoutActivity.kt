@@ -1,14 +1,15 @@
 package com.opsc.powerpath
 
-import android.app.Dialog
 import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
-import android.view.Window
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -21,22 +22,25 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class AddWorkoutActivity : AppCompatActivity() {
 
     private lateinit var spText: TextView
     private lateinit var spinner: Spinner
     private val selectedExercises = mutableListOf<Exercise>()
+    private var m_Text = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_add_exercise)
+        setContentView(R.layout.activity_add_workout)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
+        muscleGroupCard()
         getListOfExercises()
         setupSaveButton()
     }
@@ -66,11 +70,41 @@ class AddWorkoutActivity : AppCompatActivity() {
         })
     }
 
+    private fun showMuscleGroupDialog() {
+        val builder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+        builder.setTitle("Title")
+
+        val input = EditText(this)
+
+        input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        builder.setView(input)
+
+        builder.setPositiveButton("OK"
+        ) { dialog, which -> m_Text = input.text.toString() }
+        builder.setNegativeButton("Cancel"
+        ) { dialog, which -> dialog.cancel() }
+
+        builder.show()
+    }
+
+    private fun muscleGroupCard() {
+        val muscleGroup = findViewById<TextView>(R.id.muscle_group_card)
+        muscleGroup.setOnClickListener {
+            showMuscleGroupDialog()
+        }
+    }
+
     private fun setupSaveButton() {
         val saveButton = findViewById<Button>(R.id.save_button)
         saveButton.setOnClickListener {
+
+            if (m_Text.isEmpty()) {
+                Toast.makeText(this, "Please enter the muscle group first!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val selectedExerciseName = spinner.selectedItem.toString()
-            val selectedExercise = Exercise(name = selectedExerciseName)
+            val selectedExercise = Exercise(muscleGroup = m_Text, name = selectedExerciseName)
             selectedExercises.add(selectedExercise)
             saveWorkout()
         }
