@@ -7,32 +7,36 @@
     android:background="@color/background_grey"
     android:padding="16dp">
 
-    <!-- Profile Image and Edit Button -->
 
     <ImageView
         android:id="@+id/profile_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="50dp"
         android:src="@drawable/ic_pfp"
+        app:layout_constraintBottom_toTopOf="@+id/notification_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Stats (Height, Weight, Age) in CardViews -->
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/edit_button"
-        android:layout_width="106dp"
-        android:layout_height="49dp"
+        android:layout_width="107dp"
+        android:textSize="10dp"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_height="33dp"
         android:layout_marginBottom="20dp"
+        android:background="@drawable/gradient_edit"
         android:text="Edit"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="254dp"
-        android:background="@drawable/gradient_edit"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.623"
+        app:layout_constraintStart_toEndOf="@+id/userName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -84,16 +88,21 @@
     <!-- Other Section -->
     <androidx.cardview.widget.CardView
         android:id="@+id/account_card"
+        android:backgroundTint="@color/background_grey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/notification_label"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView">
 
         <LinearLayout
             android:layout_width="344dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
             android:background="@color/background_grey"
+            android:drawablePadding="8dp"
+            android:gravity="center"
             android:orientation="vertical"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="237dp">
@@ -103,7 +112,6 @@
                 android:id="@+id/account_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:text="Account"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
@@ -127,6 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:drawablePadding="8dp"
                 android:text="Achievement"
                 android:textSize="17dp"
                 app:drawableEndCompat="@drawable/ic_arrow2"
@@ -137,6 +146,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:drawablePadding="8dp"
                 android:text="Activity History"
                 android:textSize="17dp"
                 app:drawableEndCompat="@drawable/ic_arrow2"
@@ -147,6 +157,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:drawablePadding="8dp"
                 android:text="Workout Progress"
                 android:textSize="17dp"
                 app:drawableEndCompat="@drawable/ic_arrow2"
@@ -154,54 +165,65 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+
     <TextView
         android:id="@+id/notification_label"
-        android:layout_width="156dp"
-        android:layout_height="26dp"
+        android:layout_width="152dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="39dp"
         android:drawablePadding="8dp"
         android:text="Notification"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:drawableStartCompat="@drawable/ic_noti"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="426dp" />
-
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/pop_up_notification"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_card" />
 
     <Switch
         android:id="@+id/pop_up_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginBottom="183dp"
         android:text="Pop-up Notification"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/notification_label"
-        tools:layout_editor_absoluteY="427dp" />
-
+        app:layout_constraintTop_toBottomOf="@+id/account_card"
+        app:layout_constraintVertical_bias="1.0" />
 
 
     <TextView
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="58dp"
+        android:fontFamily="@font/poppins_bold"
         android:text="User name"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:layout_constraintEnd_toStartOf="@+id/edit_button"
         app:layout_constraintStart_toEndOf="@+id/profile_image"
-        tools:layout_editor_absoluteY="53dp" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/other_card"
-        android:layout_width="3dp"
-        android:layout_height="3dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp">
-
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.528" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="324dp"
         android:layout_height="132dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="477dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_card"
+        app:layout_constraintVertical_bias="0.697">
 
         <TextView
             android:id="@+id/other_label"
@@ -217,6 +239,7 @@
 
         <TextView
             android:id="@+id/contact_us"
+            android:drawablePadding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -228,6 +251,7 @@
             android:id="@+id/privacy_policy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
             android:layout_marginTop="8dp"
             android:text="Privacy Policy"
             app:drawableEndCompat="@drawable/ic_arrow2"
@@ -239,6 +263,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Settings"
+            android:drawablePadding="8dp"
             app:drawableEndCompat="@drawable/ic_arrow2"
             app:drawableStartCompat="@drawable/ic_settings" />
     </LinearLayout>
