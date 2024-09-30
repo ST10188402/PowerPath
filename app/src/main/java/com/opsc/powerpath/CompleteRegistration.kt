@@ -37,11 +37,11 @@ class CompleteRegistration: AppCompatActivity() {
 
         binding.btnNext.setOnClickListener {
             if (validateInputs()) {
-                //Save user data to Firebase Database
-                SaveUserData()
                 Toast.makeText(baseContext, "Registration Complete", Toast.LENGTH_SHORT).show()
                 // Navigate to onboarding activity
                 val intent = Intent(baseContext, CompleteActivity::class.java)
+                intent.putExtra("FIRST_NAME", binding.txtFname.text.toString())
+                intent.putExtra("SURNAME", binding.txtSname.text.toString())
                 startActivity(intent)
                 finish();
 
@@ -49,33 +49,6 @@ class CompleteRegistration: AppCompatActivity() {
             } else {
                 Toast.makeText(baseContext, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             }
-        }
-    }
-    private fun SaveUserData() {
-
-        val user = auth.currentUser
-        user?.let {
-            val uid = it.uid
-            val name = binding.txtFname.text.toString().trim()
-            val surname = binding.txtSname.text.toString().trim()
-            val phoneNumber = binding.txtPhoneNumber.text.toString().trim()
-            val profileUrl = it.photoUrl.toString()
-
-            val userMap = hashMapOf(
-                "id" to uid,
-                "name" to name,
-                "surname" to surname,
-                "phoneNumber" to phoneNumber,
-                "profile" to profileUrl
-            )
-
-            database.reference.child("users").child(uid).setValue(userMap)
-                .addOnSuccessListener {
-                    Toast.makeText(baseContext, "User data saved successfully", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(baseContext, "Failed to save user data", Toast.LENGTH_SHORT).show()
-                }
         }
     }
     private fun validateInputs(): Boolean

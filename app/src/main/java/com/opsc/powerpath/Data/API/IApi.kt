@@ -11,23 +11,28 @@ import com.opsc.powerpath.Utils.Util
 
 interface IApi {
 
+    // Add user
     @POST("/api/users")
-    fun addUser(@Body user: User): Call<Void>
+    fun addUser(@Body user: User): Call<User>
+
+    // Get user by ID
+    @GET("/api/users/{userId}")
+    fun getUserById(@Path("userId") userId: String): Call<User>
 
     // Add or update user's height and weight
-    @PUT(Util.BASE_URL+"/api/users/{userId}/profile")
+    @PUT("/api/users/{userId}/profile")
     fun updateUserProfile(@Path("userId") userId: String, @Body user: User): Call<Void>
 
     // Add weight progress
-    @POST(Util.BASE_URL+"/api/users/{userId}/weight-progress")
+    @POST("/api/users/{userId}/weight-progress")
     fun addWeightProgress(@Path("userId") userId: String, @Body weightProgress: WeightProgress): Call<Void>
 
     // Get all weight progress records for the user
-    @GET(Util.BASE_URL+"/api/users/{userId}/weight-progress")
+    @GET("/api/users/{userId}/weight-progress")
     fun getWeightProgress(@Path("userId") userId: String): Call<List<WeightProgress>>
 
     // Add a new workout for the user
-    @POST(Util.BASE_URL+"/api/users/{userId}/workouts")
+    @POST("/api/users/{userId}/workouts")
     fun addWorkout(@Path("userId") userId: String, @Body workout: Workout): Call<Void>
 
     // Get all workouts for the user
