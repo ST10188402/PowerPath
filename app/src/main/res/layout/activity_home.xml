@@ -34,18 +34,47 @@
             app:menu="@menu/bottom_nav" />
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="230dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginBottom="60dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@+id/fab"
+                    app:layout_constraintStart_toStartOf="@+id/fab"
+                    app:srcCompat="@drawable/btn_flash_on" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@+id/fab"
+                    app:layout_constraintEnd_toEndOf="@+id/fab"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/btn_flash" />
+            </LinearLayout>
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_plus"
                 app:backgroundTint="@color/button_purple"
                 app:layout_anchorGravity="top|center"
@@ -54,28 +83,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:tint="@color/white" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@+id/fab"
-                app:layout_constraintStart_toStartOf="@+id/fab"
-                app:srcCompat="@drawable/btn_flash_on" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@+id/fab"
-                app:layout_constraintEnd_toEndOf="@+id/fab"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/btn_flash" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
