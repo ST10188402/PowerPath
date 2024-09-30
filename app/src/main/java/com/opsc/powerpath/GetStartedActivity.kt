@@ -112,7 +112,6 @@ class GetStartedActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // If sign-in is successful, get the current user
                     val user = auth.currentUser
-                    CurrentUser.uid = user?.uid
                     if (user != null)
                     {
                         // Check if the user is registered in the database
