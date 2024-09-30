@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+            <gradient
+                android:startColor="#9C23D7"
+                android:endColor="#9F2E6E"
+                android:angle="180"
+                android:type="linear"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/img_workout_details"/>
+
+</layer-list>

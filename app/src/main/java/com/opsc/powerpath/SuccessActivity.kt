@@ -26,7 +26,7 @@ class SuccessActivity : AppCompatActivity() {
         btnHome = findViewById(R.id.btn_home)
 
         btnHome.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, ContainerActivity::class.java)
             startActivity(intent)
         }
 

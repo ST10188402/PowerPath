@@ -22,7 +22,7 @@
             android:name=".CompleteRegistration"
             android:exported="false" />
         <activity
-            android:name=".TakePhotoActivity"
+            android:name=".TakePhotoFragment"
             android:exported="false" />
         <activity
             android:name=".TimerPicker"

@@ -45,11 +45,12 @@
 
       <ScrollView
           android:id="@+id/scroll"
-          android:layout_width="395dp"
-          android:layout_height="372dp"
-          android:layout_marginTop="20dp"
+          android:layout_width="394dp"
+          android:layout_height="462dp"
+          android:layout_marginTop="5dp"
           android:background="@color/background_grey"
-          android:padding="24dp"
+          android:paddingHorizontal="20dp"
+          android:paddingTop="2dp"
           app:layout_constraintBottom_toTopOf="@+id/btn_register"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
@@ -61,30 +62,28 @@
               android:orientation="vertical">
 
 
-
-
-      <com.google.android.material.textfield.TextInputLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:paddingVertical="10dp"
-          android:hint="Firstname"
-          app:endIconMode="clear_text"
-          app:startIconDrawable="@drawable/ic_user">
-
-          <com.google.android.material.textfield.TextInputEditText
-              android:id="@+id/txt_Fname"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:padding="15dp"
-              android:singleLine="true"
-              android:textColor="@android:color/white">
-          </com.google.android.material.textfield.TextInputEditText>
-      </com.google.android.material.textfield.TextInputLayout>
               <com.google.android.material.textfield.TextInputLayout
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:paddingBottom="10dp"
+                  android:hint="Firstname"
+                  android:paddingVertical="10dp"
+                  app:endIconMode="clear_text"
+                  app:startIconDrawable="@drawable/ic_user">
+
+                  <com.google.android.material.textfield.TextInputEditText
+                      android:id="@+id/txt_Fname"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:padding="15dp"
+                      android:singleLine="true"
+                      android:textColor="@android:color/white"></com.google.android.material.textfield.TextInputEditText>
+              </com.google.android.material.textfield.TextInputLayout>
+
+              <com.google.android.material.textfield.TextInputLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
                   android:hint="Surname"
+                  android:paddingBottom="10dp"
                   app:endIconMode="clear_text"
                   app:startIconDrawable="@drawable/ic_surname">
 
@@ -102,10 +101,11 @@
               <com.google.android.material.textfield.TextInputLayout
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:paddingBottom="10dp"
                   android:hint="Phone Number"
+                  android:paddingBottom="10dp"
                   app:endIconMode="clear_text"
                   app:startIconDrawable="@drawable/ic_phone">
+
                   <com.google.android.material.textfield.TextInputEditText
                       android:id="@+id/txt_phone_number"
                       android:layout_width="match_parent"
@@ -113,33 +113,32 @@
                       android:inputType="phone"
                       android:padding="12dp"
                       android:singleLine="true"
-                      android:textColor="@android:color/white">
-                  </com.google.android.material.textfield.TextInputEditText>
+                      android:textColor="@android:color/white"></com.google.android.material.textfield.TextInputEditText>
               </com.google.android.material.textfield.TextInputLayout>
 
               <com.google.android.material.textfield.TextInputLayout
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:paddingBottom="10dp"
                   android:hint="Email"
+                  android:paddingBottom="10dp"
                   app:endIconMode="clear_text"
                   app:startIconDrawable="@drawable/ic_email">
+
                   <com.google.android.material.textfield.TextInputEditText
                       android:id="@+id/txt_email"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:padding="12dp"
                       android:singleLine="true"
-                      android:textColor="@android:color/white">
-                  </com.google.android.material.textfield.TextInputEditText>
+                      android:textColor="@android:color/white"></com.google.android.material.textfield.TextInputEditText>
               </com.google.android.material.textfield.TextInputLayout>
 
               <com.google.android.material.textfield.TextInputLayout
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
+                  android:hint="Password"
                   android:paddingBottom="10dp"
                   app:endIconMode="password_toggle"
-                  android:hint="Password"
                   app:startIconDrawable="@drawable/ic_password1">
 
                   <com.google.android.material.textfield.TextInputEditText
@@ -149,16 +148,15 @@
                       android:inputType="textPassword"
                       android:padding="12dp"
                       android:singleLine="true"
-                      android:textColor="@android:color/white">
-                  </com.google.android.material.textfield.TextInputEditText>
+                      android:textColor="@android:color/white"></com.google.android.material.textfield.TextInputEditText>
               </com.google.android.material.textfield.TextInputLayout>
 
               <com.google.android.material.textfield.TextInputLayout
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
+                  android:hint="Confirm Password"
                   android:paddingBottom="10dp"
                   app:endIconMode="password_toggle"
-                  android:hint="Confirm Password"
                   app:startIconDrawable="@drawable/ic_password2">
 
                   <com.google.android.material.textfield.TextInputEditText
@@ -168,21 +166,17 @@
                       android:inputType="textPassword"
                       android:padding="12dp"
                       android:singleLine="true"
-                      android:textColor="@android:color/white">
-                  </com.google.android.material.textfield.TextInputEditText>
+                      android:textColor="@android:color/white"></com.google.android.material.textfield.TextInputEditText>
               </com.google.android.material.textfield.TextInputLayout>
 
 
-
-          <CheckBox
+              <CheckBox
                   android:id="@+id/privacy_policy"
                   android:layout_width="wrap_content"
                   android:layout_height="76dp"
                   android:layout_gravity="center_horizontal"
                   android:contentDescription="@string/policy_msg"
-                  android:focusable="true"
-                  android:focusableInTouchMode="true"
-                  android:paddingVertical="20dp"
+                  android:paddingVertical="2dp"
                   android:text="@string/policy_msg"
                   android:textColor="#BDBDBD"
                   android:textSize="15dp" />
@@ -212,7 +206,7 @@
           android:layout_gravity="center_horizontal"
           android:layout_marginTop="18dp"
           android:text="Or"
-          android:textSize="25dp"
+          android:textSize="15dp"
           android:textColor="#BDBDBD"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
@@ -223,7 +217,7 @@
           android:layout_width="64dp"
           android:layout_height="60dp"
           android:layout_gravity="center"
-          android:layout_marginTop="16dp"
+          android:layout_marginTop="5dp"
           android:src="@drawable/google_logo"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
