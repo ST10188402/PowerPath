@@ -91,10 +91,8 @@ class LoginActivity : AppCompatActivity() {
                     // If the user is authenticated, get the user data
                     if (isAuthenticated) {
                         val user = auth.currentUser
-                        CurrentUser.uid = user?.uid
                         user?.let {
-                            val uid = it.uid
-                            CurrentUser.uid = uid
+                            val uid = user.uid
                             database.reference.child("users").child(uid).get().addOnSuccessListener { dataSnapshot ->
                                 val intent = Intent(this, SuccessActivity::class.java)//intent.putExtra("USER_FIRST_NAME", firstName)
                                 startActivity(intent)
@@ -166,7 +164,6 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // If sign-in is successful, get the current user
                     val user = auth.currentUser
-                    CurrentUser.uid = user?.uid
                     if (user != null)
                     {
                         // Check if the user is registered in the database

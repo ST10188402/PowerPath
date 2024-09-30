@@ -56,8 +56,9 @@ class CompleteActivity : AppCompatActivity() {
             if (validateInputs()) {
                 // save the data to database
                 SaveData()
-                // navigate to the login activity
+                // navigate to the success activity
                 val intent = Intent(this, SuccessActivity::class.java)
+                intent.putExtra("FIRST_NAME", intent.getStringExtra("FIRST_NAME").toString())
                 startActivity(intent)
             }
         }
@@ -66,8 +67,8 @@ class CompleteActivity : AppCompatActivity() {
     // Function to save the user data to the database
     private fun SaveData() {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        val name = intent.getStringExtra("FIRST_NAME")
-        val lastname = intent.getStringExtra("SURNAME")
+        val name = intent.getStringExtra("FIRST_NAME").toString()
+        val lastname = intent.getStringExtra("SURNAME").toString()
         val weight = binding.weight.text.toString().toInt()
         val height = binding.height.text.toString().toInt()
         val date = binding.datePicker.dayOfMonth.toString() + "/" + binding.datePicker.month.toString() + "/" + binding.datePicker.year.toString()

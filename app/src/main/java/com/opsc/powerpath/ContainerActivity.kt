@@ -27,7 +27,7 @@ class ContainerActivity : AppCompatActivity() {
 
 
         newWorkout.setOnClickListener {
-          val intent = Intent(this, add_exercise::class.java)
+          val intent = Intent(this, AddWorkoutActivity::class.java)
             startActivity(intent)
         }
 

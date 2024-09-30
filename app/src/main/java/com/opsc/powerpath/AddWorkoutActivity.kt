@@ -38,7 +38,7 @@ class AddWorkoutActivity : AppCompatActivity() {
         }
 
         getListOfExercises()
-        setupSaveButton()
+        //setupSaveButton()
     }
 
     private fun getListOfExercises() {
@@ -66,33 +66,33 @@ class AddWorkoutActivity : AppCompatActivity() {
         })
     }
 
-    private fun setupSaveButton() {
-        val saveButton = findViewById<Button>(R.id.save_button)
-        saveButton.setOnClickListener {
-            val selectedExerciseName = spinner.selectedItem.toString()
-            val selectedExercise = Exercise(name = selectedExerciseName)
-            selectedExercises.add(selectedExercise)
-            saveWorkout()
-        }
-    }
+//    private fun setupSaveButton() {
+//        val saveButton = findViewById<Button>(R.id.save_button)
+//        saveButton.setOnClickListener {
+//            val selectedExerciseName = spinner.selectedItem.toString()
+//            val selectedExercise = Exercise(name = selectedExerciseName)
+//            selectedExercises.add(selectedExercise)
+//            saveWorkout()
+//        }
+//    }
 
-    private fun saveWorkout() {
-        val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        val workout = Workout(exercises = selectedExercises)
-
-        val apiService = RetrofitInstance.api.addWorkout(userId, workout)
-        apiService.enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if (response.isSuccessful) {
-                    Log.d(TAG, "Workout saved successfully")
-                } else {
-                    Log.e(TAG, "Failed to save workout: ${response.message()}")
-                }
-            }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.e(TAG, "API call failed: ${t.message}")
-            }
-        })
-    }
+//    private fun saveWorkout() {
+//        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+//        val workout = Workout(exercises = selectedExercises)
+//
+//        val apiService = RetrofitInstance.api.addWorkout(userId, workout)
+//        apiService.enqueue(object : Callback<Void> {
+//            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+//                if (response.isSuccessful) {
+//                    Log.d(TAG, "Workout saved successfully")
+//                } else {
+//                    Log.e(TAG, "Failed to save workout: ${response.message()}")
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<Void>, t: Throwable) {
+//                Log.e(TAG, "API call failed: ${t.message}")
+//            }
+//        })
+//    }
 }
