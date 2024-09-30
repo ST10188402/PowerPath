@@ -57,7 +57,7 @@
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/PowerPath.git
+   git clone https://github.com/ST10188402/PowerPath.git
    ```
 2. Open the project in Android Studio.
 3. Set up Firebase by linking the app to your Firebase project.
@@ -86,6 +86,3 @@
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
----
-
-Feel free to customize this further as needed for your project.
