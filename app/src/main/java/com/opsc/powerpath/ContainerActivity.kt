@@ -43,7 +43,7 @@ class ContainerActivity : AppCompatActivity() {
                     }
                     true
                 }
-                R.id.statistics -> {
+                R.id.camera -> {
                     if (currentFragment !is TakePhotoFragment) {
                         val transaction = supportFragmentManager.beginTransaction()
                         transaction.replace(R.id.nav_host, TakePhotoFragment())
@@ -51,7 +51,7 @@ class ContainerActivity : AppCompatActivity() {
                     }
                     true
                 }
-                R.id.camera -> {
+                R.id.statistics -> {
                     if (currentFragment !is ProgressPage) {
                         val transaction = supportFragmentManager.beginTransaction()
                         transaction.replace(R.id.nav_host, ProgressPage())
