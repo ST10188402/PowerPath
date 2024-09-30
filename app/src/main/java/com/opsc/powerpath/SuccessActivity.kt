@@ -36,6 +36,7 @@ class SuccessActivity : AppCompatActivity() {
         if (uid != null) {
             database.reference.child("users").child(uid).get().addOnSuccessListener { dataSnapshot ->
                 val firstName = dataSnapshot.child("name").value.toString()
+                CurrentUser.name = firstName
                 userName.text = "Welcome, $firstName"
             }.addOnFailureListener {
                 Toast.makeText(this, "Failed to retrieve user data", Toast.LENGTH_SHORT).show()

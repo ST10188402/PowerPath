@@ -1,47 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ContainerActivity">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:background="@color/background"
         android:id="@+id/main"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="30dp"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/poppins"
+                android:text="Welcome Back, "
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/welcome_msg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/welcome_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/poppins_bold"
+                android:text="User's name"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageView
+                android:id="@+id/btnNot"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/ic_bell"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.945"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <FrameLayout
+            android:id="@+id/bmi"
+            android:layout_margin="25dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/nav_host" />
+            android:layout_height="wrap_content" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@color/navbar"
-            app:itemRippleColor="@color/transparent"
-            app:itemTextColor="@color/button_purple"
-            app:itemIconSize="30dp"
-            app:elevation="0dp"
-            app:menu="@menu/bottom_nav" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_plus"
-            app:tint="@color/white"
-            app:backgroundTint="@color/button_purple"
-            app:layout_anchor="@+id/nav_view"
-            app:layout_anchorGravity="top|center" />
+            android:layout_marginVertical="15dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_gravity="left"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Activity"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:backgroundTint="#412A52"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="20dp" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:layout_marginHorizontal="30dp"
+                android:fontFamily="@font/poppins"
+                android:layout_gravity="center_vertical"
+                android:text="Today's Workout"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check"
+                android:layout_margin="20dp"
+                android:layout_gravity="right"
+                android:textColor="@color/white"
+                android:background="@drawable/gradient_btn_1">
+
+            </Button>
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_gravity="left"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Workout Progress"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <com.db.williamchart.view.LineChartView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+    </LinearLayout>
 
 </FrameLayout>
