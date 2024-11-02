@@ -214,13 +214,14 @@
         android:id="@+id/save_button"
         android:layout_width="231dp"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:background="@drawable/gradient_btn_1"
         android:text="Save"
-        android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="83dp" />
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView2"

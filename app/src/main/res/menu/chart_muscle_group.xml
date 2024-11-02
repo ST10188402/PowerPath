@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/option_push"
+        android:title="Push" />
+    <item
+        android:id="@+id/option_pull"
+        android:title="Pull" />
+    <item
+        android:id="@+id/option_pull"
+        android:title="Legs" />
+</menu>

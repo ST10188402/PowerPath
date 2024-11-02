@@ -16,8 +16,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven(url = uri("https://jitpack.io"))
     }
 }
 
 rootProject.name = "PowerPath"
-include(":app")
+include(":app", ":module1", ":module2")
