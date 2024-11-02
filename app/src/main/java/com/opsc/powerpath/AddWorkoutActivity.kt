@@ -121,7 +121,6 @@ class AddWorkoutActivity : AppCompatActivity() {
                     Log.e(TAG, "Failed to save workout: ${response.message()}")
                 }
             }
-
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 Log.e(TAG, "API call failed: ${t.message}")
             }

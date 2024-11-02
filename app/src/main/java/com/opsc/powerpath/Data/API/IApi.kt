@@ -1,13 +1,8 @@
 package com.opsc.powerpath.Data.API
 
-import com.opsc.powerpath.Data.Models.Exercise
-import com.opsc.powerpath.Data.Models.User
-import com.opsc.powerpath.Data.Models.WeightProgress
-import com.opsc.powerpath.Data.Models.Workout
+import com.opsc.powerpath.Data.Models.*
 import retrofit2.Call
 import retrofit2.http.*
-import com.opsc.powerpath.Data.Models.WorkoutHistory
-import com.opsc.powerpath.Utils.Util
 
 interface IApi {
 
@@ -34,6 +29,13 @@ interface IApi {
     // Add a new workout for the user
     @POST("/api/users/{userId}/workouts")
     fun addWorkout(@Path("userId") userId: String, @Body workout: Workout): Call<Void>
+
+    // Get workout progress for a specific muscle group
+    @GET("/api/users/{userId}/workouts/progress")
+    fun getWorkoutProgress(
+        @Path("userId") userId: String,
+        @Query("muscleGroup") muscleGroup: String
+    ): Call<List<WorkoutProgress>>
 
     // Get all workouts for the user
     @GET("/api/users/{userId}/workouts")
@@ -89,4 +91,19 @@ interface IApi {
         @Path("userId") userId: String,
         @Path("workoutId") workoutId: String
     ): Call<List<WorkoutHistory>>
+
+    // Add workout progress to the progress subcollection of a workout
+    @POST("/api/users/{userId}/workouts/{workoutId}/progress")
+    fun addWorkoutProgress(
+        @Path("userId") userId: String,
+        @Path("workoutId") workoutId: String,
+        @Body workoutProgress: WorkoutProgress
+    ): Call<Void>
+
+    // Retrieve workout progress based on the muscle group of the workout
+    @GET("/api/users/{userId}/workouts/progress")
+    fun getWorkoutProgressByMuscleGroup(
+        @Path("userId") userId: String,
+        @Query("muscleGroup") muscleGroup: String
+    ): Call<List<WorkoutProgress>>
 }
