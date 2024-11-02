@@ -1,68 +1,65 @@
 package com.opsc.powerpath
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.opsc.powerpath.databinding.ImageRowBinding
 
-class GalleryAdapter(private var galleryItems: MutableList<GalleryItem>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+// Adapter class for handling multiple images in a RecyclerView
+class GalleryAdapter(
+    private val imageByteArrayList: MutableList<ByteArray?> = mutableListOf(),
+    private val filenameList: MutableList<String?> = mutableListOf()
+) : RecyclerView.Adapter<GalleryAdapter.ViewHolder>() {
 
-    private val VIEW_TYPE_HEADER = 0
-    private val VIEW_TYPE_ITEM = 1
+    // ViewHolder class to hold the views for each item in the RecyclerView
+    inner class ViewHolder(val binding: ImageRowBinding) : RecyclerView.ViewHolder(binding.root)
 
-    override fun getItemViewType(position: Int): Int {
-        return if (position == 0 || galleryItems[position].date != galleryItems[position - 1].date) {
-            VIEW_TYPE_HEADER
-        } else {
-            VIEW_TYPE_ITEM
+    // Inflates the layout for each item in the RecyclerView
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
+            ImageRowBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    // Binds the data to the views for each item in the RecyclerView
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.binding.apply {
+            val byteArray = imageByteArrayList[position]
+            if (byteArray != null) {
+                val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+                imageView.setImageBitmap(bitmap)
+            }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == VIEW_TYPE_HEADER) {
-            val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.gallery_section_header, parent, false)
-            HeaderViewHolder(view)
-        } else {
-            val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.gallery_item, parent, false)
-            ItemViewHolder(view)
-        }
+    // Returns the total number of items in the RecyclerView
+    override fun getItemCount() = imageByteArrayList.size
+
+    // Adds new items to the adapter and refreshes the RecyclerView
+    fun addItems(imageByteArrays: List<ByteArray?>, filenames: List<String?>) {
+        imageByteArrayList.clear()
+        filenameList.clear()
+        imageByteArrayList.addAll(imageByteArrays)
+        filenameList.addAll(filenames)
+        notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (getItemViewType(position) == VIEW_TYPE_HEADER) {
-            (holder as HeaderViewHolder).bind(galleryItems[position].date)
-        } else {
-            (holder as ItemViewHolder).bind()  // No image yet, so bind placeholder
-        }
+    // Updates the existing items in the adapter and refreshes the RecyclerView
+    fun updateItems(imageByteArrays: List<ByteArray?>, filenames: List<String?>) {
+        imageByteArrayList.clear()
+        filenameList.clear()
+        imageByteArrayList.addAll(imageByteArrays)
+        filenameList.addAll(filenames)
+        notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = galleryItems.size
-
-    // Method to update the list dynamically
-    fun addGalleryItems(newItems: List<GalleryItem>) {
-        galleryItems.addAll(newItems)
-        notifyDataSetChanged()  // Update the RecyclerView when new data is added
-    }
-
-    inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val headerTextView: TextView = itemView as TextView
-
-        fun bind(date: String) {
-            headerTextView.text = date
-        }
-    }
-
-    inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val imageView: ImageView = itemView.findViewById(R.id.gallery_image)
-
-        fun bind() {
-            // Since no images are added yet, the placeholder is used
-            imageView.setImageResource(R.drawable.placeholderimg)
-        }
+    // Returns the current list of image byte arrays
+    fun returnItems(): MutableList<ByteArray?> {
+        return imageByteArrayList
     }
 }

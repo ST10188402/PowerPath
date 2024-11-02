@@ -11,7 +11,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.database
+import com.opsc.powerpath.Data.Models.User
+import com.opsc.powerpath.Utils.RetrofitInstance
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeFragment : Fragment() {
     private lateinit var userName: TextView
@@ -29,11 +35,32 @@ class HomeFragment : Fragment() {
             //startActivity(intent)
         }
 
+        getUserDetails()
         // Add BMIFragment to the HomeFragment
         val transaction: FragmentTransaction = childFragmentManager.beginTransaction()
         transaction.replace(R.id.bmi, BMIFragment())
         transaction.commit()
 
         return view
+    }
+    private fun getUserDetails() {
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        val apiService = RetrofitInstance.api.getUserById(userId)
+        apiService.enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful) {
+                    val user = response.body()
+                    user?.let {
+                        userName.text = "${it.name} ${it.surname}"
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "Failed to get user details: ${response.message()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                Toast.makeText(requireContext(), "API call failed: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

@@ -1,5 +1,6 @@
 package com.opsc.powerpath
 
+import ImageSaver
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -8,6 +9,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.view.LayoutInflater
@@ -24,6 +26,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.opsc.powerpath.databinding.ActivityTakePhotoBinding
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 class TakePhotoFragment : Fragment(), OnImageClickListener {
     private var _viewBinding: ActivityTakePhotoBinding? = null
@@ -83,14 +88,7 @@ class TakePhotoFragment : Fragment(), OnImageClickListener {
     private fun showImagePickerOptions() {
         checkCameraPermission()
     }
-private fun SavePhoto() {
-    if (imageByteArray.isNotEmpty()) {
-        // Save to the desired location
-        Toast.makeText(requireContext(), "Photo saved successfully", Toast.LENGTH_SHORT).show()
-    } else {
-        Toast.makeText(requireContext(), "Failed to update highlights", Toast.LENGTH_SHORT).show()
-    }
-}
+
 
     private fun checkCameraPermission() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -203,10 +201,29 @@ private fun SavePhoto() {
                         requireActivity().contentResolver,
                         imageUri
                     )
+                    val imageSaver = ImageSaver(requireContext())
+                    val filePath = imageSaver.saveImageToFile(requireContext(), bitmap)
+                    if (filePath != null) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Image saved to $filePath",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
+
 
                 CAMERA_REQUEST -> {
                     val bitmap = data?.extras?.get("data") as Bitmap
+                    val imageSaver = ImageSaver(requireContext())
+                    val filePath = imageSaver.saveImageToFile(requireContext(), bitmap)
+                    if (filePath != null) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Image saved to $filePath",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                     updateDisplayPicture(bitmap)
                 }
             }
