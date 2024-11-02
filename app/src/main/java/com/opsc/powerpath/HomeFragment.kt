@@ -38,7 +38,10 @@ class HomeFragment : Fragment() {
         // Add BMIFragment to the HomeFragment
         val transaction: FragmentTransaction = childFragmentManager.beginTransaction()
         transaction.replace(R.id.bmi, BMIFragment())
+        transaction.replace(R.id.workoutProgress, HomeChartFragment())
         transaction.commit()
+
+
 
         return view
     }

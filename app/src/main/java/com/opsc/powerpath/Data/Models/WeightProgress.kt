@@ -1,5 +1,6 @@
 package com.opsc.powerpath.Data.Models
 
 data class WeightProgress(
-    val weight: Int
+    val weight: Float
+
 )

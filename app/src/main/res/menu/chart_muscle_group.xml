@@ -6,6 +6,6 @@
         android:id="@+id/option_pull"
         android:title="Pull" />
     <item
-        android:id="@+id/option_pull"
+        android:id="@+id/option_legs"
         android:title="Legs" />
 </menu>
