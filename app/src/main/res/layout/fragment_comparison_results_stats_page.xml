@@ -53,7 +53,6 @@
         android:id="@+id/summary_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Selected Month vs Selected Month"
         android:textColor="#B6B4C1"
         android:textSize="18sp"
         android:layout_gravity="center_horizontal"
@@ -70,7 +69,6 @@
             android:id="@+id/lose_weight_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lose Weight"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:gravity="center"
@@ -86,7 +84,6 @@
                 android:id="@+id/lose_weight_percentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="33%"
                 android:textColor="#B6B4C1"
                 android:textSize="16sp"
                 android:layout_alignParentEnd="true" />
@@ -96,7 +93,6 @@
                 android:layout_width="200dp"
                 android:layout_height="10dp"
                 android:max="100"
-                android:progress="33"
                 android:layout_below="@id/lose_weight_text"
                 android:layout_marginTop="4dp"
                 android:progressDrawable="@drawable/gradient_progbarstats"/>
@@ -105,7 +101,6 @@
                 android:id="@+id/lose_weight_percentage2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="67%"
                 android:textColor="#B6B4C1"
                 android:textSize="16sp"
                 android:layout_alignParentEnd="true" />
@@ -125,7 +120,6 @@
             android:id="@+id/push_strength_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Push Strength Increase"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:layout_alignParentStart="true" />
@@ -136,31 +130,28 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-        <TextView
-            android:id="@+id/push_strength_percentage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="88%"
-            android:textColor="#B6B4C1"
-            android:textSize="16sp"
-            android:layout_alignParentEnd="true" />
+            <TextView
+                android:id="@+id/push_strength_percentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#B6B4C1"
+                android:textSize="16sp"
+                android:layout_alignParentEnd="true" />
 
-        <ProgressBar
-            android:id="@+id/push_strength_progress"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="200dp"
-            android:layout_height="10dp"
-            android:max="100"
-            android:progress="88"
-            android:layout_below="@id/push_strength_text"
-            android:layout_marginTop="4dp"
-            android:progressDrawable="@drawable/gradient_progbarstats"/>
+            <ProgressBar
+                android:id="@+id/push_strength_progress"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="200dp"
+                android:layout_height="10dp"
+                android:max="100"
+                android:layout_below="@id/push_strength_text"
+                android:layout_marginTop="4dp"
+                android:progressDrawable="@drawable/gradient_progbarstats"/>
 
             <TextView
                 android:id="@+id/push_strength_percentage2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12%"
                 android:textColor="#B6B4C1"
                 android:textSize="16sp"
                 android:layout_alignParentEnd="true" />
@@ -180,7 +171,6 @@
             android:id="@+id/pull_strength_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pull Strength Increase"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:layout_alignParentStart="true" />
@@ -195,7 +185,6 @@
                 android:id="@+id/pull_strength_percentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="57%"
                 android:textColor="#B6B4C1"
                 android:textSize="16sp"
                 android:layout_alignParentEnd="true" />
@@ -206,7 +195,6 @@
                 android:layout_width="200dp"
                 android:layout_height="10dp"
                 android:max="100"
-                android:progress="57"
                 android:layout_below="@id/pull_strength_text"
                 android:layout_marginTop="4dp"
                 android:progressDrawable="@drawable/gradient_progbarstats"/>
@@ -215,7 +203,6 @@
                 android:id="@+id/pull_strength_percentage2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="43%"
                 android:textColor="#B6B4C1"
                 android:textSize="16sp"
                 android:layout_alignParentEnd="true" />
@@ -235,7 +222,6 @@
             android:id="@+id/legs_strength_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Legs Strength Increase"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:layout_alignParentStart="true" />
@@ -250,7 +236,6 @@
                 android:id="@+id/legs_strength_percentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="89%"
                 android:textColor="#B6B4C1"
                 android:textSize="16sp"
                 android:layout_alignParentEnd="true" />
@@ -261,7 +246,6 @@
                 android:layout_width="200dp"
                 android:layout_height="10dp"
                 android:max="100"
-                android:progress="88"
                 android:layout_below="@id/legs_strength_text"
                 android:layout_marginTop="4dp"
                 android:progressDrawable="@drawable/gradient_progbarstats"/>
@@ -270,7 +254,6 @@
                 android:id="@+id/legs_strength_percentage2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="11%"
                 android:textColor="#B6B4C1"
                 android:textSize="16sp"
                 android:layout_alignParentEnd="true" />

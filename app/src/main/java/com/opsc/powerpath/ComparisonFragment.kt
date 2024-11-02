@@ -6,27 +6,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.app.DatePickerDialog
+import android.widget.ImageView
 import android.widget.TextView
 import java.util.*
+import android.provider.MediaStore
+import android.database.Cursor
+import android.net.Uri
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.Toast
+import okhttp3.*
+import com.google.gson.Gson
+import java.io.IOException
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ComparisonPage.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ComparisonFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var selectMonth1: TextView
     private lateinit var currentMonth1: TextView
     private lateinit var selectMonth2: TextView
     private lateinit var currentMonth2: TextView
+    private lateinit var comparisonContainer: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +53,10 @@ class ComparisonFragment : Fragment() {
         selectMonth1.setOnClickListener { showMonthPicker(currentMonth1) }
         selectMonth2.setOnClickListener { showMonthPicker(currentMonth2) }
 
+        view.findViewById<Button>(R.id.compareButton).setOnClickListener {
+            comparePictures()
+        }
+
         return view
     }
 
@@ -66,7 +73,6 @@ class ComparisonFragment : Fragment() {
             year, month, 1
         )
 
-        // Hide the day spinner (for month-only selection)
         datePickerDialog.datePicker.findViewById<View>(
             resources.getIdentifier("day", "id", "android")
         )?.visibility = View.GONE
@@ -92,16 +98,78 @@ class ComparisonFragment : Fragment() {
         }
     }
 
+    private fun comparePictures() {
+        val month1 = currentMonth1.text.toString()
+        val month2 = currentMonth2.text.toString()
+
+        if (month1.isEmpty() || month2.isEmpty()) {
+            Toast.makeText(requireContext(), "Please select both months", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Fetch workout progress data from the API
+        val userId = "your_user_id" // Replace with actual user ID
+        val url = "https://your-api-url.com/api/users/$userId/workouts"
+
+        val request = Request.Builder().url(url).build()
+        val client = OkHttpClient()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                activity?.runOnUiThread {
+                    Toast.makeText(requireContext(), "Failed to retrieve workout progress", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    val responseData = response.body?.string()
+                    val workouts = Gson().fromJson(responseData, Array<Workout>::class.java).toList()
+
+                    activity?.runOnUiThread {
+                        val fragment = ComparisonResultFragment.newInstance(workouts)
+                        parentFragmentManager.beginTransaction()
+                            .replace(R.id.fragment_container, fragment)
+                            .addToBackStack(null)
+                            .commit()
+                    }
+                } else {
+                    activity?.runOnUiThread {
+                        Toast.makeText(requireContext(), "Failed to retrieve workout progress", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun getPicturesForMonth(month: String): List<Uri> {
+        val pictures = mutableListOf<Uri>()
+        val projection = arrayOf(MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_TAKEN)
+        val selection = "${MediaStore.Images.Media.DATE_TAKEN} LIKE ?"
+        val selectionArgs = arrayOf("%$month%")
+        val sortOrder = "${MediaStore.Images.Media.DATE_TAKEN} DESC"
+
+        val cursor: Cursor? = requireContext().contentResolver.query(
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            projection,
+            selection,
+            selectionArgs,
+            sortOrder
+        )
+
+        cursor?.use {
+            val idColumn = it.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
+            while (it.moveToNext()) {
+                val id = it.getLong(idColumn)
+                val contentUri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id.toString())
+                pictures.add(contentUri)
+            }
+        }
+
+        return pictures
+    }
+
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ComparisonPage.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             ComparisonFragment().apply {
