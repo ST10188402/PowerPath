@@ -58,8 +58,8 @@ class ContainerActivity : AppCompatActivity() {
         val nh = findViewById<TextView>(R.id.nav_header)
 
         newWorkout = findViewById(R.id.fab)
-        addExercise = findViewById(R.id.fab1)
-        addDate = findViewById(R.id.fab2)
+        addExercise = findViewById(R.id.addDate)
+        addDate = findViewById(R.id.addExercise)
         bottomNavigationView = findViewById(R.id.nav_view)
 
 

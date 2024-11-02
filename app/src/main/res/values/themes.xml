@@ -46,6 +46,14 @@
         <item name="iconGravity">textTop</item>
 
     </style>
+    <!-- Take FAB button style -->
+<style name="Widget.App.Fab" parent="Widget.MaterialComponents.FloatingActionButton">
+    <item name="iconTint">@color/white</item>
+    <item name="backgroundTint">@color/button_purple</item>
+    <item name="iconGravity">textTop</item>
+    <item name="iconSize">24dp</item>
+    <item name="shapeAppearanceOverlay">@style/round_img</item>
+</style>
     <!-- Retake button style -->
     <style name="Widget.App.IconButton2" parent="Widget.Material3.Button.IconButton">
         <item name="icon">@drawable/btn_retake</item>

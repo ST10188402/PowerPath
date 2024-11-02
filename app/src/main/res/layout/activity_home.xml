@@ -96,34 +96,39 @@
                 android:layout_marginBottom="50dp"
                 android:clickable="true"
                 android:focusable="true"
+                style="@style/Widget.App.Fab"
                 android:src="@drawable/ic_plus"
-                app:backgroundTint="@color/button_purple"
                 app:layout_anchorGravity="top|center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:tint="@color/white" />
+         />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab1"
+                android:id="@+id/addDate"
+                style="@style/Widget.App.Fab"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="10dp"
                 android:clickable="true"
-                android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/fab"
                 app:layout_constraintStart_toStartOf="@+id/fab"
-                app:srcCompat="@drawable/btn_flash_on" />
+                app:srcCompat="@drawable/icon_calendar" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab2"
+                android:id="@+id/addExercise"
+                style="@style/Widget.App.Fab"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="10dp"
                 android:clickable="true"
-                android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/fab"
                 app:layout_constraintEnd_toEndOf="@+id/fab"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/btn_flash" />
+                app:srcCompat="@drawable/ic_exercise" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
