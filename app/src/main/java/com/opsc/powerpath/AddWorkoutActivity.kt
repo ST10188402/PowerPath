@@ -22,7 +22,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class AddWorkoutActivity : AppCompatActivity() {
 
     private lateinit var spinner: Spinner
@@ -111,7 +110,7 @@ class AddWorkoutActivity : AppCompatActivity() {
 
     private fun saveWorkout() {
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        val workout = Workout(exercises = selectedExercises)
+        val workout = Workout(muscleGroup = m_Text, exercises = selectedExercises)
 
         val apiService = RetrofitInstance.api.addWorkout(userId, workout)
         apiService.enqueue(object : Callback<Void> {
