@@ -2,6 +2,7 @@ package com.opsc.powerpath
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -30,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
+    private lateinit var resetPasswText: TextView
 
     private lateinit var regOp : LinearLayout
 
@@ -50,6 +52,7 @@ class LoginActivity : AppCompatActivity() {
         emailEditText = findViewById(R.id.txt_email)
         passwordEditText = findViewById(R.id.txt_password)
         loginButton = findViewById(R.id.btn_login)
+        resetPasswText = findViewById(R.id.txt_forgot)
 
         regOp = findViewById(R.id.registerOption)
 
@@ -78,6 +81,31 @@ class LoginActivity : AppCompatActivity() {
             // Handle Google Sign-In logic here
             Toast.makeText(this, "Google Sign-In Clicked", Toast.LENGTH_SHORT).show()
             signIn();
+        }
+
+        //Set an onClickListener for the reset password text
+        resetPasswText.setOnClickListener {
+            val email = emailEditText.text.toString().trim()
+            if (email.isEmpty()) {
+                Toast.makeText(this, "Please enter your email to reset password", Toast.LENGTH_SHORT).show()
+            } else {
+                auth.fetchSignInMethodsForEmail(email).addOnCompleteListener  { task ->
+                    if (task.isSuccessful) {
+                        auth.sendPasswordResetEmail(email)
+                            .addOnCompleteListener { resetTask ->
+                                if (resetTask.isSuccessful) {
+                                    Toast.makeText(this, "Password reset email sent if it exists", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(this, "Error: ${resetTask.exception?.message}", Toast.LENGTH_SHORT).show()
+                                    Log.e("Reset Password", "Error: ${resetTask.exception?.message}")
+                                }
+                            }
+                    } else {
+                        Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                        Log.e("Reset Password", "Error: ${task.exception?.message}")
+                    }
+                }
+            }
         }
 
        //Set an onClickListener for the login button
@@ -145,6 +173,8 @@ class LoginActivity : AppCompatActivity() {
                 // If the task is successful, show a toast message indicating authentication success
                 if (task.isSuccessful) {
                     callback(true)
+                    val intent = Intent(this, SuccessActivity::class.java)
+                    startActivity(intent)
                     Toast.makeText(this, "Authentication successful.", Toast.LENGTH_SHORT).show()
                 }
                 // If the task is not successful, show a toast message indicating authentication failure

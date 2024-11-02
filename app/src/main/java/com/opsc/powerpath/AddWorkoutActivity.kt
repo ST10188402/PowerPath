@@ -8,10 +8,10 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
@@ -25,7 +25,6 @@ import retrofit2.Response
 
 class AddWorkoutActivity : AppCompatActivity() {
 
-    private lateinit var spText: TextView
     private lateinit var spinner: Spinner
     private val selectedExercises = mutableListOf<Exercise>()
     private var m_Text = ""
@@ -57,7 +56,7 @@ class AddWorkoutActivity : AppCompatActivity() {
                         val exerciseNames = it.map { exercise -> exercise.name }
                         val adapter = ArrayAdapter(this@AddWorkoutActivity, android.R.layout.simple_spinner_item, exerciseNames)
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                        spinner.adapter = adapter
+                        //spinner.adapter = adapter
                     }
                 } else {
                     Log.e(TAG, "Failed to get exercises: ${response.message()}")
@@ -88,7 +87,7 @@ class AddWorkoutActivity : AppCompatActivity() {
     }
 
     private fun muscleGroupCard() {
-        val muscleGroup = findViewById<TextView>(R.id.muscle_group_card)
+        val muscleGroup = findViewById<CardView>(R.id.muscle_group_card)
         muscleGroup.setOnClickListener {
             showMuscleGroupDialog()
         }
@@ -103,8 +102,8 @@ class AddWorkoutActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val selectedExerciseName = spinner.selectedItem.toString()
-            val selectedExercise = Exercise(muscleGroup = m_Text, name = selectedExerciseName)
+            //val selectedExerciseName = spinner.selectedItem.toString()
+            val selectedExercise = Exercise(muscleGroup = m_Text, name = "test")
             selectedExercises.add(selectedExercise)
             saveWorkout()
         }

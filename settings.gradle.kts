@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "PowerPath"
-include(":app")
+include(":app", ":module1", ":module2")
