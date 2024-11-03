@@ -14,7 +14,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginVertical="8dp"
             android:gravity="center_horizontal"
-            android:text="Hey there,"
+            android:text="@string/hey_there"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_marginTop="15dp"
@@ -32,7 +32,7 @@
             android:layout_marginTop="15dp"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center_horizontal"
-            android:text="Welcome Back"
+            android:text="@string/welcome_back"
             android:textColor="@android:color/white"
             android:textSize="26sp"
             app:layout_constraintBottom_toTopOf="@+id/scroll"
@@ -66,7 +66,7 @@
                         android:id="@+id/txt_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Email"
+                        android:hint="@string/email"
                         android:padding="12dp"
                         android:layout_marginBottom="30dp"
                         android:singleLine="true"
@@ -82,7 +82,7 @@
                         android:id="@+id/txt_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:inputType="textPassword"
                         android:padding="12dp"
                         android:layout_marginBottom="30dp"
@@ -102,7 +102,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textSize="16dp"
-                        android:text="Forgot your password?"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="@string/forgot_your_password"
                         android:textColor="@color/white"
                         />
 
@@ -111,9 +112,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_semibold"
                         android:layout_marginLeft="5dp"
                         android:textSize="16dp"
-                        android:text="Reset"
+                        android:text="@string/reset"
                         android:textColor="#7B1FA2" />
 
 
@@ -128,12 +130,11 @@
             android:layout_height="58dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="76dp"
-            android:background="@drawable/gradient_btn_1"
-            android:text="Login"
+            android:text="@string/login"
+            android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="18dp"
-            android:fontFamily="@font/poppins_bold"
-            app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scroll" />
 
@@ -178,7 +179,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="16dp"
-                android:text="Don't have an account?"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/don_t_have_an_account"
                 android:textColor="@color/white" />
 
             <TextView
@@ -187,7 +189,8 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:textSize="16dp"
-                android:text="Register"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/register"
                 android:textColor="#7B1FA2" />
         </LinearLayout>
 

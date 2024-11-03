@@ -3,30 +3,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/background_grey"
     tools:context=".ProgressPage">
-
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/item1_progpage"/>
+        <include layout="@layout/item1_progpage" />
 
-        <include
-            layout="@layout/item2_progpage"/>
+        <include layout="@layout/item2_progpage" />
 
-        <include
-            layout="@layout/item3_progpage"/>
+        <include layout="@layout/item3_progpage" />
 
-        <include
-            layout="@layout/item4_progpage"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:background="@color/background_grey"
+            android:orientation="vertical"
+            android:padding="16dp">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"></androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/gallery_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/gallery"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/see_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="150dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/see_more"
+                    android:textColor="#A5A3AF"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/gallery_title"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/gallery_container_current"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:paddingHorizontal="2dp" />
+
+                    <FrameLayout
+                        android:id="@+id/gallery_container_prev1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:paddingHorizontal="2dp" />
+
+                    <FrameLayout
+                        android:id="@+id/gallery_container_prev2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:paddingHorizontal="2dp" />
+                </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
-
-
+</ScrollView>
 </LinearLayout>

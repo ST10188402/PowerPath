@@ -13,11 +13,42 @@
         android:id="@+id/main"
         android:layout_height="match_parent">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:fitsSystemWindows="true"
+            android:paddingHorizontal="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:menu="@menu/top_nav"
+                app:navigationIcon="@drawable/back_button_home"
+                app:title="@string/home"
+                app:titleCentered="true"
+                app:titleTextAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="50dp"
+            android:visibility="gone"
             android:background="@color/background_grey"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,23 +68,25 @@
 
                 <TextView
                     android:id="@+id/nav_header"
-                    android:layout_width="200dp"
+                    android:layout_width="260dp"
                     android:layout_height="match_parent"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    android:text="Home"
+                    android:text="@string/home"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:id="@+id/btn_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/detail_button_home" />
+                    android:src="@drawable/ic_menu" />
 
             </LinearLayout>
         </com.google.android.material.navigation.NavigationView>
+
 
         <FrameLayout
             android:id="@+id/nav_host"
@@ -64,13 +97,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/navigationView"
+            app:layout_constraintTop_toBottomOf="@+id/topAppBar"
             app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_gravity="bottom"
             android:background="@color/navbar"
             app:elevation="0dp"
@@ -85,7 +118,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="230dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:layout_constraintBottom_toBottomOf="@+id/nav_view"
             app:layout_constraintEnd_toEndOf="parent"
@@ -93,44 +126,45 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
+                android:paddingVertical="23dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="50dp"
                 android:clickable="true"
                 android:focusable="true"
+                style="@style/Widget.App.Fab"
                 android:src="@drawable/ic_plus"
-                app:backgroundTint="@color/button_purple"
                 app:layout_anchorGravity="top|center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:tint="@color/white" />
+         />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab1"
+                android:id="@+id/addDate"
+                style="@style/Widget.App.Fab"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="10dp"
                 android:clickable="true"
-                android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/fab"
                 app:layout_constraintStart_toStartOf="@+id/fab"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/icon_calendar" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab2"
+                android:id="@+id/addExercise"
+                style="@style/Widget.App.Fab"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="28dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="10dp"
                 android:clickable="true"
-                android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/fab"
                 app:layout_constraintEnd_toEndOf="@+id/fab"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/ic_weight" />
+                app:srcCompat="@drawable/ic_exercise" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

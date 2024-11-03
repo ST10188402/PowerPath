@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="16dp"
-        android:text="Front Facing"
+        android:text="@string/front_facing"
         android:textColor="#B6B4C1"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="16dp"
-        android:text="Back Facing"
+        android:text="@string/back_facing"
         android:textColor="#B6B4C1"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
@@ -128,7 +128,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="16dp"
-        android:text="Side Facing"
+        android:text="@string/side_facing"
         android:textColor="#B6B4C1"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
@@ -167,14 +167,15 @@
             android:src="@drawable/previewimgback2" />
     </LinearLayout>
 
-    <Button
+    <android.widget.Button
+        android:layout_marginHorizontal="10dp"
+        style="@style/Widget.App.Button"
         android:id="@+id/backToHomeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/gradient_btn_1"
         android:gravity="center"
-        android:text="Back to Home"
+        android:text="@string/back_to_home"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

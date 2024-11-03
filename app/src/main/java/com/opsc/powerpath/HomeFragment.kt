@@ -11,7 +11,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.database
 import com.opsc.powerpath.Data.Models.User
 import com.opsc.powerpath.Utils.RetrofitInstance
 import retrofit2.Call
@@ -45,7 +47,6 @@ class HomeFragment : Fragment() {
 
         return view
     }
-
     private fun getUserDetails() {
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
         val apiService = RetrofitInstance.api.getUserById(userId)

@@ -4,23 +4,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:padding="5dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/LearnMoreCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        android:layout_margin="16dp"
-        android:padding="16dp">
+        app:cardElevation="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:orientation="horizontal"
             android:padding="20sp"
-            android:background="@drawable/gradient_background">
+            android:background="@drawable/gradient_background2">
             <LinearLayout
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
@@ -30,8 +30,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:layout_gravity="left"
-                    android:text="Track Your Progress Each"
+                    android:text="@string/track_your_progress_each"
                     android:textColor="#161818"
                     android:textSize="17sp" />
 
@@ -44,16 +45,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
+                        android:fontFamily="@font/poppins_semibold"
                         android:layout_marginTop="8dp"
-                        android:fontFamily="@font/poppins"
-                        android:text="Month With "
+                        android:text="@string/month_with"
                         android:textColor="#161818"
                         android:textSize="17sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Photo"
+                        android:text="@string/photo"
                         android:textSize="17sp"
                         android:textColor="@drawable/gradient_lightpink"
                         android:textStyle="bold">
@@ -62,14 +63,14 @@
 
                 </LinearLayout>
 
-                <Button
+                <android.widget.Button
+                    style="@style/Widget.App.Button2"
                     android:id="@+id/learnMoreBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Learn More"
-                    android:background="@drawable/gradient_btn_1"
+                    android:text="@string/learn_more"
+                    android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:layout_marginTop="16dp"
                     android:layout_gravity="left"/>
 
             </LinearLayout>

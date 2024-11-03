@@ -51,7 +51,7 @@
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:padding="3dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginHorizontal="20dp"
                     android:src="@drawable/img2"
                     app:shapeAppearance="@style/round_square" />
 
@@ -59,23 +59,16 @@
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:padding="3dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginHorizontal="25dp"
                     android:src="@drawable/img1"
                     app:shapeAppearance="@style/round_square"/>
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginHorizontal="20dp"
                     android:padding="3dp"
                     android:src="@drawable/img4"
-                    app:shapeAppearance="@style/round_square"/>
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_marginLeft="10dp"
-                    android:padding="3dp"
-                    android:src="@drawable/ime_3"
                     app:shapeAppearance="@style/round_square"/>
                 </LinearLayout>
 
@@ -97,10 +90,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
-            android:layout_width="match_parent"
-            android:layout_height="69dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="241dp"
+            android:layout_height="73dp"
             android:layout_marginHorizontal="40dp"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="#432A60"
             app:cardCornerRadius="35dp"
             app:layout_constraintBottom_toTopOf="@id/bottomAppBar"
@@ -111,44 +104,31 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:layout_marginHorizontal="20dp"
+                android:orientation="horizontal"
                 android:padding="10dp">
 
                 <Button
-                    android:id="@+id/btn_retake"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginHorizontal="25dp"
-                    style="@style/Widget.App.IconButton2"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
                     android:id="@+id/btn_gallery"
+                    style="@style/Widget.App.IconButton3"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="25dp"
-                    style="@style/Widget.App.IconButton3"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-              />
-
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/btn_camera"
                     style="@style/Widget.App.IconButton"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_width="72dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
-                    app:layout_constraintStart_toEndOf="@id/btn_gallery"
+                    android:layout_marginHorizontal="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btn_retake"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_gallery"
                     app:layout_constraintTop_toTopOf="parent" />
 
 

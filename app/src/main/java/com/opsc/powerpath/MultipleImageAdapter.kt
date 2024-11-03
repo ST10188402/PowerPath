@@ -18,9 +18,6 @@ class MultipleImageAdapter(
 ) : RecyclerView.Adapter<MultipleImageAdapter.ViewHolder>() {
 
     // ViewHolder class to hold the views for each item in the RecyclerView
-    //class ViewHolder(val binding: ImageRowBinding) : RecyclerView.ViewHolder(binding.root)
-
-    // ViewHolder class to hold the views for each item in the RecyclerView
     inner class ViewHolder(val binding: ImageRowBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.setOnClickListener {
@@ -28,6 +25,7 @@ class MultipleImageAdapter(
             }
         }
     }
+
     // Inflates the layout for each item in the RecyclerView
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -61,11 +59,17 @@ class MultipleImageAdapter(
         filenameList.addAll(filenames)
         notifyDataSetChanged()
     }
-    fun getItems(imageByteArrays: List<ByteArray?>, filenames: List<String?>) {
+
+    // Updates the existing items in the adapter and refreshes the RecyclerView
+    fun updateItems(imageByteArrays: List<ByteArray?>, filenames: List<String?>) {
+        imageByteArrayList.clear()
+        filenameList.clear()
         imageByteArrayList.addAll(imageByteArrays)
         filenameList.addAll(filenames)
         notifyDataSetChanged()
     }
+
+    // Returns the current list of image byte arrays
     fun returnItems(): MutableList<ByteArray?> {
         return imageByteArrayList
     }

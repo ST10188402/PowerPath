@@ -4,8 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_workout_details">
+    android:background="@drawable/gradient_background">
 
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:background="@color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="561dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_workout_details"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
         android:id="@+id/workoutTitle"
         android:layout_width="wrap_content"
@@ -45,7 +69,7 @@
                 android:padding="20dp"
                 android:textColor="#B6B4C1"
                 android:layout_marginLeft="20dp"
-                android:text="Total Exercises"/>
+                android:text="@string/total_exercises"/>
 
             <Space
                 android:layout_width="150dp"
@@ -84,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
-                android:text="Schedule Workout"
+                android:text="@string/schedule_workout"
                 android:textColor="#B6B4C1"
                 android:textSize="16sp" />
 
@@ -112,7 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Exercises"
+                android:text="@string/exercises"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
 
@@ -124,7 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="(Set Amount) Sets"/>
+                android:text="@string/set_amount_sets"/>
 
         </LinearLayout>
 
@@ -141,7 +165,7 @@
                android:layout_height="wrap_content"
                android:layout_marginStart="16dp"
                android:textColor="@color/white"
-               android:text="Set (Set number)"/>
+               android:text="@string/set_set_number"/>
 
             <ListView
                 android:layout_width="match_parent"
@@ -149,12 +173,12 @@
                 android:scrollbarAlwaysDrawVerticalTrack="true"/>
         </LinearLayout>
 
-        <Button
+        <android.widget.Button
+            style="@style/Widget.App.Button"
             android:id="@+id/startWorkoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/gradient_btn_1"
-            android:text="Start Workout"
+            android:text="@string/start_workout"
             android:textColor="@android:color/white"
             android:padding="10dp"
             android:layout_marginBottom="10dp"

@@ -10,16 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="5dp">
 
         <TextView
+            android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/poppins_semibold"
             android:layout_gravity="left"
             android:text="Weight Progress"
             android:textColor="@android:color/white"
-            android:textSize="20sp"/>
+            android:textSize="22sp"/>
 
         <!-- CardView containing the LineChart -->
         <androidx.cardview.widget.CardView
@@ -27,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#412A52"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             app:cardCornerRadius="20dp"
             android:padding="16dp">
 
@@ -37,7 +38,10 @@
                 android:layout_height="170dp"
                 android:background="@color/background" />
 
-            <Button
+
+            <android.widget.Button
+                android:visibility="gone"
+                style="@style/Widget.App.Button"
                 android:layout_width="wrap_content"
                 android:id="@+id/signOutBtn"
                 android:layout_height="wrap_content"
@@ -45,8 +49,7 @@
                 android:layout_margin="10dp"
                 android:textSize="10dp"
                 android:layout_gravity="right"
-                android:textColor="@color/white"
-                android:background="@drawable/gradient_btn_1" />
+                android:textColor="@color/white"/>
 
         </androidx.cardview.widget.CardView>
 

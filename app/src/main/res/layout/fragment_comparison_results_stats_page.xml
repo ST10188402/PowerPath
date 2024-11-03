@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#2F323A"
-            android:text="Photo"
+            android:text="@string/photo"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/btn_grad"
-            android:text="Statistic"
+            android:text="@string/statistic"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:layout_marginStart="8dp" />
@@ -70,7 +70,7 @@
             android:id="@+id/lose_weight_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lose Weight"
+            android:text="@string/lose_weight"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:gravity="center"
@@ -125,7 +125,7 @@
             android:id="@+id/push_strength_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Push Strength Increase"
+            android:text="@string/push_strength_increase"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:layout_alignParentStart="true" />
@@ -180,7 +180,7 @@
             android:id="@+id/pull_strength_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pull Strength Increase"
+            android:text="@string/pull_strength_increase"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:layout_alignParentStart="true" />
@@ -235,7 +235,7 @@
             android:id="@+id/legs_strength_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Legs Strength Increase"
+            android:text="@string/legs_strength_increase"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:layout_alignParentStart="true" />
@@ -285,14 +285,14 @@
         android:layout_width="match_parent"
         android:layout_height="20dp" />
 
-    <Button
+    <android.widget.Button
+        style="@style/Widget.App.Button2"
         android:id="@+id/backToHomeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/gradient_btn_1"
         android:gravity="center"
-        android:text="Back to Home"
+        android:text="@string/back_to_home"
         android:textColor="#FFFFFF"
         android:textSize="16sp" />
 

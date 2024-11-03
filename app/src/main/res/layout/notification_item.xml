@@ -27,7 +27,7 @@
             android:id="@+id/notification_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don’t miss your lowerbody workout"
+            android:text="@string/don_t_miss_your_lowerbody_workout"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:layout_marginBottom="4dp"
@@ -39,7 +39,7 @@
             android:id="@+id/notification_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="About 3 hours ago"
+            android:text="@string/about_3_hours_ago"
             android:textColor="@color/white"
             android:textSize="14sp" />
     </LinearLayout>
