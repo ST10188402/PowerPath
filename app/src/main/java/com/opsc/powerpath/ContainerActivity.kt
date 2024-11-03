@@ -68,9 +68,9 @@ class ContainerActivity : AppCompatActivity() {
             startActivity(intent)
         }
         addDate.setOnClickListener {
-            Toast.makeText(this, "Add Date", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, CalendarActivity::class.java)
+            startActivity(intent)
         }
-
 
             bottomNavigationView.setOnNavigationItemSelectedListener { item ->
                 val currentFragment = supportFragmentManager.findFragmentById(R.id.nav_host)

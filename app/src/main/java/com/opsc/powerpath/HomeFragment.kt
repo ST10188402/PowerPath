@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -23,22 +24,25 @@ class HomeFragment : Fragment() {
     private lateinit var userName: TextView
     private lateinit var btnNot: ImageView
 
-    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,
-
-        savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         userName = view.findViewById(R.id.welcome_msg)
+        getUserDetails()
 
         btnNot = view.findViewById(R.id.btnNot)
         btnNot.setOnClickListener {
-          //  val intent = Intent(activity, NotificationsActivity::class.java)
-            //startActivity(intent)
+            val intent = Intent(activity, NotificationsActivity::class.java)
+            startActivity(intent)
         }
 
-        getUserDetails()
+
         // Add BMIFragment to the HomeFragment
         val transaction: FragmentTransaction = childFragmentManager.beginTransaction()
         transaction.replace(R.id.bmi, BMIFragment())
+        transaction.replace(R.id.workoutProgress, HomeChartFragment())
         transaction.commit()
 
         return view

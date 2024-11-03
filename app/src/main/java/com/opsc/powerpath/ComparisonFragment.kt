@@ -42,9 +42,9 @@ class ComparisonFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_comparison_page, container, false)
 
-        selectMonth1 = view.findViewById(R.id.selectMonth1)
+        selectMonth1 = view.findViewById(R.id.selectMonth1Container)
         currentMonth1 = view.findViewById(R.id.currentMonth1)
-        selectMonth2 = view.findViewById(R.id.selectMonth2)
+        selectMonth2 = view.findViewById(R.id.selectMonth2Container)
         currentMonth2 = view.findViewById(R.id.currentMonth2)
 
         selectMonth1.setOnClickListener { showMonthPicker(currentMonth1) }
