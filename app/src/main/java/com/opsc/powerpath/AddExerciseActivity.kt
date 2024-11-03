@@ -12,19 +12,20 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.shape.MaterialShapeDrawable
+import com.google.firebase.auth.FirebaseAuth
 
 class AddExerciseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_exercise_k)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        OnExit()
         toWorkout()
         val appBarLayout: AppBarLayout = findViewById(R.id.topAppBar)
         appBarLayout.statusBarForeground = MaterialShapeDrawable.createWithElevationOverlay(this)
@@ -32,29 +33,9 @@ class AddExerciseActivity : AppCompatActivity() {
 
         val toolbar: MaterialToolbar = findViewById(R.id.top)
         setSupportActionBar(toolbar)
-        toolbar.setNavigationOnClickListener {
-            finish() // Close the activity when the exit icon is clicked
-        }
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_nav, menu)
-        return true
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu -> {
-                // Handle the menu item click here
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-    private fun OnExit() {
-        val back = findViewById<ImageView>(R.id.imageView2)
-        back.setOnClickListener {
-            intent = Intent(this, ContainerActivity::class.java)
-            startActivity(intent)
+        toolbar.setNavigationOnClickListener {
+            finish()
         }
     }
 
@@ -66,4 +47,27 @@ class AddExerciseActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_nav, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu -> {
+                true
+            }
+
+            R.id.logout -> {
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 }
