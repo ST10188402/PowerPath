@@ -55,13 +55,14 @@
 
     </LinearLayout>
 
-    <Button
+    <android.widget.Button
+        style="@style/Widget.App.Button"
         android:id="@+id/btn_get_started"
         android:layout_width="270dp"
         android:layout_height="59dp"
         android:layout_gravity="center"
         android:fontFamily="@font/poppins_bold"
-        android:text="Get Started"
+        android:text="@string/get_started"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

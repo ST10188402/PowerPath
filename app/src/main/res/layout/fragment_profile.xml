@@ -9,64 +9,64 @@
     >
 
 
-        <LinearLayout
-            android:id="@+id/linearLayout7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="15dp"
-            android:padding="5dp"
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:layout_marginHorizontal="15dp"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profile_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:contentDescription="Profile Picture"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_pfp"
+            app:layout_constraintBottom_toTopOf="@+id/notification_label"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:shapeAppearance="@style/round_img" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/profile_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="5dp"
-                android:contentDescription="Profile Picture"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_pfp"
-                app:layout_constraintBottom_toTopOf="@+id/notification_label"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.053"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:shapeAppearance="@style/round_img" />
-
-            <TextView
-                android:id="@+id/userName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="58dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="User name" />
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="15dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="58dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="User name" />
 
 
-            <android.widget.Button
-                android:id="@+id/edit_button"
-                android:layout_width="106dp"
-                android:layout_height="37dp"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="40dp"
-                style="@style/Widget.App.Button"
-                android:text="Edit"
-                android:textSize="10dp" />
-        </LinearLayout>
+        <android.widget.Button
+            android:id="@+id/edit_button"
+            style="@style/Widget.App.Button"
+            android:layout_width="106dp"
+            android:layout_height="37dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="40dp"
+            android:text="@string/edit"
+            android:textSize="10dp" />
+    </LinearLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
-            android:layout_marginTop="5dp"
-            android:backgroundTint="@color/background_grey"
+            android:backgroundTint="@color/background_grey2"
             app:cardCornerRadius="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,13 +76,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginVertical="7dp"
-                android:background="@color/background_grey"
+                android:layout_marginVertical="10dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -167,11 +167,11 @@
         <!-- Account Section -->
         <androidx.cardview.widget.CardView
             android:id="@+id/account_card"
+            android:backgroundTint="@color/background_grey2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="15dp"
-            android:backgroundTint="@color/background_grey"
             app:cardCornerRadius="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -181,7 +181,6 @@
                 android:layout_width="344dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                android:background="@color/background_grey"
                 android:drawablePadding="8dp"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -196,7 +195,7 @@
                     android:layout_gravity="left"
                     android:layout_marginStart="15dp"
                     android:padding="5dp"
-                    android:text="Account"
+                    android:text="@string/account"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -211,7 +210,7 @@
                     android:layout_marginTop="10dp"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Personal Data"
+                    android:text="@string/personal_data"
                     android:textSize="17dp"
                     app:drawableEndCompat="@drawable/ic_arrow2"
                     app:drawableStartCompat="@drawable/ic_pf" />
@@ -224,7 +223,7 @@
                     android:layout_marginTop="10dp"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Achievement"
+                    android:text="@string/achievement"
                     android:textSize="17dp"
                     app:drawableEndCompat="@drawable/ic_arrow2"
                     app:drawableStartCompat="@drawable/ic_achieve" />
@@ -237,13 +236,13 @@
                     android:layout_marginTop="10dp"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Activity History"
+                    android:text="@string/activity_history"
                     android:textSize="17dp"
                     app:drawableEndCompat="@drawable/ic_arrow2"
                     app:drawableStartCompat="@drawable/ic_activity" />
 
                 <TextView
-                    android:id="@+id/workout_progress"
+                    android:id="@+id/languages_setting"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
@@ -251,10 +250,10 @@
                     android:layout_marginBottom="10dp"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Workout Progress"
+                    android:text="@string/languages_setting"
                     android:textSize="17dp"
-                    app:drawableEndCompat="@drawable/ic_arrow2"
-                    app:drawableStartCompat="@drawable/ic_progress" />
+                    app:drawableEndCompat="@drawable/ic_lang"
+                    app:drawableStartCompat="@drawable/ic_languages" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -266,7 +265,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/background_grey"
+            android:backgroundTint="@color/background_grey2"
             app:cardCornerRadius="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/other_card"
@@ -286,7 +285,7 @@
                     android:layout_gravity="center_vertical"
                     android:drawablePadding="8dp"
                     android:layout_marginHorizontal="15dp"
-                    android:text="Notification"
+                    android:text="@string/notification"
                     android:textColor="@android:color/white"
                     android:textSize="17sp"
                     android:textStyle="bold"
@@ -296,7 +295,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_gravity="center_vertical"
-                    android:text="Pop-up Notification"
+                    android:text="@string/pop_up_notification"
                     android:textColor="@android:color/white"
                     android:textSize="13sp" />
 
@@ -318,7 +317,7 @@
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/background_grey"
+            android:backgroundTint="@color/background_grey2"
             app:cardCornerRadius="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -340,9 +339,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Other"
+                    android:text="@string/other"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="527dp" />
@@ -354,7 +353,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="10dp"
                     android:drawablePadding="8dp"
-                    android:text="Contact Us"
+                    android:text="@string/contact_us"
                     app:drawableEndCompat="@drawable/ic_arrow2"
                     app:drawableStartCompat="@drawable/ic_contact" />
 
@@ -365,7 +364,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="10dp"
                     android:drawablePadding="8dp"
-                    android:text="Privacy Policy"
+                    android:text="@string/privacy_policy"
                     app:drawableEndCompat="@drawable/ic_arrow2"
                     app:drawableStartCompat="@drawable/ic_privacy" />
 
@@ -377,7 +376,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:drawablePadding="8dp"
-                    android:text="Settings"
+                    android:text="@string/settings"
                     app:drawableEndCompat="@drawable/ic_arrow2"
                     app:drawableStartCompat="@drawable/ic_settings" />
             </LinearLayout>

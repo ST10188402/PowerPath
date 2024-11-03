@@ -24,7 +24,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="36dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Let's complete your profile"
+            android:text="@string/let_s_complete_your_profile"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/help_msg"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/poppins"
-            android:text="It will help us to know more about you!"
+            android:text="@string/it_will_help_us_to_know_more_about_you"
             android:textColor="@android:color/white"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -165,8 +165,8 @@
 
             </LinearLayout>
         </ScrollView>
-
-        <Button
+    <android.widget.Button
+        style="@style/Widget.App.Button"
             android:id="@+id/btn_complete_profile"
             android:layout_width="354dp"
             android:layout_height="53dp"
@@ -174,7 +174,7 @@
             android:backgroundTint="@drawable/btn_press"
             android:textSize="18dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Next"
+            android:text="@string/next"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

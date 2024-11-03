@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:text="Select Month 1"
+            android:text="@string/select_month_1"
             android:textColor="#A5A3AF"
             android:textSize="16sp" />
 
@@ -42,7 +42,7 @@
             android:id="@+id/currentMonth1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Month 1"
+            android:text="@string/select_month_1"
             android:textColor="#A5A3AF"
             android:textSize="16sp" />
 
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:text="Select Month 2"
+            android:text="@string/select_month_2"
             android:textColor="#A5A3AF"
             android:textSize="16sp" />
 
@@ -87,7 +87,7 @@
             android:id="@+id/currentMonth2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Month 2"
+            android:text="@string/select_month_2"
             android:textColor="#9E9E9E"
             android:textSize="16sp" />
 

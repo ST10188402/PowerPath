@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/poppins"
-                android:text="Welcome Back, "
+                android:text="@string/welcome_back"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/welcome_msg"
@@ -77,7 +77,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_gravity="left"
             android:fontFamily="@font/poppins_bold"
-            android:text="Activity"
+            android:text="@string/activity"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             />
@@ -95,21 +95,20 @@
                 android:layout_marginHorizontal="30dp"
                 android:fontFamily="@font/poppins"
                 android:layout_gravity="center_vertical"
-                android:text="Today's Workout"
+                android:text="@string/today_s_workout"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 />
 
-            <Button
+            <android.widget.Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Check"
-                style="@style/Widget.App.Button"
+                android:text="@string/check"
+                android:textAllCaps="false"
+                style="@style/Widget.App.Button2"
                 android:layout_margin="20dp"
-                android:layout_gravity="right"
-                android:background="@drawable/gradient_btn_1">
+                android:layout_gravity="right"/>
 
-            </Button>
         </androidx.cardview.widget.CardView>
         <TextView
             android:layout_width="wrap_content"
@@ -118,7 +117,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_gravity="left"
             android:fontFamily="@font/poppins_bold"
-            android:text="Workout Progress"
+            android:text="@string/workout_progress"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             />

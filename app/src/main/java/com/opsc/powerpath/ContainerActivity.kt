@@ -10,7 +10,6 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -49,9 +48,7 @@ class ContainerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // setContentView(R.layout.activity_container)
         setContentView(R.layout.activity_home)
-        // setContentView(R.layout.fragment_home)
         enableEdgeToEdge()
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
 
@@ -62,17 +59,17 @@ class ContainerActivity : AppCompatActivity() {
         addDate = findViewById(R.id.addExercise)
         bottomNavigationView = findViewById(R.id.nav_view)
 
-
-            //FAB BUTTON CLICK LISTENER
-            newWorkout.setOnClickListener {
-                onAddButtonClicked()
-            }
-            addExercise.setOnClickListener {
-                Toast.makeText(this, "Add Exercise", Toast.LENGTH_SHORT).show()
-            }
-            addDate.setOnClickListener {
-                Toast.makeText(this, "Add Date", Toast.LENGTH_SHORT).show()
-            }
+        // FAB BUTTON CLICK LISTENER
+        newWorkout.setOnClickListener {
+            onAddButtonClicked()
+        }
+        addExercise.setOnClickListener {
+            val intent = Intent(this, AddExerciseActivity::class.java)
+            startActivity(intent)
+        }
+        addDate.setOnClickListener {
+            Toast.makeText(this, "Add Date", Toast.LENGTH_SHORT).show()
+        }
 
 
             bottomNavigationView.setOnNavigationItemSelectedListener { item ->
@@ -83,7 +80,7 @@ class ContainerActivity : AppCompatActivity() {
                             val transaction = supportFragmentManager.beginTransaction()
                             transaction.replace(R.id.nav_host, HomeFragment())
                             transaction.commit()
-                            nh.text = "Home"
+                            nh.text = getString(R.string.home)
                         }
                         true
                     }
@@ -93,7 +90,7 @@ class ContainerActivity : AppCompatActivity() {
                             val transaction = supportFragmentManager.beginTransaction()
                             transaction.replace(R.id.nav_host, TakePhotoFragment())
                             transaction.commit()
-                            nh.text = "Camera"
+                            nh.text = getString(R.string.camera)
                         }
                         true
                     }
@@ -103,7 +100,7 @@ class ContainerActivity : AppCompatActivity() {
                             val transaction = supportFragmentManager.beginTransaction()
                             transaction.replace(R.id.nav_host, ProgressPage())
                             transaction.commit()
-                            nh.text = "Statistics"
+                            nh.text = getString(R.string.statistic)
                         }
                         true
                     }
@@ -113,21 +110,21 @@ class ContainerActivity : AppCompatActivity() {
                             val transaction = supportFragmentManager.beginTransaction()
                             transaction.replace(R.id.nav_host, ProfileFragment())
                             transaction.commit()
-                            nh.text = "Profile"
+                            nh.text = getString(R.string.profile)
                         }
                         true
                     }
 
-                    else -> false
-                }
+                else -> false
             }
+        }
 
-            /// Display ProfileFragment by default
-            if (savedInstanceState == null) {
-                val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.nav_host, HomeFragment())
-                transaction.commit()
-            }
+        // Display HomeFragment by default
+        if (savedInstanceState == null) {
+            val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.nav_host, HomeFragment())
+            transaction.commit()
+        }
     }
 
     private fun onAddButtonClicked() {

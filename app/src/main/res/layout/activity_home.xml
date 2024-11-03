@@ -17,7 +17,7 @@
             android:id="@+id/navigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="50dp"
             android:background="@color/background_grey"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,11 +37,11 @@
 
                 <TextView
                     android:id="@+id/nav_header"
-                    android:layout_width="200dp"
+                    android:layout_width="260dp"
                     android:layout_height="match_parent"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    android:text="Home"
+                    android:text="@string/home"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
@@ -50,7 +50,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/detail_button_home" />
+                    android:src="@drawable/ic_menu" />
 
             </LinearLayout>
         </com.google.android.material.navigation.NavigationView>
@@ -87,7 +87,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:layout_constraintBottom_toBottomOf="@+id/nav_view">
+            app:layout_constraintBottom_toBottomOf="@+id/nav_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"

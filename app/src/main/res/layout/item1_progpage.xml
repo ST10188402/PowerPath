@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/icon"
-            android:text="Reminder!"
+            android:text="@string/reminder"
             android:textColor="#F24A4A"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -45,7 +45,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="46dp"
             android:layout_toEndOf="@id/icon"
-            android:text="Next Photos Fall On July 08"
+            android:text="@string/next_photos_fall_on_july_08"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
 

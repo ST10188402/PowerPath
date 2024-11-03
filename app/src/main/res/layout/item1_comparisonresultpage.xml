@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/btn_grad"
-            android:text="Photo"
+            android:text="@string/photo"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#2F323A"
-            android:text="Statistic"
+            android:text="@string/statistic"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:layout_marginStart="8dp" />

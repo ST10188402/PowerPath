@@ -14,7 +14,9 @@
         android:orientation="vertical">
 
         <include layout="@layout/item1_progpage" />
+
         <include layout="@layout/item2_progpage" />
+
         <include layout="@layout/item3_progpage" />
 
         <LinearLayout
@@ -28,8 +30,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:orientation="horizontal"></androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,8 +41,8 @@
                     android:id="@+id/gallery_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gallery"
                     android:layout_marginStart="10dp"
+                    android:text="@string/gallery"
                     android:textColor="@android:color/white"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -52,11 +53,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="See more"
+                    android:layout_marginStart="150dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/see_more"
                     android:textColor="#A5A3AF"
                     android:textSize="14sp"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:layout_marginStart="150dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/gallery_title"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -76,22 +77,22 @@
                         android:id="@+id/gallery_container_current"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="2dp"
-                        android:layout_marginBottom="20dp"/>
+                        android:layout_marginBottom="20dp"
+                        android:paddingHorizontal="2dp" />
 
                     <FrameLayout
                         android:id="@+id/gallery_container_prev1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="2dp"
-                        android:layout_marginBottom="20dp"/>
+                        android:layout_marginBottom="20dp"
+                        android:paddingHorizontal="2dp" />
 
                     <FrameLayout
                         android:id="@+id/gallery_container_prev2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="2dp"
-                        android:layout_marginBottom="20dp"/>
+                        android:layout_marginBottom="20dp"
+                        android:paddingHorizontal="2dp" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>

@@ -37,7 +37,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
-                        android:text="BMI (Body Mass Index)"
+                        android:text="@string/bmi_body_mass_index"
                         android:textColor="@color/white"
                         android:textSize="17sp" />
 
@@ -49,17 +49,18 @@
                         android:layout_gravity="left"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/poppins"
-                        android:text="You have a normal weight"
+                        android:text="@string/you_have_a_normal_weight"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 
                     <!-- Button to view more -->
-                    <Button
+                    <android.widget.Button
+                        style="@style/Widget.App.Button2"
                         android:id="@+id/viewMoreBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="View More"
-                        android:background="@drawable/gradient_btn_1"
+                        android:text="@string/view_more"
+                        android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:layout_marginTop="16dp"
                         android:layout_gravity="left" />

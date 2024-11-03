@@ -20,27 +20,28 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="7sp"
-            android:background="@drawable/gradient_background">
+            android:background="@drawable/gradient_background2">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Compare My Photo"
+                android:text="@string/compare_my_photo"
                 android:textColor="@color/white"
                 android:paddingStart="10dp"
                 android:textSize="17sp" />
 
 
-            <Button
+            <android.widget.Button
+                style="@style/Widget.App.Button"
                 android:id="@+id/learnMoreBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
+                android:textAllCaps="false"
                 android:layout_marginStart="60dp"
-                android:background="@drawable/gradient_btn_1"
                 android:gravity="center"
-                android:text="Compare"
+                android:text="@string/compare"
                 android:textColor="@color/white" />
 
 

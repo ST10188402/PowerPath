@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="background_grey">#2A2C38</color>
+    <color name="background_grey2">#E11D2028</color>
     <color name="gray">#2a2c38</color>
     <color name="btn_grad">#9B77C8</color>
     <color name="btn_norm">#FF6200EE</color>

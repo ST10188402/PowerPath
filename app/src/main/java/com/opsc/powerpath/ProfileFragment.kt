@@ -1,5 +1,6 @@
 package com.opsc.powerpath
 
+import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -34,6 +35,8 @@ class ProfileFragment : Fragment() {
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var user: User
+    private lateinit var language: TextView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,11 +49,30 @@ class ProfileFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance().reference
         fetchUserData(view)
+        language = view.findViewById(R.id.languages_setting)
+        language.setOnClickListener {
+            changeLanguage()
+            Toast.makeText(context, "Languages Setting clicked", Toast.LENGTH_SHORT).show()
+        }
 
         return view
     }
 
+    private fun changeLanguage() {
+        val languages = arrayOf("English", "Afrikaans", "Sesotho")
+        val languageCodes = arrayOf("en", "af", "st")
 
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Choose Language")
+        builder.setItems(languages) { dialog, which ->
+            val selectedLanguageCode = languageCodes[which]
+            val languageManager = LanguageManager(requireContext())
+            languageManager.updateResource(selectedLanguageCode)
+            Toast.makeText(context, "Language changed to ${languages[which]}", Toast.LENGTH_SHORT).show()
+            activity?.recreate()
+        }
+        builder.show()
+    }
     private fun fetchUserData(view: View) {
         val currentUser = auth.currentUser
         if (currentUser != null) {

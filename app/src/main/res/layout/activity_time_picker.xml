@@ -43,7 +43,7 @@
             android:id="@+id/time_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Time"
+            android:text="@string/time"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:paddingTop="16dp"
@@ -64,7 +64,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Details Workout"
+        android:text="@string/details_workout"
         android:textStyle="bold">
     </TextView>
     <!-- First CardView - Choose Exercise -->
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:text="Choose Exercise"
+            android:text="@string/choose_exercise"
             android:textColor="@color/white"
             android:textSize="16sp" />
 

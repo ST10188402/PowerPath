@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/top_nav"
             app:navigationIcon="@drawable/ic_exit"
-            app:title="Add Exercise"
+            app:title="@string/add_exercise"
             app:titleCentered="true"
             app:titleTextAppearance="@style/TextAppearance.AppCompat.Title" />
 
@@ -53,7 +53,7 @@
             android:layout_marginBottom="10dp"
             android:textSize="18dp"
             android:textColor="@color/white"
-            android:text="Details Exercise"
+            android:text="@string/details_exercise"
             android:textStyle="bold" />
 
         <!-- First CardView - Muscle Group -->
@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
-                    android:text="Muscle Group"
+                    android:text="@string/muscle_group"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
@@ -90,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="Full Body"
+                    android:text="@string/full_body"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 
@@ -127,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
-                    android:text="Name"
+                    android:text="@string/name"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
@@ -135,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="Exercise 1"
+                    android:text="@string/exercise_1"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 
@@ -172,7 +172,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
-                    android:text="Custom Repetitions"
+                    android:text="@string/custom_repetitions"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
@@ -209,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
-                    android:text="Custom Weights"
+                    android:text="@string/custom_weights"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
@@ -228,7 +228,7 @@
         android:layout_width="231dp"
         android:layout_height="wrap_content"
         android:background="@drawable/gradient_btn_1"
-        android:text="Save"
+        android:text="@string/save"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
