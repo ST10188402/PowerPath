@@ -2,6 +2,7 @@ package com.opsc.powerpath
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -12,8 +13,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.opsc.powerpath.Data.API.ApiResponse
 import com.opsc.powerpath.Data.Models.Exercise
 import com.opsc.powerpath.ExerciseAdapter
 import com.opsc.powerpath.Utils.RetrofitInstance
@@ -43,6 +46,13 @@ class ExerciseActivity : AppCompatActivity() {
         setupMuscleGroupSpinner()
 
         exerciseRecyclerView = findViewById(R.id.exerciseRecyclerView)
+        exerciseRecyclerView.layoutManager = LinearLayoutManager(this)
+        exerciseRecyclerView.adapter = ExerciseAdapter(emptyList()) { selectedExercise ->
+            val intent = Intent(this@ExerciseActivity, AddWorkoutActivity::class.java)
+            intent.putExtra("selectedExercise", selectedExercise)
+            startActivity(intent)
+        }
+
         addExerciseButton = findViewById(R.id.add_exercise)
         addWorkoutButton = findViewById(R.id.add_workout)
 
@@ -85,18 +95,21 @@ class ExerciseActivity : AppCompatActivity() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val selectedGroup = muscleGroupSpinner.selectedItem.toString()
 
-        val apiService = RetrofitInstance.api.getAllExercises(userId)
+        val apiService = if (selectedGroup == "Chest") {
+            RetrofitInstance.api.getAllExercises(userId)
+        } else {
+            RetrofitInstance.api.getExercisesByMuscleGroup(userId, selectedGroup)
+        }
+
         apiService.enqueue(object : Callback<List<Exercise>> {
             override fun onResponse(call: Call<List<Exercise>>, response: Response<List<Exercise>>) {
                 if (response.isSuccessful) {
-                    val exercises = response.body()?.let { exerciseList ->
-                        if (selectedGroup == "Full Body") {
-                            exerciseList
-                        } else {
-                            exerciseList.filter { it.muscleGroup == selectedGroup }
-                        }
-                    } ?: emptyList()
-                    exerciseRecyclerView.adapter = ExerciseAdapter(exercises)
+                    val exercises = response.body() ?: emptyList()
+                    exerciseRecyclerView.adapter = ExerciseAdapter(exercises) { selectedExercise ->
+                        val intent = Intent(this@ExerciseActivity, AddWorkoutActivity::class.java)
+                        intent.putExtra("selectedExercise", selectedExercise)
+                        startActivity(intent)
+                    }
                 } else {
                     Toast.makeText(this@ExerciseActivity, "Failed to load exercises: ${response.message()}", Toast.LENGTH_SHORT).show()
                 }
@@ -104,6 +117,8 @@ class ExerciseActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<List<Exercise>>, t: Throwable) {
                 t.printStackTrace()
+                Toast.makeText(this@ExerciseActivity, "API call failed: ${t.message}", Toast.LENGTH_SHORT).show()
+                Log.e("ExerciseActivity", "API call failed", t)
             }
         })
     }

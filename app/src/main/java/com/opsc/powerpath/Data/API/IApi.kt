@@ -58,7 +58,13 @@ interface IApi {
     // Get all exercises for the user
     @GET("/api/users/{userId}/exercises")
     fun getAllExercises(
-        @Path("userId") userId: String
+        @Path("userId") userId: String,
+    ): Call<List<Exercise>>
+
+    @GET("/api/users/{userId}/exercises")
+    fun getExercisesByMuscleGroup(
+        @Path("userId") userId: String,
+        @Query("muscleGroup") muscleGroup: String
     ): Call<List<Exercise>>
 
     // Update a specific exercise for the user

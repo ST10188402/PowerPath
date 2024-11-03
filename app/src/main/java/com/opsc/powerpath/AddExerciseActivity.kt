@@ -46,7 +46,7 @@ class AddExerciseActivity : AppCompatActivity() {
 
     private fun addExerciseToFirebase(name: String, muscleGroup: String) {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val exercise = Exercise(muscleGroup = muscleGroup, name = name)
+        val exercise = Exercise(id = "", muscleGroup = muscleGroup, name = name)
         val apiService = RetrofitInstance.api.addExercise(userId, exercise)
 
         apiService.enqueue(object : Callback<ApiResponse> {

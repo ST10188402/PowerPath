@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.opsc.powerpath.Data.API.ApiResponse
+import com.opsc.powerpath.Data.Models.Exercise
 import com.opsc.powerpath.Data.Models.Workout
 import com.opsc.powerpath.Utils.RetrofitInstance
 import retrofit2.Call
@@ -25,11 +26,18 @@ class AddWorkoutActivity : AppCompatActivity() {
     private lateinit var nameEditText: EditText
     private lateinit var setsEditText: EditText
     private lateinit var repsEditText: EditText
+    private lateinit var selectedExercise: Exercise
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_add_workout)
+
+        selectedExercise = intent.getParcelableExtra("selectedExercise") ?: run {
+            Toast.makeText(this, "No exercise selected", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
 
         db = FirebaseFirestore.getInstance()
         workoutRecyclerView = findViewById(R.id.workoutRecyclerView)
@@ -69,7 +77,7 @@ class AddWorkoutActivity : AppCompatActivity() {
 
     private fun addWorkout() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val exerciseId = "u2LKjyLsmSXDO39GflvR" // Replace with the actual selected exercise ID
+        val exerciseId = selectedExercise.id
         val name = nameEditText.text.toString()
         val sets = setsEditText.text.toString().toInt()
         val reps = repsEditText.text.toString().toInt()

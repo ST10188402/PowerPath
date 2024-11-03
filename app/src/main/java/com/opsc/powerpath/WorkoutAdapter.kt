@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.opsc.powerpath.Data.Models.Exercise
 import com.opsc.powerpath.Data.Models.Workout
 
 class WorkoutAdapter(private val workouts: List<Workout>) : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder>() {
@@ -25,6 +26,12 @@ class WorkoutAdapter(private val workouts: List<Workout>) : RecyclerView.Adapter
         holder.workoutNameTextView.text = workout.name
         holder.setsTextView.text = "Sets: ${workout.sets}"
         holder.repsTextView.text = "Reps: ${workout.reps}"
+    }
+
+    private var selectedExercise: Exercise? = null
+
+    fun getSelectedExercise(): Exercise? {
+        return selectedExercise
     }
 
     override fun getItemCount() = workouts.size
