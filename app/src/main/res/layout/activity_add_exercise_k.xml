@@ -224,12 +224,12 @@
 
     </LinearLayout>
 
-    <Button
+    <android.widget.Button
+        style="@style/Widget.App.Button"
         android:id="@+id/save_button"
         android:layout_width="231dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/gradient_btn_1"
         android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
