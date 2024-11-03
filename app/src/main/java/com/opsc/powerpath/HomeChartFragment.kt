@@ -1,9 +1,11 @@
 package com.opsc.powerpath
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.charts.LineChart
@@ -20,6 +22,7 @@ import retrofit2.Response
 class HomeChartFragment : Fragment() {
 
     private lateinit var lineChartView: LineChart
+    private lateinit var signOutBtn: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,9 +33,18 @@ class HomeChartFragment : Fragment() {
 
         // Get the LineChart view
         lineChartView = view.findViewById(R.id.lineChartView)
+        signOutBtn = view.findViewById(R.id.signOutBtn)
 
         // Set up the LineChart with initial data
         setupLineChart()
+
+        // Set up the sign-out button
+        signOutBtn.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(activity, LoginActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
 
         return view
     }
