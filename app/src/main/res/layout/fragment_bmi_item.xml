@@ -55,7 +55,7 @@
 
                     <!-- Button to view more -->
                     <Button
-                        android:id="@+id/viewMoreBtn"
+                        android:id="@+id/addWeightButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="View More"
