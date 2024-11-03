@@ -7,7 +7,9 @@
     android:orientation="vertical"
     android:background="@color/background_grey"
     tools:context=".ProgressPage">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,10 +65,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
 
-            <ScrollView
-                android:id="@+id/gallery_scroll_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -94,7 +92,7 @@
                         android:layout_marginBottom="20dp"
                         android:paddingHorizontal="2dp" />
                 </LinearLayout>
-            </ScrollView>
         </LinearLayout>
     </LinearLayout>
+</ScrollView>
 </LinearLayout>

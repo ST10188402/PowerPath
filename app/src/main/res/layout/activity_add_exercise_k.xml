@@ -225,17 +225,18 @@
     </LinearLayout>
 
     <android.widget.Button
-        style="@style/Widget.App.Button"
         android:id="@+id/save_button"
+        style="@style/Widget.App.Button"
         android:layout_width="231dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
         app:layout_constraintVertical_bias="0.529"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="90dp" />
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

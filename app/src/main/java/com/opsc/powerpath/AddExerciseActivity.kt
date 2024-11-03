@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.shape.MaterialShapeDrawable
+import com.google.firebase.auth.FirebaseAuth
 
 class AddExerciseActivity : AppCompatActivity() {
 
@@ -34,7 +35,7 @@ class AddExerciseActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         toolbar.setNavigationOnClickListener {
-            finish() // Close the activity when the exit icon is clicked
+            finish()
         }
     }
 
@@ -45,16 +46,27 @@ class AddExerciseActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.top_nav, menu)
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu -> {
-                // Handle the menu item click here
                 true
             }
+
+            R.id.logout -> {
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish()
+                true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
