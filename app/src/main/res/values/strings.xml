@@ -98,7 +98,8 @@
     <string name="reminder">Reminder!</string>
     <string name="next_photos_fall_on_july_08">Next Photos Fall On July 08</string>
     <string name="camera">Camera</string>">
-    <string name="profile">Profile</string>">
+    <string name="profile">Profile</string>
+    <string name="kms">Kms</string>">
 
     <string-array name="gender_options">
         <item>Female</item>

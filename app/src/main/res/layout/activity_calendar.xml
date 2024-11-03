@@ -50,10 +50,12 @@
         android:orientation="horizontal"
         android:scrollbars="horizontal" />
 
-    <Button
+    <android.widget.Button
+        android:layout_margin="10dp"
+        style="@style/Widget.App.Button"
         android:id="@+id/button_kms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kms" />
+        android:text="@string/kms" />
 
 </LinearLayout>
