@@ -9,19 +9,18 @@ import com.opsc.powerpath.Data.Models.Exercise
 
 class ExerciseAdapter(
     private val exercises: List<Exercise>,
-    private val onExerciseSelected: (Exercise) -> Unit
+    private val onExerciseSelected: (Exercise, Int) -> Unit
 ) : RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>() {
 
     inner class ExerciseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(exercise: Exercise) {
             itemView.setOnClickListener {
-                onExerciseSelected(exercise)
+                onExerciseSelected(exercise, adapterPosition)
             }
             val exerciseName = itemView.findViewById<TextView>(R.id.exerciseNameTextView)
             val muscleGroup = itemView.findViewById<TextView>(R.id.muscleGroupTextView)
             exerciseName.text = exercise.name
             muscleGroup.text = exercise.muscleGroup
-
         }
     }
 

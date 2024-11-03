@@ -26,18 +26,14 @@ class AddWorkoutActivity : AppCompatActivity() {
     private lateinit var nameEditText: EditText
     private lateinit var setsEditText: EditText
     private lateinit var repsEditText: EditText
-    private lateinit var selectedExercise: Exercise
+    private lateinit var selectedExercise: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_add_workout)
 
-        selectedExercise = intent.getParcelableExtra("selectedExercise") ?: run {
-            Toast.makeText(this, "No exercise selected", Toast.LENGTH_SHORT).show()
-            finish()
-            return
-        }
+        selectedExercise = intent.getStringExtra("selectedExercise") ?: return
 
         db = FirebaseFirestore.getInstance()
         workoutRecyclerView = findViewById(R.id.workoutRecyclerView)
@@ -46,13 +42,17 @@ class AddWorkoutActivity : AppCompatActivity() {
         setsEditText = findViewById(R.id.setsEditText)
         repsEditText = findViewById(R.id.repsEditText)
 
+        workoutRecyclerView.adapter = WorkoutAdapter(emptyList()) { workout, position ->
+            handleWorkoutSelection(workout, position)
+        }
+
         loadWorkoutsForExercise()
         addWorkoutButton.setOnClickListener { addWorkout() }
     }
 
     private fun loadWorkoutsForExercise() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val exerciseId = "u2LKjyLsmSXDO39GflvR"
+        val exerciseId = selectedExercise
         val apiService = RetrofitInstance.api.getWorkouts(userId, exerciseId)
 
         apiService.enqueue(object : Callback<List<Workout>> {
@@ -62,7 +62,9 @@ class AddWorkoutActivity : AppCompatActivity() {
                     if (workouts.isEmpty()) {
                         Toast.makeText(this@AddWorkoutActivity, "No workouts have been added", Toast.LENGTH_SHORT).show()
                     } else {
-                        workoutRecyclerView.adapter = WorkoutAdapter(workouts)
+                        workoutRecyclerView.adapter = WorkoutAdapter(workouts) { workout, position ->
+                            handleWorkoutSelection(workout, position)
+                        }
                     }
                 } else {
                     Toast.makeText(this@AddWorkoutActivity, "Failed to load workouts: ${response.message()}", Toast.LENGTH_SHORT).show()
@@ -77,20 +79,23 @@ class AddWorkoutActivity : AppCompatActivity() {
 
     private fun addWorkout() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val exerciseId = selectedExercise.id
+        val exerciseId = selectedExercise
         val name = nameEditText.text.toString()
         val sets = setsEditText.text.toString().toInt()
         val reps = repsEditText.text.toString().toInt()
-        val workout = Workout(name = name, sets = sets, reps = reps)
+        val workout = Workout(id = "", name = name, sets = sets, reps = reps)
         val apiService = RetrofitInstance.api.addWorkout(userId, exerciseId, workout)
 
         apiService.enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 if (response.isSuccessful) {
-                    loadWorkoutsForExercise()
+                    finish()
+                    Toast.makeText(this@AddWorkoutActivity, "Workout added successfully", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@AddWorkoutActivity, "Failed to add workout: ${response.message()}", Toast.LENGTH_SHORT).show()
-                    Log.e("AddWorkoutActivity", "Failed to add workout: ${response.message()}")
+                    response.errorBody()?.string()?.let { errorMessage ->
+                        println("Error: $errorMessage")
+                    }
                 }
             }
 
@@ -98,6 +103,10 @@ class AddWorkoutActivity : AppCompatActivity() {
                 t.printStackTrace()
             }
         })
+    }
+
+    private fun handleWorkoutSelection(workout: Workout, position: Int) {
+        Toast.makeText(this, "Selected workout: ${workout.name} at position $position", Toast.LENGTH_SHORT).show()
     }
 
 }

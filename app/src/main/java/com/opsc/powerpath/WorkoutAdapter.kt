@@ -8,12 +8,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.opsc.powerpath.Data.Models.Exercise
 import com.opsc.powerpath.Data.Models.Workout
 
-class WorkoutAdapter(private val workouts: List<Workout>) : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder>() {
+class WorkoutAdapter(
+    private val workouts: List<Workout>,
+    private val onWorkoutSelected: (Workout, Int) -> Unit
+) : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder>() {
 
-    class WorkoutViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val workoutNameTextView: TextView = itemView.findViewById(R.id.workoutNameTextView)
-        val setsTextView: TextView = itemView.findViewById(R.id.setsEditText)
-        val repsTextView: TextView = itemView.findViewById(R.id.repsTextView)
+    inner class WorkoutViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val workoutName: TextView = itemView.findViewById(R.id.workoutNameTextView)
+        val workoutSets: TextView = itemView.findViewById(R.id.setsEditText)
+        val workoutReps: TextView = itemView.findViewById(R.id.repsTextView)
+
+        fun bind(workout: Workout) {
+            itemView.setOnClickListener {
+                onWorkoutSelected(workout, adapterPosition)
+            }
+            workoutName.text = workout.name
+            workoutSets.text = workout.sets.toString()
+            workoutReps.text = workout.reps.toString()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutViewHolder {
@@ -22,10 +34,7 @@ class WorkoutAdapter(private val workouts: List<Workout>) : RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
-        val workout = workouts[position]
-        holder.workoutNameTextView.text = workout.name
-        holder.setsTextView.text = "Sets: ${workout.sets}"
-        holder.repsTextView.text = "Reps: ${workout.reps}"
+        holder.bind(workouts[position])
     }
 
     private var selectedExercise: Exercise? = null

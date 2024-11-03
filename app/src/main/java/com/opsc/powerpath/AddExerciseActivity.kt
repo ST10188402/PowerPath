@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -53,6 +54,7 @@ class AddExerciseActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 if (response.isSuccessful) {
                     finish()
+                    Toast.makeText(this@AddExerciseActivity, "Exercise added successfully", Toast.LENGTH_SHORT).show()
                 } else {
                     response.errorBody()?.string()?.let { errorMessage ->
                         println("Error: $errorMessage")

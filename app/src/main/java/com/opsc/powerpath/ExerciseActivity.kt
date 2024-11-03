@@ -16,9 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
-import com.opsc.powerpath.Data.API.ApiResponse
 import com.opsc.powerpath.Data.Models.Exercise
-import com.opsc.powerpath.ExerciseAdapter
 import com.opsc.powerpath.Utils.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Callback
@@ -47,7 +45,8 @@ class ExerciseActivity : AppCompatActivity() {
 
         exerciseRecyclerView = findViewById(R.id.exerciseRecyclerView)
         exerciseRecyclerView.layoutManager = LinearLayoutManager(this)
-        exerciseRecyclerView.adapter = ExerciseAdapter(emptyList()) { selectedExercise ->
+
+        exerciseRecyclerView.adapter = ExerciseAdapter(emptyList()) { selectedExercise, _ ->
             val intent = Intent(this@ExerciseActivity, AddWorkoutActivity::class.java)
             intent.putExtra("selectedExercise", selectedExercise)
             startActivity(intent)
@@ -105,9 +104,10 @@ class ExerciseActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Exercise>>, response: Response<List<Exercise>>) {
                 if (response.isSuccessful) {
                     val exercises = response.body() ?: emptyList()
-                    exerciseRecyclerView.adapter = ExerciseAdapter(exercises) { selectedExercise ->
+                    exerciseRecyclerView.adapter = ExerciseAdapter(exercises) { _, position ->
+                        val id = exercises[position].id
                         val intent = Intent(this@ExerciseActivity, AddWorkoutActivity::class.java)
-                        intent.putExtra("selectedExercise", selectedExercise)
+                        intent.putExtra("selectedExercise", id)
                         startActivity(intent)
                     }
                 } else {
