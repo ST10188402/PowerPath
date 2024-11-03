@@ -128,11 +128,12 @@
             android:layout_height="58dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="76dp"
-            android:backgroundTint="@drawable/btn_press"
+            android:background="@drawable/gradient_btn_1"
             android:text="Login"
             android:textColor="@android:color/white"
             android:textSize="18dp"
-            android:fontFamily="@font/poppins_bold"            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/poppins_bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scroll" />
 

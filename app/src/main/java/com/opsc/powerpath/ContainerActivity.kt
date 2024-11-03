@@ -68,7 +68,7 @@ class ContainerActivity : AppCompatActivity() {
                 onAddButtonClicked()
             }
             addExercise.setOnClickListener {
-                val intent = Intent(this, AddExerciseActivity::class.java)
+                val intent = Intent(this, ExerciseActivity::class.java)
                 startActivity(intent)
             }
             addDate.setOnClickListener {

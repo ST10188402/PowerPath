@@ -1,6 +1,7 @@
 package com.opsc.powerpath.Data.Models
 
 data class Workout(
-    val exercises: List<Any>,
-    val muscleGroup: String
+    val name : String,
+    val sets: Int,
+    val reps: Int
 )
