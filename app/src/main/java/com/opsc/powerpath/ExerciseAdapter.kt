@@ -3,6 +3,7 @@ package com.opsc.powerpath
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.opsc.powerpath.Data.Models.Exercise
 
@@ -16,7 +17,11 @@ class ExerciseAdapter(
             itemView.setOnClickListener {
                 onExerciseSelected(exercise)
             }
-            // Bind other views here
+            val exerciseName = itemView.findViewById<TextView>(R.id.exerciseNameTextView)
+            val muscleGroup = itemView.findViewById<TextView>(R.id.muscleGroupTextView)
+            exerciseName.text = exercise.name
+            muscleGroup.text = exercise.muscleGroup
+
         }
     }
 

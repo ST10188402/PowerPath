@@ -95,7 +95,7 @@ class ExerciseActivity : AppCompatActivity() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val selectedGroup = muscleGroupSpinner.selectedItem.toString()
 
-        val apiService = if (selectedGroup == "Chest") {
+        val apiService = if (selectedGroup == "Full Body") {
             RetrofitInstance.api.getAllExercises(userId)
         } else {
             RetrofitInstance.api.getExercisesByMuscleGroup(userId, selectedGroup)
