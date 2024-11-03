@@ -15,9 +15,6 @@ import android.net.Uri
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
-import okhttp3.*
-import com.google.gson.Gson
-import java.io.IOException
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -45,19 +42,39 @@ class ComparisonFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_comparison_page, container, false)
 
-        selectMonth1 = view.findViewById(R.id.selectMonth1Container)
+        selectMonth1 = view.findViewById(R.id.selectMonth1)
         currentMonth1 = view.findViewById(R.id.currentMonth1)
-        selectMonth2 = view.findViewById(R.id.selectMonth2Container)
+        selectMonth2 = view.findViewById(R.id.selectMonth2)
         currentMonth2 = view.findViewById(R.id.currentMonth2)
 
-        selectMonth1.setOnClickListener { showMonthPicker(currentMonth1) }
-        selectMonth2.setOnClickListener { showMonthPicker(currentMonth2) }
+        val selectMonth1Container = view.findViewById<LinearLayout>(R.id.selectMonth1Container)
+        val selectMonth2Container = view.findViewById<LinearLayout>(R.id.selectMonth2Container)
+
+        selectMonth1Container.setOnClickListener { showDatePickerDialog(currentMonth1) }
+        selectMonth2Container.setOnClickListener { showDatePickerDialog(currentMonth2) }
 
         view.findViewById<Button>(R.id.compareButton).setOnClickListener {
             comparePictures()
         }
 
         return view
+    }
+
+    private fun showDatePickerDialog(targetTextView: TextView) {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
+                val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                targetTextView.text = selectedDate
+            },
+            year, month, day
+        )
+
+        datePickerDialog.show()
     }
 
     private fun showMonthPicker(targetTextView: TextView) {
@@ -107,39 +124,16 @@ class ComparisonFragment : Fragment() {
             return
         }
 
-        // Fetch workout progress data from the API
-        val userId = "your_user_id" // Replace with actual user ID
-        val url = "https://your-api-url.com/api/users/$userId/workouts"
+        val picturesMonth1 = getPicturesForMonth(month1)
+        val picturesMonth2 = getPicturesForMonth(month2)
 
-        val request = Request.Builder().url(url).build()
-        val client = OkHttpClient()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                activity?.runOnUiThread {
-                    Toast.makeText(requireContext(), "Failed to retrieve workout progress", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                if (response.isSuccessful) {
-                    val responseData = response.body?.string()
-                    val workouts = Gson().fromJson(responseData, Array<Workout>::class.java).toList()
-
-                    activity?.runOnUiThread {
-                        val fragment = ComparisonResultFragment.newInstance(workouts)
-                        parentFragmentManager.beginTransaction()
-                            .replace(R.id.fragment_container, fragment)
-                            .addToBackStack(null)
-                            .commit()
-                    }
-                } else {
-                    activity?.runOnUiThread {
-                        Toast.makeText(requireContext(), "Failed to retrieve workout progress", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        })
+        val fragment = ComparisonResultFragment.newInstance(picturesMonth1.toString(),
+            picturesMonth2.toString()
+        )
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun getPicturesForMonth(month: String): List<Uri> {
@@ -167,6 +161,22 @@ class ComparisonFragment : Fragment() {
         }
 
         return pictures
+    }
+
+    private fun displayPictures(picturesMonth1: List<Uri>, picturesMonth2: List<Uri>) {
+        comparisonContainer.removeAllViews()
+
+        for (i in picturesMonth1.indices) {
+            val imageView1 = ImageView(requireContext())
+            imageView1.setImageURI(picturesMonth1[i])
+            comparisonContainer.addView(imageView1)
+
+            if (i < picturesMonth2.size) {
+                val imageView2 = ImageView(requireContext())
+                imageView2.setImageURI(picturesMonth2[i])
+                comparisonContainer.addView(imageView2)
+            }
+        }
     }
 
     companion object {
