@@ -195,13 +195,11 @@
             android:layout_height="58dp"
             android:layout_gravity="center_horizontal"
             android:hint="@string/register"
-            android:fontFamily="@font/poppins_bold"
-            android:textColor="@android:color/white"
+            android:textAllCaps="false"
             android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scroll"
-            android:nextFocusUp="@+id/privacy_policy" />
+            app:layout_constraintTop_toBottomOf="@+id/scroll" />
 
         <TextView
             android:id="@+id/or"
