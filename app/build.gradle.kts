@@ -17,8 +17,6 @@ android {
     }
 
     lintOptions {
-        // Ignore all lint issues
-        abortOnError = false
         disable("all")
     }
 
