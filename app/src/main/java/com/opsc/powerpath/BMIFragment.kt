@@ -52,7 +52,7 @@ class BMIFragment : Fragment() {
         return view
     }
 
-    private fun fetchUserDataAndSetupPieChart() {
+    public fun fetchUserDataAndSetupPieChart() {
         val userId = auth.currentUser!!.uid
         val userRef = db.collection("users").document(userId)
 
@@ -73,7 +73,7 @@ class BMIFragment : Fragment() {
         }
     }
 
-    private fun calculateBMI(height: Float, weight: Float): Float {
+    public fun calculateBMI(height: Float, weight: Float): Float {
         return if (height > 0) {
             weight / ((height / 100) * (height / 100))
         } else {

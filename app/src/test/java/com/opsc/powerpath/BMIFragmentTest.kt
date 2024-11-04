@@ -1,3 +1,4 @@
+import com.opsc.powerpath.BMIFragment
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
