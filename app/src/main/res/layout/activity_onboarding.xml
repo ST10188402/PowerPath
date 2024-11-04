@@ -50,7 +50,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            style="@style/Widget.App.Fab"
             android:background="@drawable/gradient_background"
             android:clickable="true"
             android:contentDescription="next"

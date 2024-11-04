@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
 
+
 class MainActivity : AppCompatActivity() {
+
 
     private lateinit var auth: FirebaseAuth
     private lateinit var biometricPromptManager: BiometricPromptManager

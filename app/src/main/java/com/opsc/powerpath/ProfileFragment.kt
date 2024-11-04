@@ -119,9 +119,9 @@ class ProfileFragment : Fragment() {
         val weight = view.findViewById<TextView>(R.id.weight)
         val age = view.findViewById<TextView>(R.id.age)
 
-        username.text = healthData.name
-        height.text = "${healthData.height} cm"
-        weight.text ="${healthData.weight} kg"
-        age.text = "${healthData.dateOfBirth?.let { getUserAge(it) }} yrs"
+        username.text = healthData.name ?: "N/A"
+        height.text = "${healthData.height ?: 0} cm"
+        weight.text = "${healthData.weight ?: 0} kg"
+        age.text = "${getUserAge(healthData.dateOfBirth ?: "01/01/1970")} yrs"
     }
 }

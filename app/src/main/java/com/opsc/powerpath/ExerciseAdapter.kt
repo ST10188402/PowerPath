@@ -7,22 +7,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.opsc.powerpath.Data.Models.Exercise
 
-class ExerciseAdapter(
-    private val exercises: List<Exercise>,
-    private val onExerciseSelected: (Exercise) -> Unit
-) : RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>() {
+class ExerciseAdapter(private val exercises: MutableList<Exercise>) : RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>() {
 
-    inner class ExerciseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(exercise: Exercise) {
-            itemView.setOnClickListener {
-                onExerciseSelected(exercise)
-            }
-            val exerciseName = itemView.findViewById<TextView>(R.id.exerciseNameTextView)
-            val muscleGroup = itemView.findViewById<TextView>(R.id.muscleGroupTextView)
-            exerciseName.text = exercise.name
-            muscleGroup.text = exercise.muscleGroup
-
-        }
+    class ExerciseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val exerciseNameTextView: TextView = itemView.findViewById(R.id.exerciseNameTextView)
+        val muscleGroupTextView: TextView = itemView.findViewById(R.id.muscleGroupTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
@@ -31,8 +20,19 @@ class ExerciseAdapter(
     }
 
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
-        holder.bind(exercises[position])
+        val exercise = exercises[position]
+        holder.exerciseNameTextView.text = exercise.name
+        holder.muscleGroupTextView.text = exercise.muscleGroup
+
+        holder.itemView.setOnLongClickListener {
+            exercises.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, exercises.size)
+            true
+        }
     }
 
-    override fun getItemCount(): Int = exercises.size
+    override fun getItemCount(): Int {
+        return exercises.size
+    }
 }

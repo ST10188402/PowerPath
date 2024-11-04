@@ -13,6 +13,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <application
         android:allowBackup="true"
@@ -67,12 +69,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".Data.MessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <activity android:name=".Onboarding" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ProfileFragment" />
         <activity android:name=".AddExerciseActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".ExerciseActivity" />
+        <activity android:name=".WorkoutActivity"/>
+
+
+
         <activity android:name=".NotificationsActivity" />
 
         <meta-data

@@ -87,11 +87,11 @@ class ContainerActivity : AppCompatActivity() {
             onAddButtonClicked()
         }
         addExercise.setOnClickListener {
-            val intent = Intent(this, ExerciseActivity::class.java)
+            val intent = Intent(this, AddExerciseActivity::class.java)
             startActivity(intent)
         }
         addDate.setOnClickListener {
-            val intent = Intent(this, CalendarActivity::class.java)
+            val intent = Intent(this, AddWorkoutActivity::class.java)
             startActivity(intent)
         }
 //        btnMenu.setOnClickListener {

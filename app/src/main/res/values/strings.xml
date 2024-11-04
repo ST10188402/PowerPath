@@ -103,6 +103,7 @@
     <string name="workout_details">Workout Details</string>
     <string name="your_workouts">Your Workouts</string>
     <string name="no_workouts_saved_yet">No workouts saved yet</string>">
+     <string name="enter_sets">Enter Sets</string>">
 
     <string-array name="gender_options">
         <item>Female</item>

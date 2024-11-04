@@ -2,11 +2,15 @@ package com.opsc.powerpath
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,71 +27,97 @@ class AddWorkoutActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var workoutRecyclerView: RecyclerView
     private lateinit var addWorkoutButton: Button
+    private lateinit var addExerciseButton: Button
     private lateinit var nameEditText: EditText
-    private lateinit var setsEditText: EditText
-    private lateinit var repsEditText: EditText
-    private lateinit var selectedExercise: Exercise
+    private lateinit var muscleGroupSpinner: Spinner
+    private val selectedExercises = mutableListOf<Exercise>()
+    private lateinit var exerciseAdapter: ExerciseAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_add_workout)
 
-        selectedExercise = intent.getParcelableExtra("selectedExercise") ?: run {
-            Toast.makeText(this, "No exercise selected", Toast.LENGTH_SHORT).show()
-            finish()
-            return
-        }
-
         db = FirebaseFirestore.getInstance()
         workoutRecyclerView = findViewById(R.id.workoutRecyclerView)
         addWorkoutButton = findViewById(R.id.addWorkoutButton)
+        addExerciseButton = findViewById(R.id.addExerciseButton)
         nameEditText = findViewById(R.id.workoutNameEditText)
-        setsEditText = findViewById(R.id.setsEditText)
-        repsEditText = findViewById(R.id.repsEditText)
+        muscleGroupSpinner = findViewById(R.id.muscleGroupSpinner)
+        val muscleGroups = arrayOf("legs", "push", "pull")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, muscleGroups)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        muscleGroupSpinner.adapter = adapter
 
-        loadWorkoutsForExercise()
+        exerciseAdapter = ExerciseAdapter(selectedExercises)
+        workoutRecyclerView.layoutManager = LinearLayoutManager(this)
+        workoutRecyclerView.adapter = exerciseAdapter
+
+        addExerciseButton.setOnClickListener { showExercisePopup() }
         addWorkoutButton.setOnClickListener { addWorkout() }
     }
 
-    private fun loadWorkoutsForExercise() {
+    private fun showExercisePopup() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val exerciseId = "u2LKjyLsmSXDO39GflvR"
-        val apiService = RetrofitInstance.api.getWorkouts(userId, exerciseId)
+        val muscleGroup = muscleGroupSpinner.selectedItem.toString()
 
-        apiService.enqueue(object : Callback<List<Workout>> {
-            override fun onResponse(call: Call<List<Workout>>, response: Response<List<Workout>>) {
-                if (response.isSuccessful) {
-                    val workouts = response.body() ?: emptyList()
-                    if (workouts.isEmpty()) {
-                        Toast.makeText(this@AddWorkoutActivity, "No workouts have been added", Toast.LENGTH_SHORT).show()
-                    } else {
-                        workoutRecyclerView.adapter = WorkoutAdapter(workouts)
-                    }
+        db.collection("users").document(userId)
+            .collection("exercises")
+            .whereEqualTo("muscleGroup", muscleGroup)
+            .get()
+            .addOnSuccessListener { documents ->
+                val exercises = documents.map { it.toObject(Exercise::class.java) }
+                if (exercises.isEmpty()) {
+                    Toast.makeText(this, "No exercises found for the selected muscle group", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this@AddWorkoutActivity, "Failed to load workouts: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    val exerciseNames = exercises.map { it.name }.toTypedArray()
+                    val selectedItems = BooleanArray(exercises.size)
+
+                    AlertDialog.Builder(this)
+                        .setTitle("Select Exercises")
+                        .setMultiChoiceItems(exerciseNames, selectedItems) { _, which, isChecked ->
+                            if (isChecked) {
+                                selectedExercises.add(exercises[which])
+                            } else {
+                                selectedExercises.remove(exercises[which])
+                            }
+                        }
+                        .setPositiveButton("OK") { _, _ ->
+                            exerciseAdapter.notifyDataSetChanged()
+                        }
+                        .setNegativeButton("Cancel", null)
+                        .show()
                 }
             }
-
-            override fun onFailure(call: Call<List<Workout>>, t: Throwable) {
-                t.printStackTrace()
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Failed to load exercises: ${e.message}", Toast.LENGTH_SHORT).show()
+                Log.e("AddWorkoutActivity", "Failed to load exercises", e)
             }
-        })
     }
 
     private fun addWorkout() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val exerciseId = selectedExercise.id
         val name = nameEditText.text.toString()
-        val sets = setsEditText.text.toString().toInt()
-        val reps = repsEditText.text.toString().toInt()
-        val workout = Workout(name = name, sets = sets, reps = reps)
-        val apiService = RetrofitInstance.api.addWorkout(userId, exerciseId, workout)
+
+        if (name.isBlank()) {
+            Toast.makeText(this, "Please enter a workout name", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (selectedExercises.isEmpty()) {
+            Toast.makeText(this, "Please select at least one exercise", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val muscleGroup = muscleGroupSpinner.selectedItem.toString()
+        val workout = Workout(name = name, muscleGroup = muscleGroup, exercises = selectedExercises)
+        val apiService = RetrofitInstance.api.addWorkout(userId, workout)
 
         apiService.enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 if (response.isSuccessful) {
-                    loadWorkoutsForExercise()
+                    Toast.makeText(this@AddWorkoutActivity, "Workout added successfully", Toast.LENGTH_SHORT).show()
+                    finish()
                 } else {
                     Toast.makeText(this@AddWorkoutActivity, "Failed to add workout: ${response.message()}", Toast.LENGTH_SHORT).show()
                     Log.e("AddWorkoutActivity", "Failed to add workout: ${response.message()}")
@@ -99,5 +129,4 @@ class AddWorkoutActivity : AppCompatActivity() {
             }
         })
     }
-
 }
