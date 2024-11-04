@@ -75,8 +75,6 @@
         <activity android:name=".ProfileFragment" />
         <activity android:name=".AddExerciseActivity" />
         <activity android:name=".CalendarActivity" />
-        <activity android:name=".ExerciseActivity" />
-
 
 
 

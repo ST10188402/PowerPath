@@ -5,29 +5,29 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/workoutRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
     <EditText
         android:id="@+id/workoutNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name" />
 
-    <EditText
-        android:id="@+id/setsEditText"
+    <Spinner
+        android:id="@+id/muscleGroupSpinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Sets" />
+        android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/repsEditText"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/addExerciseButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Reps" />
+        android:text="Add Exercise"
+        android:layout_gravity="center_horizontal" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/workoutRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/addWorkoutButton"

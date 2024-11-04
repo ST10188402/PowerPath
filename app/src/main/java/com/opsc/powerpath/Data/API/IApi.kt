@@ -27,10 +27,9 @@ interface IApi {
     fun getWeightProgress(@Path("userId") userId: String): Call<List<WeightProgress>>
 
     // Add a new workout for the user
-    @POST("/api/users/{userId}/exercises/{exerciseId}/workouts")
+    @POST("/api/users/{userId}/workouts")
     fun addWorkout(
         @Path("userId") userId: String,
-        @Path("exerciseId") exerciseId: String,
         @Body workout: Workout
     ): Call<ApiResponse>
 
