@@ -34,9 +34,6 @@
             android:name=".CompleteRegistration"
             android:exported="false" />
         <activity
-            android:name=".TakePhotoFragment"
-            android:exported="false" />
-        <activity
             android:name=".TimePicker"
             android:exported="false" />
         <activity
@@ -74,10 +71,8 @@
         </service>
         <activity android:name=".Onboarding" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".ProfileFragment" />
         <activity android:name=".AddExerciseActivity" />
         <activity android:name=".CalendarActivity" />
-        <activity android:name=".ExerciseActivity" />
         <activity android:name=".WorkoutActivity"/>
 
 
