@@ -103,10 +103,22 @@
     <string name="workout_details">Workout Details</string>
     <string name="your_workouts">Your Workouts</string>
     <string name="no_workouts_saved_yet">No workouts saved yet</string>">
-     <string name="enter_sets">Enter Sets</string>">
-
+     <string name="enter_sets">Enter Sets</string>
+    <string name="build_your_workout">Build Your Workout</string>
+    <string name="workout_name">Workout Name</string>
+    <string name="save_workout">Save Workout</string>
+    <string name="exercise_name">Exercise Name</string>
+    <string name="exercise_muscle_group">Exercise Muscle Group</string>
+    <string name="add_exercises">Add Exercises</string>">
+    <string name="this_month">This Month</string>
+    <string-array name="muscle_groups">
+        <item>Legs</item>
+        <item>Push</item>
+        <item>Pull</item>
+    </string-array>
     <string-array name="gender_options">
         <item>Female</item>
         <item>Male</item>
     </string-array>
+
 </resources>

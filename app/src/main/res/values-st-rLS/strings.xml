@@ -104,6 +104,19 @@
     <string name="your_workouts">Boikoetliso ba Hao</string>
     <string name="no_workouts_saved_yet">Ha ho boikoetliso bo bolokiloeng hajoale</string>
     <string name="enter_sets">Kenya Likarolo</string>
+    <string name="build_your_workout">Theha Boikoetliso ba Hao</string>
+    <string name="workout_name">Lebitso la Boikoetliso</string>
+    <string name="save_workout">Boloka Boikoetliso</string>
+    <string name="exercise_name">Lebitso la Boikoetliso</string>
+    <string name="exercise_muscle_group">Sehlopha sa Mesifa sa Boikoetliso</string>
+    <string name="add_exercises">Kenya Boikoetliso</string>
+    <string name="this_month">Khoeli Ena</string>
+
+    <string-array name="muscle_groups">
+        <item>Maoto</item>
+        <item>Hatlisa</item>
+        <item>Hula</item>
+    </string-array>
 
 
 

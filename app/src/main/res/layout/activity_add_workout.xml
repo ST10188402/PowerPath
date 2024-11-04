@@ -2,28 +2,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/top_nav"
+        app:navigationIcon="@drawable/back_button_home"
+        app:title="@string/build_your_workout"
+        app:titleCentered="true"
+        app:titleTextAppearance="@style/TextAppearance.AppCompat.Title" />
+
 
     <EditText
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
         android:id="@+id/workoutNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name" />
+        android:hint="@string/workout_name" />
 
     <Spinner
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
         android:id="@+id/muscleGroupSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/addExerciseButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginHorizontal="60dp"
         android:layout_height="wrap_content"
-        android:text="Add Exercise"
-        android:layout_gravity="center_horizontal" />
+        android:text="@string/add_exercise"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="15dp"
+        android:layout_gravity="center_horizontal"  />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
         android:id="@+id/workoutRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -31,9 +57,16 @@
 
     <Button
         android:id="@+id/addWorkoutButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        style="@style/Widget.App.Button"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
-        android:text="Add Workout"
+        android:layout_marginBottom="5dp"
+        android:layout_marginHorizontal="20dp"
+        android:text="@string/save_workout"
+        android:textAllCaps="true"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="18dp"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
