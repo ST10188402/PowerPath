@@ -12,6 +12,8 @@ PowerPath is a fitness app developed in Android Studio using Kotlin. It helps us
 - [Technologies](#technologies)
 - [License](#license)
 - [Youtube](#youtube)
+- [ReleaseNotes](#releasenotes)
+
 
 ## 🌟 Features
 
@@ -49,4 +51,43 @@ PowerPath is a fitness app developed in Android Studio using Kotlin. It helps us
 
 ## 🎥 Youtube
 https://youtu.be/oLRArMrA524
+
+## Release Notes
+
+# 🌟 Features
+
+1. **User Authentication**
+   - Login with **Email and Password** or **Biometric Authentication**.
+   - Secure registration process requiring:
+     - Name, Surname, Phone Number
+     - Email, Password, Confirm Password
+     - Acceptance of the Privacy Policy
+
+2. **Home Page**
+   - Displays **BMI** (Body Mass Index) and **Weight Progress** over time.
+
+3. **Workout Tracking**
+   - **Workout Page**: Lists available workouts categorized by muscle groups.
+     - Each workout displays **muscle group** and **name**.
+   - **Exercise Page**: Shows details of each exercise, including:
+     - Exercise name
+     - Number of sets and reps
+
+4. **Camera & Gallery**
+   - **Camera Page**: Allows users to take progress pictures.
+   - **Statistics Page**: Stores and displays images in a gallery for easy access.
+     - **Statistics** also provide visual comparisons of workout progress over time.
+
+5. **Profile Management**
+   - **Profile Page**: Stores and displays personal data including:
+     - User height, weight, and other personal information.
+
+6. **Offline Database**
+   - Stores and displays personal data including:
+     - User height, weight, and all other information.
+
+7. **Notifications**
+   - Push notifications
+     - Real time notifications
+
 
