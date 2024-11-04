@@ -8,19 +8,13 @@ import android.view.ViewGroup
 import android.app.DatePickerDialog
 import android.widget.TextView
 import java.util.*
+import android.widget.Button
+import android.widget.LinearLayout
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ComparisonPage.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ComparisonFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var selectMonth1: TextView
@@ -42,34 +36,42 @@ class ComparisonFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_comparison_page, container, false)
 
-        selectMonth1 = view.findViewById(R.id.selectMonth1Container)
+        selectMonth1 = view.findViewById(R.id.selectMonth1)
         currentMonth1 = view.findViewById(R.id.currentMonth1)
-        selectMonth2 = view.findViewById(R.id.selectMonth2Container)
+        selectMonth2 = view.findViewById(R.id.selectMonth2)
         currentMonth2 = view.findViewById(R.id.currentMonth2)
 
-        selectMonth1.setOnClickListener { showMonthPicker(currentMonth1) }
-        selectMonth2.setOnClickListener { showMonthPicker(currentMonth2) }
+        val selectMonth1Container = view.findViewById<LinearLayout>(R.id.selectMonth1Container)
+        val selectMonth2Container = view.findViewById<LinearLayout>(R.id.selectMonth2Container)
+
+        selectMonth1Container.setOnClickListener { showDatePickerDialog(currentMonth1, 1) }
+        selectMonth2Container.setOnClickListener { showDatePickerDialog(currentMonth2, 2) }
+
+        view.findViewById<Button>(R.id.compareButton).setOnClickListener {
+            comparePictures()
+        }
 
         return view
     }
 
-    private fun showMonthPicker(targetTextView: TextView) {
+    private fun showDatePickerDialog(targetTextView: TextView, monthIndex: Int) {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(
-            requireContext(), { _, _, monthOfYear, _ ->
-                val monthName = getMonthName(monthOfYear)
-                targetTextView.text = monthName
+            requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
+                val selectedDate = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
+                targetTextView.text = selectedDate
+                if (monthIndex == 1) {
+                    GlobalData.month1 = selectedDate
+                } else {
+                    GlobalData.month2 = selectedDate
+                }
             },
-            year, month, 1
+            year, month, day
         )
-
-        // Hide the day spinner (for month-only selection)
-        datePickerDialog.datePicker.findViewById<View>(
-            resources.getIdentifier("day", "id", "android")
-        )?.visibility = View.GONE
 
         datePickerDialog.show()
     }
@@ -92,16 +94,15 @@ class ComparisonFragment : Fragment() {
         }
     }
 
+    private fun comparePictures() {
+        val fragment = ComparisonResultFragment.newInstance(GlobalData.month1 ?: "", GlobalData.month2 ?: "")
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.nav_host, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ComparisonPage.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             ComparisonFragment().apply {

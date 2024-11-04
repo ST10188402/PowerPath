@@ -11,6 +11,7 @@ import java.util.Calendar
 import java.util.Locale
 import android.widget.Button
 import android.widget.ImageView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -32,11 +33,14 @@ class ProgressPage : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val calendar = Calendar.getInstance()
-        val currentMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
+        val currentMonth =
+            calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
         calendar.add(Calendar.MONTH, -1)
-        val previousMonth1 = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
+        val previousMonth1 =
+            calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
         calendar.add(Calendar.MONTH, -1)
-        val previousMonth2 = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
+        val previousMonth2 =
+            calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
 
         val galleryFragmentCurrent = GalleryFragment.newInstance(currentMonth)
         val galleryFragmentPrev1 = GalleryFragment.newInstance(previousMonth1)
@@ -47,6 +51,14 @@ class ProgressPage : Fragment() {
             .replace(R.id.gallery_container_prev1, galleryFragmentPrev1)
             .replace(R.id.gallery_container_prev2, galleryFragmentPrev2)
             .commit()
+
+        val comparePhotoCard = view.findViewById<CardView>(R.id.ComparePhotoCard)
+        comparePhotoCard.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.nav_host, ComparisonFragment.newInstance("", ""))
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     companion object {
