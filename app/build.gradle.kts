@@ -16,6 +16,10 @@ android {
         dataBinding = true
     }
 
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
+
     defaultConfig {
         applicationId = "com.opsc.powerpath"
         minSdk = 24

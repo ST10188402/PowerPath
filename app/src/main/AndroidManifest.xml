@@ -28,9 +28,6 @@
         android:theme="@style/Base.Theme.PowerPath"
         tools:targetApi="31">
         <activity
-            android:name=".UserWorkoutsActivity"
-            android:exported="false" />
-        <activity
             android:name=".ContainerActivity"
             android:exported="false" />
         <activity

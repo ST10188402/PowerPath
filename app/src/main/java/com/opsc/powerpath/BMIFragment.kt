@@ -130,7 +130,7 @@ class BMIFragment : Fragment() {
         val weightProgress = WeightProgress(weight = weight)
 
         // Add the new weight entry to the weightProgress subcollection
-        db.collection("users").document(userId).collection("weightProgress")
+        db.collection("users").document(userId).collection("weight-progress")
             .add(weightProgress)
             .addOnSuccessListener {
                 // Update the user's weight in the main user document
