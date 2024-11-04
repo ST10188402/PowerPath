@@ -83,7 +83,7 @@ https://youtu.be/oLRArMrA524
      - User height, weight, and other personal information.
 
 6. **Offline Database**
-   - Stores and displays personal data including:
+   - Stores and displays personal data using firebase offline including:
      - User height, weight, and all other information.
 
 7. **Notifications**
