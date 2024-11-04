@@ -1,6 +1,10 @@
 package com.opsc.powerpath
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -13,6 +17,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
@@ -36,6 +41,7 @@ class AddWorkoutActivity : AppCompatActivity() {
     private lateinit var muscleGroupSpinner: Spinner
     private val selectedExercises = mutableListOf<Exercise>()
     private lateinit var exerciseAdapter: ExerciseAdapter
+    private val CHANNEL_ID = "workout_channel"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,10 +68,11 @@ class AddWorkoutActivity : AppCompatActivity() {
         val toolbar: MaterialToolbar = findViewById(R.id.top)
         setSupportActionBar(toolbar)
 
-
         toolbar.setNavigationOnClickListener {
             finish()
         }
+
+        createNotificationChannel()
     }
 
     private fun showExercisePopup() {
@@ -128,6 +135,7 @@ class AddWorkoutActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 if (response.isSuccessful) {
                     Toast.makeText(this@AddWorkoutActivity, "Workout added successfully", Toast.LENGTH_SHORT).show()
+                    showNotification("Workout Added", "Your workout has been added successfully.")
                     finish()
                 } else {
                     Toast.makeText(this@AddWorkoutActivity, "Failed to add workout: ${response.message()}", Toast.LENGTH_SHORT).show()
@@ -140,6 +148,33 @@ class AddWorkoutActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun showNotification(title: String, message: String) {
+        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setContentTitle(title)
+            .setContentText(message)
+            .setSmallIcon(R.drawable.logo)
+            .setAutoCancel(true)
+            .build()
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(0, notification)
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Workout Notifications"
+            val descriptionText = "Notifications for workout updates"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.top_nav, menu)
         return true
