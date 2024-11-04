@@ -28,12 +28,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-
 class HomeFragment : Fragment() {
-     val CHANNEL_ID = "channel_id"
+    val CHANNEL_ID = "channel_id"
     private lateinit var userName: TextView
     private lateinit var btnNot: ImageView
+    private lateinit var btnWorkout: Button
     val permissionArray = arrayOf(Manifest.permission.POST_NOTIFICATIONS)
     lateinit var notificationManager: NotificationManager
 
@@ -41,14 +40,14 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (checkSelfPermission(requireContext(), permissionArray[0]) != PackageManager.PERMISSION_GRANTED){
+        if (checkSelfPermission(requireContext(), permissionArray[0]) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(), permissionArray, 200)
         }
 
         notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val channel = NotificationChannel(CHANNEL_ID,"General Notifications", NotificationManager.IMPORTANCE_DEFAULT)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(CHANNEL_ID, "General Notifications", NotificationManager.IMPORTANCE_DEFAULT)
             notificationManager.createNotificationChannel(channel)
         }
 
@@ -59,6 +58,12 @@ class HomeFragment : Fragment() {
         btnNot = view.findViewById(R.id.btnNot)
         btnNot.setOnClickListener {
             val intent = Intent(activity, NotificationsActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnWorkout = view.findViewById(R.id.btnWorkout)
+        btnWorkout.setOnClickListener {
+            val intent = Intent(activity, WorkoutActivity::class.java)
             startActivity(intent)
         }
 
