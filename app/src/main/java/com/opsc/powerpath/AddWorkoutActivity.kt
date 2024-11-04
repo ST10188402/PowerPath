@@ -33,7 +33,7 @@ class AddWorkoutActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_add_workout)
 
-        selectedExercise = intent.getStringExtra("selectedExercise") ?: return
+        selectedExercise = "YC7zd4ASCxU9mepXcLli"
 
         db = FirebaseFirestore.getInstance()
         workoutRecyclerView = findViewById(R.id.workoutRecyclerView)
@@ -53,12 +53,12 @@ class AddWorkoutActivity : AppCompatActivity() {
     private fun loadWorkoutsForExercise() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val exerciseId = selectedExercise
-        val apiService = RetrofitInstance.api.getWorkouts(userId, exerciseId)
 
-        apiService.enqueue(object : Callback<List<Workout>> {
-            override fun onResponse(call: Call<List<Workout>>, response: Response<List<Workout>>) {
-                if (response.isSuccessful) {
-                    val workouts = response.body() ?: emptyList()
+        db.collection("users").document(userId).collection("exercises").document(exerciseId).collection("workouts")
+            .get()
+            .addOnSuccessListener { documents ->
+                if (documents != null) {
+                    val workouts = documents.toObjects(Workout::class.java)
                     if (workouts.isEmpty()) {
                         Toast.makeText(this@AddWorkoutActivity, "No workouts have been added", Toast.LENGTH_SHORT).show()
                     } else {
@@ -67,14 +67,14 @@ class AddWorkoutActivity : AppCompatActivity() {
                         }
                     }
                 } else {
-                    Toast.makeText(this@AddWorkoutActivity, "Failed to load workouts: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AddWorkoutActivity, "No workouts have been added", Toast.LENGTH_SHORT).show()
                 }
-            }
 
-            override fun onFailure(call: Call<List<Workout>>, t: Throwable) {
-                t.printStackTrace()
             }
-        })
+            .addOnFailureListener { exception ->
+                Toast.makeText(this@AddWorkoutActivity, "Failed to load workouts: ${exception.message}", Toast.LENGTH_SHORT).show()
+                Log.e("AddWorkoutActivity", "Error getting workouts", exception)
+            }
     }
 
     private fun addWorkout() {
