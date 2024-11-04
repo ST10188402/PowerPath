@@ -122,6 +122,6 @@ class ProfileFragment : Fragment() {
         username.text = healthData.name
         height.text = "${healthData.height} cm"
         weight.text ="${healthData.weight} kg"
-        age.text = "${getUserAge(healthData.dateOfBirth)} yrs"
+        age.text = "${healthData.dateOfBirth?.let { getUserAge(it) }} yrs"
     }
 }

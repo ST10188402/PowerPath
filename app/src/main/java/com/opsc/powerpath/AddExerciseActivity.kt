@@ -1,73 +1,69 @@
 package com.opsc.powerpath
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.ImageView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.opsc.powerpath.Data.API.ApiResponse
+import com.opsc.powerpath.Data.Models.Exercise
+import com.opsc.powerpath.Utils.RetrofitInstance
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AddExerciseActivity : AppCompatActivity() {
+
+    private lateinit var db: FirebaseFirestore
+    private lateinit var muscleGroupSpinner: Spinner
+    private lateinit var exerciseNameEditText: EditText
+    private lateinit var saveButton: Button
+    private val muscleGroups = arrayOf("Chest", "Back", "Legs", "Arms", "Shoulders", "Abs", "Full Body")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_exercise_k)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        db = FirebaseFirestore.getInstance()
+        muscleGroupSpinner = findViewById(R.id.muscleGroupSpinner)
+        exerciseNameEditText = findViewById(R.id.exerciseNameEditText)
+        saveButton = findViewById(R.id.saveButton)
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, muscleGroups)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        muscleGroupSpinner.adapter = adapter
+
+        saveButton.setOnClickListener {
+            val exerciseName = exerciseNameEditText.text.toString()
+            val muscleGroup = muscleGroupSpinner.selectedItem.toString()
+            addExerciseToFirebase(exerciseName, muscleGroup)
         }
 
-        toWorkout()
-        val appBarLayout: AppBarLayout = findViewById(R.id.topAppBar)
-        appBarLayout.statusBarForeground = MaterialShapeDrawable.createWithElevationOverlay(this)
-        appBarLayout.setStatusBarForegroundColor(getColor(R.color.button_purple))
-
-        val toolbar: MaterialToolbar = findViewById(R.id.top)
-        setSupportActionBar(toolbar)
-
-        toolbar.setNavigationOnClickListener {
-            finish()
-        }
     }
 
-    private fun toWorkout() {
-        val toWorkout = findViewById<CardView>(R.id.addWorkoutCard)
-        toWorkout.setOnClickListener {
-            intent = Intent(this, AddWorkoutActivity::class.java)
-            startActivity(intent)
-        }
-    }
+    private fun addExerciseToFirebase(name: String, muscleGroup: String) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val exercise = Exercise(id = "", muscleGroup = muscleGroup, name = name)
+        val apiService = RetrofitInstance.api.addExercise(userId, exercise)
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_nav, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu -> {
-                true
+        apiService.enqueue(object : Callback<ApiResponse> {
+            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                if (response.isSuccessful) {
+                    finish()
+                } else {
+                    response.errorBody()?.string()?.let { errorMessage ->
+                        println("Error: $errorMessage")
+                    }
+                }
             }
 
-            R.id.logout -> {
-                FirebaseAuth.getInstance().signOut()
-                val intent = Intent(this, LoginActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-                finish()
-                true
+            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                t.printStackTrace()
             }
-
-            else -> super.onOptionsItemSelected(item)
-        }
+        })
     }
+
 }

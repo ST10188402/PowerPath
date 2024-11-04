@@ -27,8 +27,12 @@ interface IApi {
     fun getWeightProgress(@Path("userId") userId: String): Call<List<WeightProgress>>
 
     // Add a new workout for the user
-    @POST("/api/users/{userId}/workouts")
-    fun addWorkout(@Path("userId") userId: String, @Body workout: Workout): Call<Void>
+    @POST("/api/users/{userId}/exercises/{exerciseId}/workouts")
+    fun addWorkout(
+        @Path("userId") userId: String,
+        @Path("exerciseId") exerciseId: String,
+        @Body workout: Workout
+    ): Call<ApiResponse>
 
     // Get workout progress for a specific muscle group
     @GET("/api/users/{userId}/workouts/progress")
@@ -38,8 +42,11 @@ interface IApi {
     ): Call<List<WorkoutProgress>>
 
     // Get all workouts for the user
-    @GET("/api/users/{userId}/workouts")
-    fun getWorkouts(@Path("userId") userId: String): Call<List<Workout>>
+    @GET("/api/users/{userId}/exercises/{exerciseId}/workouts")
+    fun getWorkouts(
+        @Path("userId") userId: String,
+        @Path("exerciseId") exerciseId: String
+    ): Call<List<Workout>>
 
     // Add a new exercise for the user
     @POST("/api/users/{userId}/exercises")
@@ -51,7 +58,13 @@ interface IApi {
     // Get all exercises for the user
     @GET("/api/users/{userId}/exercises")
     fun getAllExercises(
-        @Path("userId") userId: String
+        @Path("userId") userId: String,
+    ): Call<List<Exercise>>
+
+    @GET("/api/users/{userId}/exercises")
+    fun getExercisesByMuscleGroup(
+        @Path("userId") userId: String,
+        @Query("muscleGroup") muscleGroup: String
     ): Call<List<Exercise>>
 
     // Update a specific exercise for the user

@@ -99,7 +99,10 @@
     <string name="next_photos_fall_on_july_08">Next Photos Fall On July 08</string>
     <string name="camera">Camera</string>">
     <string name="profile">Profile</string>
-    <string name="kms">Kms</string>">
+    <string name="kms">Kms</string>
+    <string name="workout_details">Workout Details</string>
+    <string name="your_workouts">Your Workouts</string>
+    <string name="no_workouts_saved_yet">No workouts saved yet</string>">
 
     <string-array name="gender_options">
         <item>Female</item>

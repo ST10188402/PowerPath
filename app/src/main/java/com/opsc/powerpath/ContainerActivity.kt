@@ -24,7 +24,6 @@ class ContainerActivity : AppCompatActivity() {
     private lateinit var newWorkout: FloatingActionButton
     private lateinit var addExercise: FloatingActionButton
     private lateinit var addDate: FloatingActionButton
-  //  private lateinit var btnMenu: ImageView
 
     private val rotateOpen: Animation by lazy {
         AnimationUtils.loadAnimation(
@@ -88,7 +87,7 @@ class ContainerActivity : AppCompatActivity() {
             onAddButtonClicked()
         }
         addExercise.setOnClickListener {
-            val intent = Intent(this, AddExerciseActivity::class.java)
+            val intent = Intent(this, ExerciseActivity::class.java)
             startActivity(intent)
         }
         addDate.setOnClickListener {
