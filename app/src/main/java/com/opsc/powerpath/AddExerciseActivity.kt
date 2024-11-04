@@ -1,12 +1,16 @@
 package com.opsc.powerpath
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.opsc.powerpath.Data.API.IApi
 import com.opsc.powerpath.Data.Models.Exercise
@@ -21,7 +25,8 @@ class AddExerciseActivity : AppCompatActivity() {
     private lateinit var muscleGroupSpinner: Spinner
     private lateinit var exerciseNameEditText: EditText
     private lateinit var saveButton: Button
-    private val muscleGroups = arrayOf("legs", "push", "pull")
+    private val muscleGroups = arrayOf("Legs", "Push", "Pull")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +44,13 @@ class AddExerciseActivity : AppCompatActivity() {
             val exerciseName = exerciseNameEditText.text.toString()
             val muscleGroup = muscleGroupSpinner.selectedItem.toString()
             addExerciseToApi(exerciseName, muscleGroup)
+        }
+        val toolbar: MaterialToolbar = findViewById(R.id.top)
+        setSupportActionBar(toolbar)
+
+
+        toolbar.setNavigationOnClickListener {
+            finish()
         }
     }
 
@@ -61,5 +73,28 @@ class AddExerciseActivity : AppCompatActivity() {
                 Toast.makeText(this@AddExerciseActivity, "API call failed: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_nav, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu -> {
+                true
+            }
+
+            R.id.logout -> {
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

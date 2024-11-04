@@ -99,6 +99,24 @@
     <string name="next_photos_fall_on_july_08">Volgende Foto\'s Val Op 08 Julie</string>
     <string name="camera">Kamera</string>
     <string name="profile">Profiel</string>
+    <string name="kms">Kms</string>
+    <string name="workout_details">Oefening Besonderhede</string>
+    <string name="your_workouts">Jou Oefeninge</string>
+    <string name="no_workouts_saved_yet">Geen oefeninge is nog gestoor nie</string>
+    <string name="enter_sets">Voer Stel In</string>
+    <string name="build_your_workout">Bou Jou Oefening</string>
+    <string name="workout_name">Oefening Naam</string>
+    <string name="save_workout">Stoor Oefening</string>
+    <string name="exercise_name">Oefening Naam</string>
+    <string name="exercise_muscle_group">Oefening Spiergroep</string>
+    <string name="add_exercises">Voeg Oefeninge By</string>
+    <string name="this_month">Hierdie Maand</string>
+
+    <string-array name="muscle_groups">
+        <item>Bene</item>
+        <item>Druk</item>
+        <item>Trek</item>
+    </string-array>
 
 
     <string-array name="gender_options">

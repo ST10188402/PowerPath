@@ -8,7 +8,6 @@ import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import com.google.firebase.firestore.FirebaseFirestore
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +21,8 @@ import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.database
+import com.google.firebase.firestore.FirebaseFirestore
 import com.opsc.powerpath.Data.Models.User
 import com.opsc.powerpath.Utils.RetrofitInstance
 import retrofit2.Call
@@ -66,6 +67,11 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, WorkoutActivity::class.java)
             startActivity(intent)
         }
+
+      //  btnWorkout.setOnClickListener {
+           // val intent = Intent(activity, UserWorkoutsActivity::class.java)
+         //   startActivity(intent)
+       // }
 
         // Add BMIFragment to the HomeFragment
         val transaction: FragmentTransaction = childFragmentManager.beginTransaction()

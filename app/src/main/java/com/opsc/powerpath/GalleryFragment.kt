@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.io.File
@@ -39,9 +40,10 @@ class GalleryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         txtMonth = view.findViewById(R.id.txtMonth)
-        txtMonth.text = month
+       // txtMonth.text = month
+        txtMonth.text = getString(R.string.this_month)
         rvPhotos = view.findViewById(R.id.gallery_recycler_view)
-        rvPhotos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rvPhotos.layoutManager = GridLayoutManager(context, 3)
 
         adapter = GalleryAdapter(imageByteArray, fileNameList)
         rvPhotos.adapter = adapter

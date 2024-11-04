@@ -1,8 +1,11 @@
 package com.opsc.powerpath
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
@@ -11,6 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.opsc.powerpath.Data.Models.Exercise
@@ -48,13 +52,20 @@ class WorkoutActivity : AppCompatActivity() {
         }
         exercisesRecyclerView.adapter = workoutActivityAdapter
 
-        val muscleGroups = arrayOf("legs", "push", "pull")
+        val muscleGroups = arrayOf("Legs", "Push", "Pull")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, muscleGroups)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         muscleGroupSpinner.adapter = adapter
 
         chooseWorkoutButton.setOnClickListener { showWorkoutPopup() }
         completeWorkoutButton.setOnClickListener { completeWorkout() }
+        val toolbar: MaterialToolbar = findViewById(R.id.top)
+        setSupportActionBar(toolbar)
+
+
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
 
     private fun showWorkoutPopup() {
@@ -140,5 +151,28 @@ class WorkoutActivity : AppCompatActivity() {
                 Toast.makeText(this, "Failed to save workout progress: ${e.message}", Toast.LENGTH_SHORT).show()
                 Log.e("WorkoutActivity", "Failed to save workout progress", e)
             }
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_nav, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu -> {
+                true
+            }
+
+            R.id.logout -> {
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

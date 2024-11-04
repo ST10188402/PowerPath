@@ -1,7 +1,10 @@
 package com.opsc.powerpath
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -12,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.opsc.powerpath.Data.API.ApiResponse
@@ -44,7 +48,7 @@ class AddWorkoutActivity : AppCompatActivity() {
         addExerciseButton = findViewById(R.id.addExerciseButton)
         nameEditText = findViewById(R.id.workoutNameEditText)
         muscleGroupSpinner = findViewById(R.id.muscleGroupSpinner)
-        val muscleGroups = arrayOf("legs", "push", "pull")
+        val muscleGroups = arrayOf("Legs", "Push", "Pull")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, muscleGroups)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         muscleGroupSpinner.adapter = adapter
@@ -55,6 +59,13 @@ class AddWorkoutActivity : AppCompatActivity() {
 
         addExerciseButton.setOnClickListener { showExercisePopup() }
         addWorkoutButton.setOnClickListener { addWorkout() }
+        val toolbar: MaterialToolbar = findViewById(R.id.top)
+        setSupportActionBar(toolbar)
+
+
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
 
     private fun showExercisePopup() {
@@ -128,5 +139,28 @@ class AddWorkoutActivity : AppCompatActivity() {
                 t.printStackTrace()
             }
         })
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_nav, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu -> {
+                true
+            }
+
+            R.id.logout -> {
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
