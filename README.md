@@ -1,4 +1,5 @@
 # PowerPath
+Creators: ST10188402, ST10158643, ST10150497, ST10043208
 
 PowerPath is a fitness app developed in Android Studio using Kotlin. It helps users manage their fitness journey by tracking BMI, weight, workouts, and exercise progress. The app includes features such as login with biometric or email authentication, workout tracking, and a photo gallery for visual progress.
 
@@ -10,6 +11,7 @@ PowerPath is a fitness app developed in Android Studio using Kotlin. It helps us
 - [Usage](#usage)
 - [Technologies](#technologies)
 - [License](#license)
+- [Youtube](#youtube)
 
 ## 🌟 Features
 
@@ -44,3 +46,7 @@ PowerPath is a fitness app developed in Android Studio using Kotlin. It helps us
 1. Clone the repository:
    ```bash
    git clone https://github.com/ST10188402/PowerPath
+
+## 🎥 Youtube
+https://youtu.be/oLRArMrA524
+
