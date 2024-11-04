@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#2F323A"
-            android:text="@string/photo"
+            android:text="Photo"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/btn_grad"
-            android:text="@string/statistic"
+            android:text="Statistic"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:layout_marginStart="8dp" />
@@ -49,250 +49,85 @@
         android:layout_width="match_parent"
         android:layout_height="20dp" />
 
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/lose_weight_percentage2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textColor="#B6B4C1"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/summary_text"
+        android:id="@+id/lose_weight_percentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Selected Month vs Selected Month"
+        android:layout_alignParentEnd="true"
+        android:text="Lose weight progress"
         android:textColor="#B6B4C1"
-        android:textSize="18sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp" />
+        android:textSize="16sp" />
+
+    <ProgressBar
+        android:id="@+id/lose_weight_progress"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:max="100"
+        android:progressDrawable="@drawable/gradient_progbarstats" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
 
         <TextView
-            android:id="@+id/lose_weight_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lose_weight"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_alignParentStart="true" />
+            android:id="@+id/month1"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:text="TextView"
+            android:textColor="@android:color/white" />
+        <Space
+            android:layout_width="100dp"
+            android:layout_height="50dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/lose_weight_percentage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="33%"
-                android:textColor="#B6B4C1"
-                android:textSize="16sp"
-                android:layout_alignParentEnd="true" />
-            <ProgressBar
-                android:id="@+id/lose_weight_progress"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="200dp"
-                android:layout_height="10dp"
-                android:max="100"
-                android:progress="33"
-                android:layout_below="@id/lose_weight_text"
-                android:layout_marginTop="4dp"
-                android:progressDrawable="@drawable/gradient_progbarstats"/>
-
-            <TextView
-                android:id="@+id/lose_weight_percentage2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="67%"
-                android:textColor="#B6B4C1"
-                android:textSize="16sp"
-                android:layout_alignParentEnd="true" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:orientation="vertical"
-        android:gravity="center">
+        </Space>
 
         <TextView
-            android:id="@+id/push_strength_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/push_strength_increase"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:layout_alignParentStart="true" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-        <TextView
-            android:id="@+id/push_strength_percentage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="88%"
-            android:textColor="#B6B4C1"
-            android:textSize="16sp"
-            android:layout_alignParentEnd="true" />
-
-        <ProgressBar
-            android:id="@+id/push_strength_progress"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="200dp"
-            android:layout_height="10dp"
-            android:max="100"
-            android:progress="88"
-            android:layout_below="@id/push_strength_text"
-            android:layout_marginTop="4dp"
-            android:progressDrawable="@drawable/gradient_progbarstats"/>
-
-            <TextView
-                android:id="@+id/push_strength_percentage2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="12%"
-                android:textColor="#B6B4C1"
-                android:textSize="16sp"
-                android:layout_alignParentEnd="true" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/pull_strength_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pull_strength_increase"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:layout_alignParentStart="true" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/pull_strength_percentage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="57%"
-                android:textColor="#B6B4C1"
-                android:textSize="16sp"
-                android:layout_alignParentEnd="true" />
-
-            <ProgressBar
-                android:id="@+id/pull_strength_progress"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="200dp"
-                android:layout_height="10dp"
-                android:max="100"
-                android:progress="57"
-                android:layout_below="@id/pull_strength_text"
-                android:layout_marginTop="4dp"
-                android:progressDrawable="@drawable/gradient_progbarstats"/>
-
-            <TextView
-                android:id="@+id/pull_strength_percentage2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="43%"
-                android:textColor="#B6B4C1"
-                android:textSize="16sp"
-                android:layout_alignParentEnd="true" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/legs_strength_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/legs_strength_increase"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:layout_alignParentStart="true" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/legs_strength_percentage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="89%"
-                android:textColor="#B6B4C1"
-                android:textSize="16sp"
-                android:layout_alignParentEnd="true" />
-
-            <ProgressBar
-                android:id="@+id/legs_strength_progress"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="200dp"
-                android:layout_height="10dp"
-                android:max="100"
-                android:progress="88"
-                android:layout_below="@id/legs_strength_text"
-                android:layout_marginTop="4dp"
-                android:progressDrawable="@drawable/gradient_progbarstats"/>
-
-            <TextView
-                android:id="@+id/legs_strength_percentage2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="11%"
-                android:textColor="#B6B4C1"
-                android:textSize="16sp"
-                android:layout_alignParentEnd="true" />
-
-
-        </LinearLayout>
+            android:id="@+id/month2"
+            android:layout_width="145dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:text="TextView"
+            android:textColor="@android:color/white"/>
 
 
     </LinearLayout>
 
     <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_width="180dp"
+        android:layout_height="50dp"/>
 
-    <android.widget.Button
-        style="@style/Widget.App.Button2"
+    <Button
         android:id="@+id/backToHomeButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/gradient_btn_1"
         android:gravity="center"
-        android:text="@string/back_to_home"
+        android:text="Back to Home"
         android:textColor="#FFFFFF"
         android:textSize="16sp" />
 
