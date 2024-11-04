@@ -132,7 +132,6 @@
                 android:layout_marginBottom="50dp"
                 android:clickable="true"
                 android:focusable="true"
-                style="@style/Widget.App.Fab"
                 android:src="@drawable/ic_plus"
                 app:layout_anchorGravity="top|center"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -142,7 +141,7 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/addDate"
-                style="@style/Widget.App.Fab"
+
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -155,7 +154,7 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/addExercise"
-                style="@style/Widget.App.Fab"
+
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

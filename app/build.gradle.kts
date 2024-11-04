@@ -75,6 +75,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.google.android.gms:play-services-auth:20.2.0")
     implementation("com.google.android.gms:play-services-maps:18.0.2")
+    implementation("com.google.android.material:material:1.9.0")
 
 }
 apply(plugin ="com.google.gms.google-services")
