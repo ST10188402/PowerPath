@@ -13,11 +13,8 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.data.Entry
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.opsc.powerpath.Data.Models.WeightProgress
-import com.opsc.powerpath.Utils.RetrofitInstance
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class HomeChartFragment : Fragment() {
 
@@ -55,29 +52,29 @@ class HomeChartFragment : Fragment() {
 
     private fun fetchDataAndDisplayChart() {
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        val apiService = RetrofitInstance.api.getWeightProgress(userId)
-        apiService.enqueue(object : Callback<List<WeightProgress>> {
-            override fun onResponse(call: Call<List<WeightProgress>>, response: Response<List<WeightProgress>>) {
-                if (response.isSuccessful) {
-                    val weightProgressList = response.body()
-                    weightProgressList?.let {
-                        val entries = mutableListOf<Entry>()
-                        for ((index, progress) in it.withIndex()) {
-                            entries.add(Entry(index.toFloat(), progress.weight))
-                        }
-                        val dataSet = LineDataSet(entries, "Weight Progress")
-                        val data = LineData(dataSet)
-                        lineChartView.data = data
-                        lineChartView.invalidate()
-                    }
-                } else {
-                    Toast.makeText(requireContext(), "Failed to get weight progress: ${response.message()}", Toast.LENGTH_SHORT).show()
-                }
-            }
+        val db = FirebaseFirestore.getInstance()
+        val weightProgressRef = db.collection("users").document(userId).collection("weight-progress")
 
-            override fun onFailure(call: Call<List<WeightProgress>>, t: Throwable) {
-                Toast.makeText(requireContext(), "API call failed: ${t.message}", Toast.LENGTH_SHORT).show()
+        weightProgressRef.get().addOnSuccessListener { documents ->
+            val weightProgressList = mutableListOf<WeightProgress>()
+            for (document in documents) {
+                val weightProgress = document.toObject(WeightProgress::class.java)
+                weightProgressList.add(weightProgress)
             }
-        })
+            displayChart(weightProgressList)
+        }.addOnFailureListener { exception ->
+            Toast.makeText(requireContext(), "Failed to get weight progress: ${exception.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun displayChart(weightProgressList: List<WeightProgress>) {
+        val entries = mutableListOf<Entry>()
+        for ((index, progress) in weightProgressList.withIndex()) {
+            entries.add(Entry(index.toFloat(), progress.weight))
+        }
+        val dataSet = LineDataSet(entries, "Weight Progress")
+        val data = LineData(dataSet)
+        lineChartView.data = data
+        lineChartView.invalidate()
     }
 }

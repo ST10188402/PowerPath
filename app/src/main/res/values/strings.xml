@@ -103,7 +103,7 @@
     <string name="workout_details">Workout Details</string>
     <string name="your_workouts">Your Workouts</string>
     <string name="no_workouts_saved_yet">No workouts saved yet</string>">
-     <string name="enter_sets">Enter Sets</string>
+
     <string name="build_your_workout">Build Your Workout</string>
     <string name="workout_name">Workout Name</string>
     <string name="save_workout">Save Workout</string>
@@ -116,9 +116,13 @@
         <item>Push</item>
         <item>Pull</item>
     </string-array>
+    <string name="enter_sets">Enter Sets</string>
+    <string name="biometrics">Biometrics</string>
+    <string name="change_weight">Change Weight</string>
+    <string name="workout">Workout</string>">
+
     <string-array name="gender_options">
         <item>Female</item>
         <item>Male</item>
     </string-array>
-
 </resources>

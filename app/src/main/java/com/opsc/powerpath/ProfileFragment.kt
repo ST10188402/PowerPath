@@ -2,41 +2,26 @@ package com.opsc.powerpath
 
 import android.app.AlertDialog
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.opsc.powerpath.Data.Models.User
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 import android.widget.Toast
-import com.opsc.powerpath.Data.API.IApi
-import com.opsc.powerpath.Utils.RetrofitInstance
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.fragment.app.Fragment
+import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.opsc.powerpath.Data.Models.User
 import java.util.Calendar
 
 class ProfileFragment : Fragment() {
-    private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var user: User
     private lateinit var language: TextView
-
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var popUpNotificationSwitch: SwitchMaterial
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,15 +29,21 @@ class ProfileFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-
-        // Initialize Firebase Auth and Database
+        // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance().reference
+        sharedPreferences = requireActivity().getSharedPreferences("com.opsc.powerpath", Context.MODE_PRIVATE)
+
         fetchUserData(view)
         language = view.findViewById(R.id.languages_setting)
         language.setOnClickListener {
             changeLanguage()
             Toast.makeText(context, "Languages Setting clicked", Toast.LENGTH_SHORT).show()
+        }
+
+        popUpNotificationSwitch = view.findViewById(R.id.pop_up_notification)
+        popUpNotificationSwitch.isChecked = sharedPreferences.getBoolean("biometricEnabled", true)
+        popUpNotificationSwitch.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferences.edit().putBoolean("biometricEnabled", isChecked).apply()
         }
 
         return view
@@ -73,27 +64,26 @@ class ProfileFragment : Fragment() {
         }
         builder.show()
     }
+
     private fun fetchUserData(view: View) {
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val api = RetrofitInstance.api
-            val call = api.getUserById(currentUser.uid)
-            call.enqueue(object : Callback<User> {
-                override fun onResponse(call: Call<User>, response: Response<User>) {
-                    if (response.isSuccessful) {
-                        user = response.body()!!
-                        if (user != null) {
-                            populateViews(view, user)
-                        }
-                    } else {
-                        Toast.makeText(context, "Failed to fetch user data", Toast.LENGTH_SHORT).show()
-                    }
-                }
+            val userId = currentUser.uid
+            val db = FirebaseFirestore.getInstance()
+            val userRef = db.collection("users").document(userId)
 
-                override fun onFailure(call: Call<User>, t: Throwable) {
-                    Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            userRef.get().addOnSuccessListener { document ->
+                if (document != null) {
+                    val user = document.toObject(User::class.java)
+                    user?.let {
+                        populateViews(view, it)
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "No such user found", Toast.LENGTH_SHORT).show()
                 }
-            })
+            }.addOnFailureListener { exception ->
+                Toast.makeText(requireContext(), "Failed to get user details: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

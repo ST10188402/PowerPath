@@ -10,6 +10,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.opsc.powerpath.Data.Models.User
 import com.opsc.powerpath.Utils.RetrofitInstance
 import com.opsc.powerpath.databinding.ActivityCompleteProfileBinding
@@ -85,24 +86,33 @@ class CompleteActivity : AppCompatActivity() {
             name = name.toString()
         )
 
-            val apiService = RetrofitInstance.api.addUser(user)
-            apiService.enqueue(object : Callback<User> {
-                override fun onResponse(call: Call<User>, response: Response<User>) {
-                    if (response.isSuccessful) {
-                        Toast.makeText(baseContext, "User health data saved successfully", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(baseContext, "Failed to save data: ${response.message()}", Toast.LENGTH_SHORT).show()
-                        Log.e(TAG, "COMPLETE ACTIVITY api called${response.message()}")
-                        Log.e(TAG, "COMPLETE ACTIVITY api called${response.body()}")
-                    }
+        val apiService = RetrofitInstance.api.addUser(user)
+        apiService.enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful) {
+                    // Add weight to weightProgress subcollection
+                    val weightProgress = WeightProgress(weight = weight.toFloat())
+                    FirebaseFirestore.getInstance().collection("users").document(uid)
+                        .collection("weightProgress").add(weightProgress)
+                        .addOnSuccessListener {
+                            Toast.makeText(baseContext, "User health data and weight progress saved successfully", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener { exception ->
+                            Toast.makeText(baseContext, "Failed to save weight progress: ${exception.message}", Toast.LENGTH_SHORT).show()
+                        }
+                } else {
+                    Toast.makeText(baseContext, "Failed to save data: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    Log.e(TAG, "COMPLETE ACTIVITY api called${response.message()}")
+                    Log.e(TAG, "COMPLETE ACTIVITY api called${response.body()}")
                 }
+            }
 
-                override fun onFailure(call: Call<User>, t: Throwable) {
-                    Toast.makeText(baseContext, "Failed to save user health data: ${t.message}", Toast.LENGTH_SHORT).show()
-                    Log.e(TAG, "COMPLETE ACTIVITY failed not api ${t.message}")
-                }
-            })
-        }
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                Toast.makeText(baseContext, "Failed to save user health data: ${t.message}", Toast.LENGTH_SHORT).show()
+                Log.e(TAG, "COMPLETE ACTIVITY failed not api ${t.message}")
+            }
+        })
+    }
 
     // Function to validate the user inputs
     private fun validateInputs(): Boolean {

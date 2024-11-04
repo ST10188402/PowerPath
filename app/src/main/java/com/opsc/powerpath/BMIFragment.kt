@@ -15,13 +15,16 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.opsc.powerpath.Data.Models.User
 import com.opsc.powerpath.Data.Models.WeightProgress
-import com.opsc.powerpath.Utils.RetrofitInstance
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class BMIFragment : Fragment() {
+
+    private lateinit var pieChart: PieChart
+    private lateinit var addWeightButton: Button
+    private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,12 +33,16 @@ class BMIFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_bmi_item, container, false)
 
-        // Get the PieChart view
-        val pieChart: PieChart = view.findViewById(R.id.donutChartView)
-        val addWeightButton: Button = view.findViewById(R.id.addWeightButton)
+        // Initialize Firebase Auth and Firestore
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
-        // Set up the PieChart with BMI data
-        setupPieChart(pieChart)
+        // Get the PieChart view
+        pieChart = view.findViewById(R.id.donutChartView)
+        addWeightButton = view.findViewById(R.id.addWeightButton)
+
+        // Fetch user data and set up the PieChart with BMI data
+        fetchUserDataAndSetupPieChart()
 
         // Set up the button click listener
         addWeightButton.setOnClickListener {
@@ -45,11 +52,44 @@ class BMIFragment : Fragment() {
         return view
     }
 
-    private fun setupPieChart(pieChart: PieChart) {
-        // Example BMI data
-        val bmi = 22.0f // Replace with actual BMI value
+    private fun fetchUserDataAndSetupPieChart() {
+        val userId = auth.currentUser!!.uid
+        val userRef = db.collection("users").document(userId)
+
+        userRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                val user = document.toObject(User::class.java)
+                user?.let {
+                    val height = (it.height ?: 0f).toFloat()
+                    val weight = (it.weight ?: 0f).toFloat()
+                    val bmi = calculateBMI(height, weight)
+                    setupPieChart(bmi)
+                }
+            } else {
+                Toast.makeText(requireContext(), "No such user found", Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener { exception ->
+            Toast.makeText(requireContext(), "Failed to get user details: ${exception.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun calculateBMI(height: Float, weight: Float): Float {
+        return if (height > 0) {
+            weight / ((height / 100) * (height / 100))
+        } else {
+            0f
+        }
+    }
+
+    private fun setupPieChart(bmi: Float) {
         val entries = mutableListOf<PieEntry>()
-        entries.add(PieEntry(bmi, "BMI"))
+        val bmiCategory = when {
+            bmi < 18.5 -> "Underweight"
+            bmi in 18.5..24.9 -> "Healthy"
+            bmi in 25.0..29.9 -> "Overweight"
+            else -> "Obese"
+        }
+        entries.add(PieEntry(bmi, bmiCategory))
         entries.add(PieEntry(100 - bmi, "Remaining"))
 
         val dataSet = PieDataSet(entries, "BMI Data")
@@ -86,22 +126,26 @@ class BMIFragment : Fragment() {
     }
 
     private fun saveWeightToDatabase(weight: Float) {
-        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        val userId = auth.currentUser!!.uid
         val weightProgress = WeightProgress(weight = weight)
 
-        val apiService = RetrofitInstance.api.addWeightProgress(userId, weightProgress)
-        apiService.enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if (response.isSuccessful) {
-                    Toast.makeText(requireContext(), "Weight added successfully", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(requireContext(), "Failed to add weight: ${response.message()}", Toast.LENGTH_SHORT).show()
-                }
+        // Add the new weight entry to the weightProgress subcollection
+        db.collection("users").document(userId).collection("weightProgress")
+            .add(weightProgress)
+            .addOnSuccessListener {
+                // Update the user's weight in the main user document
+                db.collection("users").document(userId)
+                    .update("weight", weight)
+                    .addOnSuccessListener {
+                        Toast.makeText(requireContext(), "Weight added and updated successfully", Toast.LENGTH_SHORT).show()
+                        fetchUserDataAndSetupPieChart() // Refresh the chart with new data
+                    }
+                    .addOnFailureListener { exception ->
+                        Toast.makeText(requireContext(), "Failed to update user weight: ${exception.message}", Toast.LENGTH_SHORT).show()
+                    }
             }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                Toast.makeText(requireContext(), "API call failed: ${t.message}", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener { exception ->
+                Toast.makeText(requireContext(), "Failed to add weight: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
-        })
     }
 }
